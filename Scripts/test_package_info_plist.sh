@@ -17,7 +17,7 @@ end = script.index('\nPLIST\n', start) + len('\nPLIST\n')
 Path(sys.argv[2]).write_text(script[start:end])
 PY
 
-APP="$TEMP_DIR/CodexBar.app"
+APP="$TEMP_DIR/Scapolite.app"
 mkdir -p "$APP/Contents"
 BUNDLE_ID=com.steipete.codexbar.test
 MARKETING_VERSION=0.0.0
@@ -40,8 +40,8 @@ from pathlib import Path
 plist = plistlib.loads(Path(sys.argv[1]).read_bytes())
 declarations = plist.get("UTExportedTypeDeclarations")
 assert declarations == [{
-    "UTTypeIdentifier": "com.steipete.codexbar.menu-layout-item",
-    "UTTypeDescription": "CodexBar menu bar layout token",
+    "UTTypeIdentifier": "com.taliyigit2.scapolite.menu-layout-item",
+    "UTTypeDescription": "Scapolite menu bar layout token",
     "UTTypeConformsTo": ["public.data"],
     "UTTypeTagSpecification": {},
 }]

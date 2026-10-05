@@ -14,10 +14,10 @@
 "Include API keys, cookies, and tokens" = "API anahtarlarını, çerezleri ve tokenları dahil et";
 "Sync usage snapshots" = "Kullanım anlık görüntülerini eşzamanla";
 "Show accounts from other Macs" = "Diğer Mac'lerdeki hesapları göster";
-"Requires a signed release build of CodexBar." = "CodexBar'ın imzalı bir sürüm derlemesi gerekir.";
+"Requires a signed release build of CodexBar." = "Scapolite'ın imzalı bir sürüm derlemesi gerekir.";
 "Sign in to iCloud in System Settings to enable sync." = "Eşzamanlamayı etkinleştirmek için Sistem Ayarları'nda iCloud'a giriş yapın.";
 "iCloud access is restricted on this Mac." = "Bu Mac'te iCloud erişimi kısıtlı.";
-"Sync is paused: another Mac uses a newer version of CodexBar. Update to resume." = "Eşzamanlama duraklatıldı: başka bir Mac daha yeni bir CodexBar sürümü kullanıyor. Devam etmek için güncelleyin.";
+"Sync is paused: another Mac uses a newer version of CodexBar. Update to resume." = "Eşzamanlama duraklatıldı: başka bir Mac daha yeni bir Scapolite sürümü kullanıyor. Devam etmek için güncelleyin.";
 "Last successful fetch" = "Son başarılı veri alma";
 "Last successful push" = "Son başarılı gönderme";
 "Never" = "Asla";
@@ -31,9 +31,9 @@
 "%dh ago" = "%d sa önce";
 "%dd ago" = "%d gün önce";
 
-"ollama_safari_cookie_access_hint" = "Safari çerezleri için CodexBar'a Tam Disk Erişimi gerekir (Sistem Ayarları > Gizlilik ve Güvenlik).";
+"ollama_safari_cookie_access_hint" = "Safari çerezleri için Scapolite'a Tam Disk Erişimi gerekir (Sistem Ayarları > Gizlilik ve Güvenlik).";
 "ollama_browser_cookie_decryption_denied" = "%@ çerezlerinin şifresini çözme işlemi Anahtar Zinciri'nde reddedildi. Sağlayıcı kartını açın ve Anahtar Zinciri erişimini yeniden istemek için Yenile'ye (⌘R) tıklayın.";
-"ollama_browser_cookie_decryption_disabled" = "%@ çerezlerinin şifresi CodexBar'da çözülemiyor; Anahtar Zinciri erişimini etkinleştirip yenileyin.";
+"ollama_browser_cookie_decryption_disabled" = "%@ çerezlerinin şifresi Scapolite'da çözülemiyor; Anahtar Zinciri erişimini etkinleştirip yenileyin.";
 
 " providers" = " sağlayıcı";
 "(System)" = "(Sistem)";
@@ -74,7 +74,7 @@
 "Automatic imports browser cookies or stored sessions." = "Otomatik olarak tarayıcı çerezlerini veya kayıtlı oturumları içe aktarır.";
 "Automatic imports browser cookies." = "Otomatik olarak tarayıcı çerezlerini içe aktarır.";
 "Automatically imports browser session cookie." = "Otomatik olarak tarayıcı oturum çerezini içe aktarır.";
-"Automatically opens CodexBar when you start your Mac." = "Mac'inizi başlattığınızda CodexBar'ı otomatik olarak açar.";
+"Automatically opens CodexBar when you start your Mac." = "Mac'inizi başlattığınızda Scapolite'ı otomatik olarak açar.";
 "Automation" = "Otomasyon";
 "Average (\\(label1) + \\(label2))" = "Ortalama (\\(label1) + \\(label2))";
 "Average (\\(metadata.sessionLabel) + \\(metadata.weeklyLabel))" = "Ortalama (\\(metadata.sessionLabel) + \\(metadata.weeklyLabel))";
@@ -96,7 +96,7 @@
 "Check for updates automatically" = "Güncellemeleri otomatik denetle";
 "Check if you like your agents having some fun up there." = "Ajanlarınızın yukarıda biraz eğlenmesini istiyorsanız seçin.";
 "Check provider status" = "Sağlayıcı durumunu denetle";
-"Choose a supported browser so CodexBar can read the matching account." = "CodexBar'ın eşleşen hesabı okuyabilmesi için desteklenen bir tarayıcı seçin.";
+"Choose a supported browser so CodexBar can read the matching account." = "Scapolite'ın eşleşen hesabı okuyabilmesi için desteklenen bir tarayıcı seçin.";
 "Choose Codex workspace" = "Codex çalışma alanını seçin";
 "Choose Cursor account" = "Cursor hesabını seçin";
 "Choose the MiniMax host (global .io or China mainland .com)." = "MiniMax sunucusunu seçin (küresel .io veya Çin anakarası .com).";
@@ -104,8 +104,8 @@
 "Choose up to \\(Self.maxOverviewProviders) providers" = "En fazla \\(Self.maxOverviewProviders) sağlayıcı seçin";
 "Choose up to \\(count) providers" = "En fazla \\(count) sağlayıcı seçin";
 "Choose what to show in the menu bar (Pace shows usage vs. expected)." = "Menü çubuğunda ne gösterileceğini seçin (Tempo, kullanımı beklentiyle karşılaştırır).";
-"Choose which Codex account CodexBar should follow." = "CodexBar'ın hangi Codex hesabını izleyeceğini seçin.";
-"Choose which Cursor account CodexBar should use." = "CodexBar'ın hangi Cursor hesabını kullanacağını seçin.";
+"Choose which Codex account CodexBar should follow." = "Scapolite'ın hangi Codex hesabını izleyeceğini seçin.";
+"Choose which Cursor account CodexBar should use." = "Scapolite'ın hangi Cursor hesabını kullanacağını seçin.";
 "Choose which window drives the menu bar percent." = "Menü çubuğu yüzdesini hangi pencerenin belirleyeceğini seçin.";
 "Chrome" = "Chrome";
 "Claude CLI not found" = "Claude CLI bulunamadı";
@@ -120,9 +120,9 @@
 "Codex binary" = "Codex çalıştırılabilir dosyası";
 "Codex login failed" = "Codex girişi başarısız";
 "Codex login timed out" = "Codex girişi zaman aşımına uğradı";
-"CodexBar Lifecycle Keepalive" = "CodexBar yaşam döngüsünü canlı tutma";
-"CodexBar can't show its menu bar icon" = "CodexBar menü çubuğu simgesini gösteremiyor";
-"CodexBar could not read managed account storage. " = "CodexBar yönetilen hesap depolamasını okuyamadı. ";
+"CodexBar Lifecycle Keepalive" = "Scapolite yaşam döngüsünü canlı tutma";
+"CodexBar can't show its menu bar icon" = "Scapolite menü çubuğu simgesini gösteremiyor";
+"CodexBar could not read managed account storage. " = "Scapolite yönetilen hesap depolamasını okuyamadı. ";
 "Configure…" = "Yapılandır…";
 "Connected" = "Bağlı";
 "Controls how much detail is logged." = "Ne kadar ayrıntının günlüğe kaydedileceğini denetler.";
@@ -188,13 +188,13 @@
 "Hide details" = "Ayrıntıları gizle";
 "Hide personal information" = "Kişisel bilgileri gizle";
 "Historical tracking" = "Geçmiş takibi";
-"How often CodexBar polls providers in the background." = "CodexBar'ın arka planda sağlayıcıları ne sıklıkla sorgulayacağı.";
+"How often CodexBar polls providers in the background." = "Scapolite'ın arka planda sağlayıcıları ne sıklıkla sorgulayacağı.";
 "Inactive" = "Etkin değil";
 "Install CLI" = "CLI'yi yükle";
 "Install the Claude CLI (npm i -g @anthropic-ai/claude-code) and try again." = "Claude CLI'yi kurun (npm i -g @anthropic-ai/claude-code) ve tekrar deneyin.";
 "Install the Codex CLI (npm i -g @openai/codex) and try again." = "Codex CLI'yi kurun (npm i -g @openai/codex) ve tekrar deneyin.";
 "Install the Gemini CLI (npm i -g @google/gemini-cli) and try again." = "Gemini CLI'yi kurun (npm i -g @google/gemini-cli) ve tekrar deneyin.";
-"Install a JetBrains IDE with AI Assistant enabled, then refresh CodexBar." = "AI Assistant etkin bir JetBrains IDE kurun, ardından CodexBar'ı yenileyin.";
+"Install a JetBrains IDE with AI Assistant enabled, then refresh CodexBar." = "AI Assistant etkin bir JetBrains IDE kurun, ardından Scapolite'ı yenileyin.";
 "JetBrains AI is ready" = "JetBrains AI hazır";
 "JetBrains IDE" = "JetBrains IDE";
 "Keep CLI sessions alive" = "CLI oturumlarını açık tut";
@@ -248,7 +248,7 @@
 "Open" = "Aç";
 "Open API Keys" = "API anahtarlarını aç";
 "Open Amp Settings" = "Amp ayarlarını aç";
-"Open Antigravity to sign in, then refresh CodexBar." = "Giriş yapmak için Antigravity'yi açın, ardından CodexBar'ı yenileyin.";
+"Open Antigravity to sign in, then refresh CodexBar." = "Giriş yapmak için Antigravity'yi açın, ardından Scapolite'ı yenileyin.";
 "Open Browser" = "Tarayıcıyı aç";
 "Open Coding Plan" = "Kodlama planını aç";
 "Open Console" = "Konsolu aç";
@@ -293,7 +293,7 @@
 "Progress bars fill as you consume quota (instead of showing remaining)." = "İlerleme çubukları kota kullandıkça dolar (kalanı göstermek yerine).";
 "Provider" = "Sağlayıcı";
 "Providers" = "Sağlayıcılar";
-"Quit CodexBar" = "CodexBar'dan çık";
+"Quit CodexBar" = "Scapolite'dan çık";
 "Random (default)" = "Rastgele (varsayılan)";
 "Reads local usage logs. Shows today + last 30 days cost in the menu." = "Yerel kullanım günlüklerini okur. Menüde bugünün ve son 30 günün maliyetini gösterir.";
 "Refresh" = "Yenile";
@@ -301,8 +301,8 @@
 "Remote" = "Uzak";
 "Remove" = "Kaldır";
 "Remove Codex account?" = "Codex hesabı kaldırılsın mı?";
-"Remove \\(account.email) from CodexBar? Its managed Codex home will be deleted." = "\\(account.email) CodexBar'dan kaldırılsın mı? Yönetilen Codex ana dizini silinecek.";
-"Remove \\(email) from CodexBar? Its managed Codex home will be deleted." = "\\(email) CodexBar'dan kaldırılsın mı? Yönetilen Codex ana dizini silinecek.";
+"Remove \\(account.email) from CodexBar? Its managed Codex home will be deleted." = "\\(account.email) Scapolite'dan kaldırılsın mı? Yönetilen Codex ana dizini silinecek.";
+"Remove \\(email) from CodexBar? Its managed Codex home will be deleted." = "\\(email) Scapolite'dan kaldırılsın mı? Yönetilen Codex ana dizini silinecek.";
 "Remove selected account" = "Seçili hesabı kaldır";
 "Replace critter bars with provider branding icons and a percentage." = "Canavar çubuklarını sağlayıcı marka simgeleri ve yüzde ile değiştir.";
 "Replay selected animation" = "Seçili animasyonu yeniden oynat";
@@ -344,7 +344,7 @@
 "Store multiple Ollama Cookie headers." = "Birden fazla Ollama çerez başlığı depolayın.";
 "Store multiple OpenCode Cookie headers." = "Birden fazla OpenCode çerez başlığı depolayın.";
 "Store multiple OpenCode Go Cookie headers." = "Birden fazla OpenCode Go çerez başlığı depolayın.";
-"Stored in the CodexBar config file." = "CodexBar yapılandırma dosyasında depolandı.";
+"Stored in the CodexBar config file." = "Scapolite yapılandırma dosyasında depolandı.";
 "Stored in ~/.codexbar/config.json. " = "~/.codexbar/config.json dosyasında depolandı. ";
 "Stored in ~/.codexbar/config.json. Paste the key from the Synthetic dashboard." = "~/.codexbar/config.json dosyasında depolandı. Synthetic panelinden anahtarı yapıştırın.";
 "Stored in ~/.codexbar/config.json. Paste your Coding Plan API key from Model Studio." = "~/.codexbar/config.json dosyasında depolandı. Model Studio'dan Kodlama Planı API anahtarınızı yapıştırın.";
@@ -353,7 +353,7 @@
 "Stores local Codex usage history (8 weeks) to personalize Pace predictions." = "Tempo tahminlerini kişiselleştirmek için yerel Codex kullanım geçmişini (8 hafta) depolar.";
 "Surprise me" = "Beni şaşırt";
 "Switcher shows icons" = "Seçicide simgeleri gösterir";
-"Symlink CodexBarCLI to /usr/local/bin and /opt/homebrew/bin as codexbar." = "CodexBarCLI'yi codexbar olarak /usr/local/bin ve /opt/homebrew/bin dizinlerine sembolik bağlayın.";
+"Symlink CodexBarCLI to /usr/local/bin and /opt/homebrew/bin as codexbar." = "ScapoliteCLI'yi codexbar olarak /usr/local/bin ve /opt/homebrew/bin dizinlerine sembolik bağlayın.";
 "System" = "Sistem";
 "Temporarily shows the loading animation after the next refresh." = "Sonraki yenilemeden sonra yükleme animasyonunu geçici olarak gösterir.";
 "Tertiary (\\(label))" = "Üçüncül (\\(label))";
@@ -418,8 +418,8 @@
 "cursor_on_demand" = "İsteğe bağlı: %@";
 "cursor_on_demand_with_limit" = "İsteğe bağlı: %1$@ / %2$@";
 "extra_usage_format" = "Ek kullanım: %1$@ / %2$@";
-"jetbrains_detected_generate" = "Algılandı: %@. Kota verisini oluşturmak için AI asistanını bir kez kullanın, ardından CodexBar'ı yenileyin.";
-"jetbrains_detected_select" = "Algılandı: %@. Ayarlar'da tercih ettiğiniz IDE'yi seçin, ardından CodexBar'ı yenileyin.";
+"jetbrains_detected_generate" = "Algılandı: %@. Kota verisini oluşturmak için AI asistanını bir kez kullanın, ardından Scapolite'ı yenileyin.";
+"jetbrains_detected_select" = "Algılandı: %@. Ayarlar'da tercih ettiğiniz IDE'yi seçin, ardından Scapolite'ı yenileyin.";
 "last_fetch_failed_with_provider" = "Son %@ veri alma işlemi başarısız:";
 "last_spend" = "Son harcama: %@";
 "mcp_model_usage" = "%1$@: %2$@";
@@ -429,10 +429,10 @@
 "metric_primary" = "Birincil (%@)";
 "metric_secondary" = "İkincil (%@)";
 "metric_tertiary" = "Üçüncül (%@)";
-"multiple_workspaces_found" = "CodexBar %@ için birden fazla çalışma alanı buldu. Lütfen eklenecek çalışma alanını seçin.";
+"multiple_workspaces_found" = "Scapolite %@ için birden fazla çalışma alanı buldu. Lütfen eklenecek çalışma alanını seçin.";
 "ory_session_…=…; csrftoken=…" = "ory_session_…=…; csrftoken=…";
 "overview_choose_providers" = "En fazla %@ sağlayıcı seçin";
-"remove_account_message" = "%@ CodexBar'dan kaldırılsın mı? Yönetilen Codex ana dizini silinecek.";
+"remove_account_message" = "%@ Scapolite'dan kaldırılsın mı? Yönetilen Codex ana dizini silinecek.";
 "version_format" = "Sürüm %@";
 "vertex_ai_login_instructions" = "Vertex AI kullanımını izlemek için Google Cloud ile kimlik doğrulaması yapın.\n\n1. Terminal'i açın\n2. Şunu çalıştırın: gcloud auth application-default login\n3. Tarayıcıdaki adımları takip ederek oturum açın\n4. Projenizi ayarlayın: gcloud config set project PROJECT_ID\n\nTerminal şimdi açılsın mı?";
 "workspaceID is set but only opencode, opencodego, and deepgram support workspaceID." = "workspaceID ayarlandı, ancak yalnızca opencode, opencodego ve deepgram workspaceID destekler.";
@@ -475,7 +475,7 @@
 "language_indonesian" = "Endonezce";
 "language_polish" = "Lehçe";
 "start_at_login_title" = "Girişte başlat";
-"start_at_login_subtitle" = "Mac'inizi başlattığınızda CodexBar'ı otomatik olarak açar.";
+"start_at_login_subtitle" = "Mac'inizi başlattığınızda Scapolite'ı otomatik olarak açar.";
 "show_cost_summary_subtitle" = "Yerel kullanım günlüklerini okur. Menüde bugünün ve seçilen geçmiş aralığının maliyetini gösterir.";
 "cost_summary_style_title" = "Görüntüleme stili";
 "cost_summary_style_inline" = "Yalnızca satır içi";
@@ -551,7 +551,7 @@
 "quota_warning_warning" = "Uyarı";
 "quota_warning_critical" = "Kritik";
 "apply" = "Uygula";
-"quit_app" = "CodexBar'dan Çık";
+"quit_app" = "Scapolite'dan Çık";
 
 /* Tab titles */
 "tab_general" = "Genel";
@@ -599,8 +599,8 @@
 "managed_login_missing_email" = "Codex girişi tamamlandı, ancak hesap e-postası bulunamadı. Hesabın tam olarak oturum açtığını doğruladıktan sonra tekrar deneyin.";
 "login_success_notification_title" = "%@ girişi başarılı";
 "login_success_notification_body" = "Uygulamaya dönebilirsiniz; kimlik doğrulaması tamamlandı.";
-"workspace_selection_cancelled" = "CodexBar birden fazla çalışma alanı buldu, ancak hiçbir çalışma alanı seçilmedi.";
-"unsafe_managed_home" = "CodexBar beklenmeyen bir yönetilen ev yolunu değiştirmeyi reddetti: %@";
+"workspace_selection_cancelled" = "Scapolite birden fazla çalışma alanı buldu, ancak hiçbir çalışma alanı seçilmedi.";
+"unsafe_managed_home" = "Scapolite beklenmeyen bir yönetilen ev yolunu değiştirmeyi reddetti: %@";
 "menu_bar_metric_title" = "Menü çubuğu metriği";
 "menu_bar_metric_subtitle" = "Menü çubuğu yüzdesini hangi pencerenin belirleyeceğini seçin.";
 "menu_bar_metric_subtitle_deepseek" = "Menü çubuğunda DeepSeek bakiyesini gösterir.";
@@ -683,8 +683,8 @@
 "record_shortcut" = "Kısayolu kaydet";
 "press_shortcut" = "Kısayola basın";
 "install_cli" = "CLI'yi yükle";
-"install_cli_subtitle" = "CodexBarCLI'yi codexbar olarak /usr/local/bin ve /opt/homebrew/bin dizinlerine sembolik bağlayın.";
-"cli_not_found" = "CodexBarCLI uygulama paketinde bulunamadı.";
+"install_cli_subtitle" = "ScapoliteCLI'yi codexbar olarak /usr/local/bin ve /opt/homebrew/bin dizinlerine sembolik bağlayın.";
+"cli_not_found" = "ScapoliteCLI uygulama paketinde bulunamadı.";
 "no_writable_bin_dirs" = "Yazılabilir bin dizini bulunamadı.";
 "show_debug_settings_title" = "Hata ayıklama ayarlarını göster";
 "show_debug_settings_subtitle" = "Sorun giderme araçlarını hata ayıklama sekmesinde göster.";
@@ -725,7 +725,7 @@
 
 /* Debug Pane */
 "use_javascriptcore_plugin_engine" = "Sağlayıcı eklentileri için JavaScriptCore kullan";
-"use_javascriptcore_plugin_engine_subtitle" = "Yalnızca uyumluluk geri dönüşü. Uygulamak için CodexBar'ı yeniden başlatın; CODEXBAR_PLUGIN_ENGINE bu ayarı geçersiz kılar.";
+"use_javascriptcore_plugin_engine_subtitle" = "Yalnızca uyumluluk geri dönüşü. Uygulamak için Scapolite'ı yeniden başlatın; CODEXBAR_PLUGIN_ENGINE bu ayarı geçersiz kılar.";
 "section_logging" = "Günlükleme";
 "enable_file_logging" = "Dosya günlüğünü etkinleştir";
 "enable_file_logging_subtitle" = "Hata ayıklama için günlükleri %@ konumuna yaz.";
@@ -781,7 +781,7 @@
 "login_shell_path" = "Oturum kabuğu PATH (başlangıç yakalaması)";
 "cleared" = "Temizlendi.";
 "no_fetch_attempts" = "Henüz veri alma denemesi yok.";
-"macOS Tahoe can block menu bar apps in System Settings → Menu Bar → Allow in the Menu Bar. CodexBar is running, but macOS may be hiding its icon. Open Menu Bar settings and turn CodexBar on." = "macOS Tahoe, Sistem Ayarları → Menü Çubuğu → Menü Çubuğunda İzin Ver bölümünde menü çubuğu uygulamalarını engelleyebilir. CodexBar çalışıyor, ancak macOS simgesini gizliyor olabilir. Menü Çubuğu ayarlarını açın ve CodexBar'ı etkinleştirin.";
+"macOS Tahoe can block menu bar apps in System Settings → Menu Bar → Allow in the Menu Bar. CodexBar is running, but macOS may be hiding its icon. Open Menu Bar settings and turn CodexBar on." = "macOS Tahoe, Sistem Ayarları → Menü Çubuğu → Menü Çubuğunda İzin Ver bölümünde menü çubuğu uygulamalarını engelleyebilir. Scapolite çalışıyor, ancak macOS simgesini gizliyor olabilir. Menü Çubuğu ayarlarını açın ve Scapolite'ı etkinleştirin.";
 
 /* Metric preferences */
 "metric_pref_automatic" = "Otomatik";
@@ -820,7 +820,7 @@
 "refresh_adaptive" = "Uyarlanabilir";
 "refresh_adaptive_agent_aware" = "Uyarlanabilir (ajan etkinliğine duyarlı)";
 "adaptive_activity_consent_title" = "Etkinliğe duyarlı yenilemeye izin verilsin mi?";
-"adaptive_activity_consent_message" = "Ajan etkinliğine duyarlı uyarlanabilir mod, Codex ve Claude'u tanımak için komut satırları da dahil olmak üzere yerel çalışan işlemler listesini inceleyebilir; siz kod yazarken bilinen oturum üst verilerini 30 saniyede bir okuyabilir. Ajan oturumları kapalıyken CodexBar bellekte yalnızca son etkinlik zamanını kullanır, oturum yollarını ve kimliklerini atar. Bu veriler hiçbir yere gönderilmez; uzak keşif ve SSH kapalı kalır. Reddederseniz CodexBar yerel etkinlik taraması olmadan normal uyarlanabilir moda döner.";
+"adaptive_activity_consent_message" = "Ajan etkinliğine duyarlı uyarlanabilir mod, Codex ve Claude'u tanımak için komut satırları da dahil olmak üzere yerel çalışan işlemler listesini inceleyebilir; siz kod yazarken bilinen oturum üst verilerini 30 saniyede bir okuyabilir. Ajan oturumları kapalıyken Scapolite bellekte yalnızca son etkinlik zamanını kullanır, oturum yollarını ve kimliklerini atar. Bu veriler hiçbir yere gönderilmez; uzak keşif ve SSH kapalı kalır. Reddederseniz Scapolite yerel etkinlik taraması olmadan normal uyarlanabilir moda döner.";
 "adaptive_activity_consent_allow" = "Yerel etkinliğe izin ver";
 "adaptive_activity_consent_decline" = "Normal uyarlanabilir modu kullan";
 
@@ -869,7 +869,7 @@
 "Status Page" = "Durum sayfası";
 "Open Status Page" = "Durum sayfasını aç";
 "Settings..." = "Ayarlar...";
-"About CodexBar" = "CodexBar hakkında";
+"About CodexBar" = "Scapolite hakkında";
 "Quit" = "Çık";
 "Last %d day" = "Son %d gün";
 "Last %d days" = "Son %d gün";
@@ -970,8 +970,8 @@
 "Managed by Homebrew" = "Homebrew tarafından yönetiliyor";
 "Copy update command" = "Güncelleme komutunu kopyala";
 "Update to %@" = "%@ sürümüne güncelle";
-"CodexBar %@ is available" = "CodexBar %@ kullanılabilir";
-"CodexBar is up to date" = "CodexBar güncel";
+"CodexBar %@ is available" = "Scapolite %@ kullanılabilir";
+"CodexBar is up to date" = "Scapolite güncel";
 "Checking for updates…" = "Güncellemeler denetleniyor…";
 "Updating with Homebrew…" = "Homebrew ile güncelleniyor…";
 "Homebrew update failed. You can run this command in Terminal instead:" = "Homebrew güncellemesi başarısız oldu. Bunun yerine bu komutu Terminal'de çalıştırabilirsiniz:";
@@ -1144,31 +1144,31 @@
 "Capacity Start" = "Kapasite başlangıcı";
 "Changelog" = "Değişiklik günlüğü";
 "Choose the Moonshot/Kimi API host for international or China mainland accounts." = "Uluslararası veya Çin anakarası hesapları için Moonshot/Kimi API sunucusunu seçin.";
-"CodexBar can't replace a system account that is signed in with an API key only setup." = "CodexBar, yalnızca API anahtarı ile oturum açmış bir sistem hesabını değiştiremez.";
-"CodexBar could not find saved auth for that account. Re-authenticate it and try again." = "CodexBar bu hesap için kaydedilmiş kimlik doğrulaması bulamadı. Yeniden kimlik doğrulayın ve tekrar deneyin.";
-"CodexBar could not read managed account storage. Recover the store before adding another account." = "CodexBar yönetilen hesap depolamasını okuyamadı. Başka bir hesap eklemeden önce depoyu kurtarın.";
-"CodexBar could not read saved auth for that account. Re-authenticate it and try again." = "CodexBar bu hesap için kaydedilmiş kimlik doğrulamasını okuyamadı. Yeniden kimlik doğrulayın ve tekrar deneyin.";
-"CodexBar could not read the current system account on this Mac." = "CodexBar bu Mac'teki geçerli sistem hesabını okuyamadı.";
-"CodexBar could not replace the live Codex auth on this Mac." = "CodexBar bu Mac'teki canlı Codex kimlik doğrulamasını değiştiremedi.";
-"CodexBar could not safely preserve the current system account before switching." = "CodexBar geçiş yapmadan önce geçerli sistem hesabını güvenli bir şekilde koruyamadı.";
-"CodexBar could not save the current system account before switching." = "CodexBar geçiş yapmadan önce geçerli sistem hesabını kaydedemedi.";
-"CodexBar could not update managed account storage." = "CodexBar yönetilen hesap depolamasını güncelleyemedi.";
-"CodexBar found another managed account that already uses the current system account. Resolve the duplicate account before switching." = "CodexBar, geçerli sistem hesabını zaten kullanan başka bir yönetilen hesap buldu. Geçiş yapmadan önce yinelenen hesabı çözün.";
-"CodexBar will ask macOS Keychain for “%@” so it can decrypt browser cookies and authenticate your account. Click OK to continue." = "CodexBar, tarayıcı çerezlerinin şifresini çözmek ve hesabınızı doğrulamak için macOS Anahtar Zinciri'nden “%@” isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for the Claude Code OAuth token so it can fetch your Claude usage. Click OK to continue." = "CodexBar, Claude kullanımınızı almak için macOS Anahtar Zinciri'nden Claude Code OAuth tokenını isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your Amp cookie header so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden Amp çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your Augment cookie header so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden Augment çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your Claude cookie header so it can fetch Claude web usage. Click OK to continue." = "CodexBar, Claude web kullanımını almak için macOS Anahtar Zinciri'nden Claude çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your Cursor cookie header so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden Cursor çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your Factory cookie header so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden Factory çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your GitHub Copilot token so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden GitHub Copilot tokenınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your Kimi auth token so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden Kimi kimlik doğrulama tokenınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your MiniMax API token so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden MiniMax API tokenınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your MiniMax cookie header so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden MiniMax çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your OpenAI cookie header so it can fetch Codex dashboard extras. Click OK to continue." = "CodexBar, Codex panel eklerini almak için macOS Anahtar Zinciri'nden OpenAI çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your OpenCode cookie header so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden OpenCode çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your Synthetic API key so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden Synthetic API anahtarınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
-"CodexBar will ask macOS Keychain for your z.ai API token so it can fetch usage. Click OK to continue." = "CodexBar, kullanımı almak için macOS Anahtar Zinciri'nden z.ai API tokenınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar can't replace a system account that is signed in with an API key only setup." = "Scapolite, yalnızca API anahtarı ile oturum açmış bir sistem hesabını değiştiremez.";
+"CodexBar could not find saved auth for that account. Re-authenticate it and try again." = "Scapolite bu hesap için kaydedilmiş kimlik doğrulaması bulamadı. Yeniden kimlik doğrulayın ve tekrar deneyin.";
+"CodexBar could not read managed account storage. Recover the store before adding another account." = "Scapolite yönetilen hesap depolamasını okuyamadı. Başka bir hesap eklemeden önce depoyu kurtarın.";
+"CodexBar could not read saved auth for that account. Re-authenticate it and try again." = "Scapolite bu hesap için kaydedilmiş kimlik doğrulamasını okuyamadı. Yeniden kimlik doğrulayın ve tekrar deneyin.";
+"CodexBar could not read the current system account on this Mac." = "Scapolite bu Mac'teki geçerli sistem hesabını okuyamadı.";
+"CodexBar could not replace the live Codex auth on this Mac." = "Scapolite bu Mac'teki canlı Codex kimlik doğrulamasını değiştiremedi.";
+"CodexBar could not safely preserve the current system account before switching." = "Scapolite geçiş yapmadan önce geçerli sistem hesabını güvenli bir şekilde koruyamadı.";
+"CodexBar could not save the current system account before switching." = "Scapolite geçiş yapmadan önce geçerli sistem hesabını kaydedemedi.";
+"CodexBar could not update managed account storage." = "Scapolite yönetilen hesap depolamasını güncelleyemedi.";
+"CodexBar found another managed account that already uses the current system account. Resolve the duplicate account before switching." = "Scapolite, geçerli sistem hesabını zaten kullanan başka bir yönetilen hesap buldu. Geçiş yapmadan önce yinelenen hesabı çözün.";
+"CodexBar will ask macOS Keychain for “%@” so it can decrypt browser cookies and authenticate your account. Click OK to continue." = "Scapolite, tarayıcı çerezlerinin şifresini çözmek ve hesabınızı doğrulamak için macOS Anahtar Zinciri'nden “%@” isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for the Claude Code OAuth token so it can fetch your Claude usage. Click OK to continue." = "Scapolite, Claude kullanımınızı almak için macOS Anahtar Zinciri'nden Claude Code OAuth tokenını isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your Amp cookie header so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden Amp çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your Augment cookie header so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden Augment çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your Claude cookie header so it can fetch Claude web usage. Click OK to continue." = "Scapolite, Claude web kullanımını almak için macOS Anahtar Zinciri'nden Claude çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your Cursor cookie header so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden Cursor çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your Factory cookie header so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden Factory çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your GitHub Copilot token so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden GitHub Copilot tokenınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your Kimi auth token so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden Kimi kimlik doğrulama tokenınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your MiniMax API token so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden MiniMax API tokenınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your MiniMax cookie header so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden MiniMax çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your OpenAI cookie header so it can fetch Codex dashboard extras. Click OK to continue." = "Scapolite, Codex panel eklerini almak için macOS Anahtar Zinciri'nden OpenAI çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your OpenCode cookie header so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden OpenCode çerez başlığınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your Synthetic API key so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden Synthetic API anahtarınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
+"CodexBar will ask macOS Keychain for your z.ai API token so it can fetch usage. Click OK to continue." = "Scapolite, kullanımı almak için macOS Anahtar Zinciri'nden z.ai API tokenınızı isteyecek. Devam etmek için Tamam'a tıklayın.";
 "Could not open Cursor login in your browser." = "Tarayıcınızda Cursor girişi açılamadı.";
 "Could not open browser for Antigravity" = "Antigravity için tarayıcı açılamadı";
 "Credits used" = "Kullanılan krediler";
@@ -1183,7 +1183,7 @@
 "Extra usage balance: %@" = "Ek kullanım bakiyesi: %@";
 "Keychain Access Required" = "Anahtar Zinciri erişimi gerekli";
 "keychain_prompt_learn_more" = "Daha fazla bilgi…";
-"keychain_prompt_privacy_note" = "Mac oturum açma parolası girişini CodexBar değil macOS yönetir. Anahtar Zinciri erişimini istediğiniz zaman Ayarlar → Gelişmiş bölümünden devre dışı bırakabilirsiniz.";
+"keychain_prompt_privacy_note" = "Mac oturum açma parolası girişini Scapolite değil macOS yönetir. Anahtar Zinciri erişimini istediğiniz zaman Ayarlar → Gelişmiş bölümünden devre dışı bırakabilirsiniz.";
 "Kiro menu bar value" = "Kiro menü çubuğu değeri";
 "Label" = "Etiket";
 "No organizations loaded. Click Refresh after setting your API key." = "Kuruluş yüklenmedi. API anahtarınızı ayarladıktan sonra Yenile'ye tıklayın.";
@@ -1245,7 +1245,7 @@
 "Service" = "Hizmet";
 "Show or hide Kiro credits, percent, or both next to the menu bar icon." = "Menü çubuğu simgesinin yanında Kiro kredilerini, yüzdeyi veya ikisini birden göster veya gizle.";
 "Show usage for organizations you belong to. Personal account is always shown." = "Üye olduğunuz kuruluşların kullanımını göster. Kişisel hesap her zaman gösterilir.";
-"Sign in to cursor.com in your browser, then refresh Cursor in CodexBar." = "Tarayıcınızda cursor.com'da oturum açın, ardından CodexBar'da Cursor'ı yenileyin.";
+"Sign in to cursor.com in your browser, then refresh Cursor in CodexBar." = "Tarayıcınızda cursor.com'da oturum açın, ardından Scapolite'da Cursor'ı yenileyin.";
 "Simulated error text" = "Simüle edilmiş hata metni";
 "StepFun platform account (phone number or email)." = "StepFun platform hesabı (telefon numarası veya e-posta).";
 "Stored in ~/.codexbar/config.json." = "~/.codexbar/config.json dosyasında depolandı.";
@@ -1261,11 +1261,11 @@
 "Stored in ~/.codexbar/config.json. OPENAI_ADMIN_KEY is preferred; OPENAI_API_KEY still works." = "~/.codexbar/config.json dosyasında depolandı. OPENAI_ADMIN_KEY tercih edilir; OPENAI_API_KEY hâlâ çalışır.";
 "Stored in ~/.codexbar/config.json. Requires an Anthropic Admin API key." = "~/.codexbar/config.json dosyasında depolandı. Anthropic Yönetici API anahtarı gerektirir.";
 "Stored in ~/.codexbar/config.json. Used for /v1/quota-stats." = "~/.codexbar/config.json dosyasında depolandı. /v1/quota-stats için kullanılır.";
-"Stored in ~/.codexbar/config.json. You can also provide CODEBUFF_API_KEY or let CodexBar read ~/.config/manicode/credentials.json (created by `codebuff login`)." = "~/.codexbar/config.json dosyasında depolandı. Ayrıca CODEBUFF_API_KEY sağlayabilir veya CodexBar'ın ~/.config/manicode/credentials.json dosyasını okumasına izin verebilirsiniz (`codebuff login` tarafından oluşturulur).";
+"Stored in ~/.codexbar/config.json. You can also provide CODEBUFF_API_KEY or let CodexBar read ~/.config/manicode/credentials.json (created by `codebuff login`)." = "~/.codexbar/config.json dosyasında depolandı. Ayrıca CODEBUFF_API_KEY sağlayabilir veya Scapolite'ın ~/.config/manicode/credentials.json dosyasını okumasına izin verebilirsiniz (`codebuff login` tarafından oluşturulur).";
 "Stored in ~/.codexbar/config.json. You can also provide KILO_API_KEY or ~/.local/share/kilo/auth.json (kilo.access)." = "~/.codexbar/config.json dosyasında depolandı. Ayrıca KILO_API_KEY veya ~/.local/share/kilo/auth.json (kilo.access) sağlayabilirsiniz.";
 "T3 Chat cookie" = "T3 Chat çerezi";
 "Team mode" = "Takım modu";
-"That account is no longer available in CodexBar. Refresh the account list and try again." = "Bu hesap artık CodexBar'da kullanılamıyor. Hesap listesini yenileyin ve tekrar deneyin.";
+"That account is no longer available in CodexBar. Refresh the account list and try again." = "Bu hesap artık Scapolite'da kullanılamıyor. Hesap listesini yenileyin ve tekrar deneyin.";
 "The browser login did not complete in time. Try Antigravity login again." = "Tarayıcı girişi zamanında tamamlanmadı. Antigravity girişini tekrar deneyin.";
 "Timed out waiting for Cursor login. %@" = "Cursor girişi beklenirken zaman aşımına uğradı. %@";
 "Timed out waiting for Cursor login. %@ Last error: %@" = "Cursor girişi beklenirken zaman aşımına uğradı. %@ Son hata: %@";
@@ -1619,7 +1619,7 @@
 /* Overview share flow */
 "Share Usage Snapshot…" = "Kullanım özetini paylaş…";
 "Usage snapshot unavailable" = "Kullanım özeti kullanılamıyor";
-"CodexBar couldn't prepare a shareable usage snapshot. Refresh Usage & Spend and try again." = "CodexBar paylaşılabilir bir kullanım özeti hazırlayamadı. Kullanım ve harcamayı yenileyip tekrar deneyin.";
+"CodexBar couldn't prepare a shareable usage snapshot. Refresh Usage & Spend and try again." = "Scapolite paylaşılabilir bir kullanım özeti hazırlayamadı. Kullanım ve harcamayı yenileyip tekrar deneyin.";
 "Incomplete" = "Eksik";
 "Est. subtotal (%@): %@" = "Tahmini ara toplam (%@): %@";
 "Excluded requests with missing final usage: %d" = "Nihai kullanım verileri eksik olduğu için hariç tutulan istekler: %d";
@@ -1638,3 +1638,61 @@
 "antigravity_quota_window_note" = "Pencere maliyeti tüm modelleri kapsar · gösterilen pencere en kısıtlı ailedir";
 "antigravity_no_priced_token_history" = "Fiyatlandırılmış Antigravity token geçmişi yok.";
 "Supported browsers: %@. Use Manual for other browsers." = "Desteklenen tarayıcılar: %@. Diğer tarayıcılar için Manuel seçeneğini kullanın.";
+
+/* Scapolite panosu */
+"AI usage, sessions, system health, and service status" = "Yapay zekâ kullanımı, oturumlar, sistem sağlığı ve servis durumu";
+"About Scapolite" = "Scapolite Hakkında";
+"No matching OpenAI web session found." = "Eşleşen OpenAI web oturumu bulunamadı.";
+"No matching OpenAI web session found for %@." = "%@ için eşleşen OpenAI web oturumu bulunamadı.";
+"OpenAI cookies are for %@." = "OpenAI çerezleri %@ hesabına ait.";
+"OpenAI cookies are for %1$@, not %2$@." = "OpenAI çerezleri %2$@ değil, %1$@ hesabına ait.";
+"Additional" = "Ek";
+"Battery" = "Pil";
+"Bot token" = "Bot tokeni";
+"CPU" = "CPU";
+"CPU temperature" = "CPU sıcaklığı";
+"Charging" = "Şarj oluyor";
+"Chat ID" = "Sohbet kimliği";
+"Commands" = "Komutlar";
+"Connect Bot" = "Botu Bağla";
+"Connection" = "Bağlantı";
+"Create a bot with @BotFather, send /start to it, then paste the bot token below." = "@BotFather ile bir bot oluşturun, bota /start gönderin ve bot tokenini aşağıya yapıştırın.";
+"Dashboard Section" = "Pano Bölümü";
+"Disconnect" = "Bağlantıyı Kes";
+"Discover Chat ID" = "Sohbet Kimliğini Bul";
+"Disk" = "Disk";
+"Enable providers in Settings to see usage and balances." = "Kullanım ve bakiyeleri görmek için Ayarlar'dan sağlayıcıları etkinleştirin.";
+"Health Score" = "Sağlık Puanı";
+"Leave blank to keep the saved token" = "Kayıtlı tokeni korumak için boş bırakın";
+"Live provider health" = "Canlı servis durumu";
+"Maintenance" = "Bakım";
+"Major outage" = "Büyük kesinti";
+"Memory" = "Bellek";
+"Minor issue" = "Küçük sorun";
+"No battery" = "Pil yok";
+"No providers enabled" = "Etkin sağlayıcı yok";
+"No quota windows reported." = "Bildirilen kota aralığı yok.";
+"No sessions found" = "Oturum bulunamadı";
+"On battery" = "Pille çalışıyor";
+"Open Scapolite Dashboard" = "Scapolite Panosunu Aç";
+"Session discovery is off" = "Oturum keşfi kapalı";
+"Enable local discovery to list recent Claude Code and Codex CLI/App sessions." = "Son Claude Code ve Codex CLI/Uygulama oturumlarını listelemek için yerel keşfi etkinleştirin.";
+"Enable Session Discovery" = "Oturum Keşfini Etkinleştir";
+"Operational" = "Çalışıyor";
+"Partial outage" = "Kısmi kesinti";
+"Recent Claude Code and Codex CLI/App sessions appear here." = "Son Claude Code ve Codex CLI/Uygulama oturumları burada görünür.";
+"Reconnecting…" = "Yeniden bağlanıyor…";
+"Save Connection" = "Bağlantıyı Kaydet";
+"Scapolite Help" = "Scapolite Yardım";
+"Scapolite talks only to the bot and chat you configure on this Mac." = "Scapolite yalnızca bu Mac'te yapılandırdığınız bot ve sohbetle iletişim kurar.";
+"Send Test" = "Test Gönder";
+"Service Status" = "Servis Durumu";
+"Service disruption detected" = "Servis kesintisi algılandı";
+"Service recovered" = "Servis düzeldi";
+"Setup" = "Kurulum";
+"Telegram configuration is incomplete." = "Telegram yapılandırması eksik.";
+"Top Processes" = "En Yoğun İşlemler";
+"Untitled Session" = "Adsız Oturum";
+"Your private Telegram bot" = "Özel Telegram botunuz";
+"health" = "sağlık";
+"remaining" = "kaldı";

@@ -23,6 +23,10 @@ extension StatusItemController {
         self.settingsOpenHandler = handler
     }
 
+    func setDashboardOpenHandler(_ handler: @escaping @MainActor () -> Void) {
+        self.dashboardOpenHandler = handler
+    }
+
     func isEnabled(_ provider: UsageProvider) -> Bool {
         self.store.isEnabled(provider)
     }
@@ -30,6 +34,10 @@ extension StatusItemController {
 
 extension StatusItemController: StatusItemMenuPersistentActionDelegate {
     // MARK: - Actions reachable from menus
+
+    @objc func openScapoliteDashboard() {
+        self.dashboardOpenHandler?()
+    }
 
     func performStoreRefresh(
         forceTokenUsage: Bool,

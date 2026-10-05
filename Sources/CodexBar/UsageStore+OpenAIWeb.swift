@@ -963,19 +963,20 @@ extension UsageStore {
     {
         let status = cookieImportStatus?.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let status, !status.isEmpty else { return nil }
+        let normalizedStatus = status.lowercased()
 
-        if status.localizedCaseInsensitiveContains("openai cookies are for") {
+        if normalizedStatus.contains("openai cookies are for") {
             return "\(status) Switch chatgpt.com account, then refresh OpenAI cookies."
         }
-        if status.localizedCaseInsensitiveContains("no signed-in openai web session found")
-            || status.localizedCaseInsensitiveContains("no matching openai web session found")
+        if normalizedStatus.contains("no signed-in openai web session found")
+            || normalizedStatus.contains("no matching openai web session found")
         {
             let targetLabel = targetEmail?.trimmingCharacters(in: .whitespacesAndNewlines)
             let accountLabel = (targetLabel?.isEmpty == false) ? targetLabel! : "your OpenAI account"
             return "\(status) Sign in to chatgpt.com as \(accountLabel), then refresh OpenAI cookies."
         }
-        if status.localizedCaseInsensitiveContains("openai cookie import failed")
-            || status.localizedCaseInsensitiveContains("browser cookie import failed")
+        if normalizedStatus.contains("openai cookie import failed")
+            || normalizedStatus.contains("browser cookie import failed")
         {
             return status
         }
@@ -1587,9 +1588,10 @@ extension UsageStore {
         let emailLabel = targetEmail?.trimmingCharacters(in: .whitespacesAndNewlines)
         let targetLabel = (emailLabel?.isEmpty == false) ? emailLabel! : "your OpenAI account"
         if let status, !status.isEmpty {
+            let normalizedStatus = status.lowercased()
             if status.contains("cookies do not match Codex account")
-                || status.localizedCaseInsensitiveContains("openai cookies are for")
-                || status.localizedCaseInsensitiveContains("cookie import failed")
+                || normalizedStatus.contains("openai cookies are for")
+                || normalizedStatus.contains("cookie import failed")
             {
                 return "\(status) Switch chatgpt.com account, then refresh OpenAI cookies."
             }

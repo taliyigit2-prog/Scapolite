@@ -37,14 +37,15 @@ struct AboutPane: View {
                 AboutLinkRow(
                     icon: "chevron.left.slash.chevron.right",
                     title: L("link_github"),
+                    url: "https://github.com/taliyigit2-prog/Scapolite")
+                AboutLinkRow(
+                    icon: "arrow.up.right.square",
+                    title: "CodexBar upstream",
                     url: "https://github.com/steipete/CodexBar")
-                AboutLinkRow(icon: "globe", title: L("link_website"), url: "https://steipete.me")
-                AboutLinkRow(icon: "bird", title: L("link_twitter"), url: "https://twitter.com/steipete")
-                AboutLinkRow(icon: "envelope", title: L("link_email"), url: "mailto:peter@steipete.me")
             } header: {
                 Text(L("section_links"))
             } footer: {
-                Text(L("copyright"))
+                Text("© 2026 Peter Steinberger & Scapolite contributors. MIT License.")
                     .frame(maxWidth: .infinity)
                     .multilineTextAlignment(.center)
             }
@@ -124,7 +125,7 @@ struct AboutPane: View {
             }
 
             VStack(spacing: 2) {
-                Text("CodexBar")
+                Text("Scapolite")
                     .font(.title3).bold()
                 Text(String(format: L("version_format"), AppVersion.displayString))
                     .foregroundStyle(.secondary)
@@ -155,7 +156,7 @@ struct AboutPane: View {
     }
 
     private func openProjectHome() {
-        guard let url = URL(string: "https://github.com/steipete/CodexBar") else { return }
+        guard let url = URL(string: "https://github.com/taliyigit2-prog/Scapolite") else { return }
         NSWorkspace.shared.open(url)
     }
 }

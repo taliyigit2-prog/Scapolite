@@ -49,6 +49,9 @@ private enum KeychainPromptMessage {
     static let ampCookie =
         "CodexBar will ask macOS Keychain for your Amp cookie header " +
         "so it can fetch usage. Click OK to continue."
+    static let telegramToken =
+        "Scapolite will ask macOS Keychain for your Telegram bot token " +
+        "so it can send your private monitoring updates. Click OK to continue."
 }
 
 struct KeychainPromptAlertModel: Equatable {
@@ -77,7 +80,7 @@ enum KeychainPromptCoordinator {
     private static let promptLock = NSLock()
     private static let log = CodexBarLog.logger(LogCategories.keychainPrompt)
     private static let documentationURL =
-        "https://github.com/steipete/CodexBar/blob/main/docs/keychain-prompts.md"
+        "https://github.com/taliyigit2-prog/Scapolite/blob/main/docs/keychain-prompts.md"
 
     static func install() {
         KeychainPromptHandler.handler = { context in
@@ -158,6 +161,8 @@ enum KeychainPromptCoordinator {
             L(KeychainPromptMessage.augmentCookie)
         case .ampCookie:
             L(KeychainPromptMessage.ampCookie)
+        case .telegramToken:
+            L(KeychainPromptMessage.telegramToken)
         }
         return self.alertModel(purpose: purpose)
     }

@@ -14,10 +14,10 @@
 "Include API keys, cookies, and tokens" = "Include API keys, cookies, and tokens";
 "Sync usage snapshots" = "Sync usage snapshots";
 "Show accounts from other Macs" = "Show accounts from other Macs";
-"Requires a signed release build of CodexBar." = "Requires a signed release build of CodexBar.";
+"Requires a signed release build of CodexBar." = "Requires a signed release build of Scapolite.";
 "Sign in to iCloud in System Settings to enable sync." = "Sign in to iCloud in System Settings to enable sync.";
 "iCloud access is restricted on this Mac." = "iCloud access is restricted on this Mac.";
-"Sync is paused: another Mac uses a newer version of CodexBar. Update to resume." = "Sync is paused: another Mac uses a newer version of CodexBar. Update to resume.";
+"Sync is paused: another Mac uses a newer version of CodexBar. Update to resume." = "Sync is paused: another Mac uses a newer version of Scapolite. Update to resume.";
 "Last successful fetch" = "Last successful fetch";
 "Last successful push" = "Last successful push";
 "Never" = "Never";
@@ -31,9 +31,9 @@
 "%dh ago" = "%dh ago";
 "%dd ago" = "%dd ago";
 
-"ollama_safari_cookie_access_hint" = "تحتاج ملفات تعريف ارتباط Safari إلى وصول كامل إلى القرص لتطبيق CodexBar (إعدادات النظام > الخصوصية والأمان).";
+"ollama_safari_cookie_access_hint" = "تحتاج ملفات تعريف ارتباط Safari إلى وصول كامل إلى القرص لتطبيق Scapolite (إعدادات النظام > الخصوصية والأمان).";
 "ollama_browser_cookie_decryption_denied" = "تم رفض فك تشفير ملفات تعريف ارتباط %@ في سلسلة المفاتيح. افتح بطاقة موفر الخدمة وانقر على تحديث (⌘R) لطلب الوصول إلى سلسلة المفاتيح مرة أخرى.";
-"ollama_browser_cookie_decryption_disabled" = "فك تشفير ملفات تعريف ارتباط %@ معطل في CodexBar؛ فعّل الوصول إلى سلسلة المفاتيح ثم حدّث.";
+"ollama_browser_cookie_decryption_disabled" = "فك تشفير ملفات تعريف ارتباط %@ معطل في Scapolite؛ فعّل الوصول إلى سلسلة المفاتيح ثم حدّث.";
 
 " providers" = " providers";
 "(System)" = "(النظام)";
@@ -74,7 +74,7 @@
 "Automatic imports browser cookies or stored sessions." = "يقوم الاستيراد التلقائي بملفات تعريف الارتباط أو الجلسات المخزنة في المتصفح تلقائيا.";
 "Automatic imports browser cookies." = "يقوم الاستيراد التلقائي بملفات تعريف الارتباط من المتصفح.";
 "Automatically imports browser session cookie." = "يقوم تلقائيا باستيراد كوكي جلسة المتصفح.";
-"Automatically opens CodexBar when you start your Mac." = "يفتح تلقائيا CodexBar عند تشغيل جهاز الماك.";
+"Automatically opens CodexBar when you start your Mac." = "يفتح تلقائيا Scapolite عند تشغيل جهاز الماك.";
 "Automation" = "الأتمتة";
 "Average (\\(label1) + \\(label2))" = "المتوسط (\\(label1) + \\(label2))";
 "Average (\\(metadata.sessionLabel) + \\(metadata.weeklyLabel))" = "المتوسط (\\(metadata.sessionLabel) + \\(metadata.weeklyLabel))";
@@ -96,7 +96,7 @@
 "Check for updates automatically" = "تحقق تلقائيا من التحديثات";
 "Check if you like your agents having some fun up there." = "تحقق إذا كنت تحب وكلائنك يستمتعون هناك.";
 "Check provider status" = "تحقق من حالة المزود";
-"Choose a supported browser so CodexBar can read the matching account." = "اختر متصفحًا مدعومًا حتى يتمكن CodexBar من قراءة الحساب المطابق.";
+"Choose a supported browser so CodexBar can read the matching account." = "اختر متصفحًا مدعومًا حتى يتمكن Scapolite من قراءة الحساب المطابق.";
 "Choose Codex workspace" = "اختر Codex مساحة العمل";
 "Choose Cursor account" = "اختر حساب Cursor";
 "Choose the MiniMax host (global .io or China mainland .com)." = "اختر المضيف MiniMax (.io العالمي أو .com البر الرئيسي الصيني).";
@@ -104,8 +104,8 @@
 "Choose up to \\(Self.maxOverviewProviders) providers" = "اختر حتى \\(Self.maxOverviewProviders) المزودين";
 "Choose up to \\(count) providers" = "اختر حتى \\(count) المزودين";
 "Choose what to show in the menu bar (Pace shows usage vs. expected)." = "اختر ما تريد عرضه في شريط القائمة (Pace يظهر الاستخدام مقابل المتوقع).";
-"Choose which Codex account CodexBar should follow." = "اختر أي حساب Codex يجب CodexBar اتباعه.";
-"Choose which Cursor account CodexBar should use." = "اختر حساب Cursor الذي يجب أن يستخدمه CodexBar.";
+"Choose which Codex account CodexBar should follow." = "اختر أي حساب Codex يجب Scapolite اتباعه.";
+"Choose which Cursor account CodexBar should use." = "اختر حساب Cursor الذي يجب أن يستخدمه Scapolite.";
 "Choose which window drives the menu bar percent." = "اختر أي نافذة تحدد نسبة شريط القوائم.";
 "Chrome" = "Chrome";
 "Claude CLI not found" = "Claude CLI لم يعثر عليه";
@@ -120,9 +120,9 @@
 "Codex binary" = "Codex الثنائية";
 "Codex login failed" = "فشل تسجيل الدخول Codex";
 "Codex login timed out" = "انتهى وقت تسجيل الدخول Codex";
-"CodexBar Lifecycle Keepalive" = "CodexBar دورة الحياة في العيش";
-"CodexBar can't show its menu bar icon" = "لا يمكن CodexBar عرض أيقونة شريط القائمة";
-"CodexBar could not read managed account storage. " = "لم يكن CodexBar قادرا على قراءة تخزين الحساب المدار.  ";
+"CodexBar Lifecycle Keepalive" = "Scapolite دورة الحياة في العيش";
+"CodexBar can't show its menu bar icon" = "لا يمكن Scapolite عرض أيقونة شريط القائمة";
+"CodexBar could not read managed account storage. " = "لم يكن Scapolite قادرا على قراءة تخزين الحساب المدار.  ";
 "Configure…" = "تكوين...";
 "Connected" = "متصل";
 "Controls how much detail is logged." = "يتحكم في كمية التفاصيل المسجلة.";
@@ -188,13 +188,13 @@
 "Hide details" = "إخفاء التفاصيل";
 "Hide personal information" = "إخفاء المعلومات الشخصية";
 "Historical tracking" = "التتبع التاريخي";
-"How often CodexBar polls providers in the background." = "كم مرة CodexBar استطلاعات في الخلفية.";
+"How often CodexBar polls providers in the background." = "كم مرة Scapolite استطلاعات في الخلفية.";
 "Inactive" = "غير نشط";
 "Install CLI" = "تثبيت CLI";
 "Install the Claude CLI (npm i -g @anthropic-ai/claude-code) and try again." = "ثبت Claude CLI (npm i -g @anthropic-ai/claude-code) وجرب مرة أخرى.";
 "Install the Codex CLI (npm i -g @openai/codex) and try again." = "ثبت Codex CLI (npm i -g @openai/codex) وجرب مرة أخرى.";
 "Install the Gemini CLI (npm i -g @google/gemini-cli) and try again." = "ثبت Gemini CLI (npm i -g @google/gemini-cli) وجرب مرة أخرى.";
-"Install a JetBrains IDE with AI Assistant enabled, then refresh CodexBar." = "ثبّت بيئة JetBrains IDE مع تفعيل AI Assistant، ثم حدّث CodexBar.";
+"Install a JetBrains IDE with AI Assistant enabled, then refresh CodexBar." = "ثبّت بيئة JetBrains IDE مع تفعيل AI Assistant، ثم حدّث Scapolite.";
 "JetBrains AI is ready" = "JetBrains الذكاء الاصطناعي جاهز";
 "JetBrains IDE" = "JetBrains IDE";
 "Keep CLI sessions alive" = "حافظ على الجلسات CLI حية";
@@ -248,7 +248,7 @@
 "Open" = "مفتوح";
 "Open API Keys" = "مفاتيح API المفتوحة";
 "Open Amp Settings" = "افتح إعدادات Amp";
-"Open Antigravity to sign in, then refresh CodexBar." = "افتح Antigravity لتسجيل الدخول، ثم قم بتحديث CodexBar.";
+"Open Antigravity to sign in, then refresh CodexBar." = "افتح Antigravity لتسجيل الدخول، ثم قم بتحديث Scapolite.";
 "Open Browser" = "المتصفح المفتوح";
 "Open Coding Plan" = "خطة الترميز المفتوحة";
 "Open Console" = "وحدة التحكم المفتوحة";
@@ -293,7 +293,7 @@
 "Progress bars fill as you consume quota (instead of showing remaining)." = "تمتلئ أشرطة التقدم كلما استهلكت الحصة (بدلا من إظهار الحصة المتبقية).";
 "Provider" = "المزود";
 "Providers" = "مقدمو الخدمات";
-"Quit CodexBar" = "اترك CodexBar";
+"Quit CodexBar" = "اترك Scapolite";
 "Random (default)" = "عشوائي (افتراضي)";
 "Reads local usage logs. Shows today + last 30 days cost in the menu." = "يقرأ سجلات الاستخدام المحلية. يعرض اليوم + نافذة التاريخ المحددة في القائمة.";
 "Refresh" = "تحديث";
@@ -301,8 +301,8 @@
 "Remote" = "البعيد";
 "Remove" = "إزالة";
 "Remove Codex account?" = "هل تحذف Codex الحساب؟";
-"Remove \\(account.email) from CodexBar? Its managed Codex home will be deleted." = "إزالة \\(account.email) من CodexBar؟ سيتم حذف Codex المنزل الذي يديره.";
-"Remove \\(email) from CodexBar? Its managed Codex home will be deleted." = "إزالة \\(email) من CodexBar؟ سيتم حذف Codex المنزل الذي يديره.";
+"Remove \\(account.email) from CodexBar? Its managed Codex home will be deleted." = "إزالة \\(account.email) من Scapolite؟ سيتم حذف Codex المنزل الذي يديره.";
+"Remove \\(email) from CodexBar? Its managed Codex home will be deleted." = "إزالة \\(email) من Scapolite؟ سيتم حذف Codex المنزل الذي يديره.";
 "Remove selected account" = "إزالة الحساب المحدد";
 "Replace critter bars with provider branding icons and a percentage." = "استبدل ألواح الحيوانات بأيقونات علامة مزودة ونسبة مئوية.";
 "Replay selected animation" = "إعادة تشغيل الرسوم المتحركة المختارة";
@@ -344,7 +344,7 @@
 "Store multiple Ollama Cookie headers." = "احتفظ بعدة رؤوس Ollama كوكي.";
 "Store multiple OpenCode Cookie headers." = "احتفظ بعدة رؤوس OpenCode كوكي.";
 "Store multiple OpenCode Go Cookie headers." = "تخزين عدة رؤوس OpenCode Go Cookie.";
-"Stored in the CodexBar config file." = "مخزنة في ملف الإعدادات CodexBar.";
+"Stored in the CodexBar config file." = "مخزنة في ملف الإعدادات Scapolite.";
 "Stored in ~/.codexbar/config.json. " = "مخزنة في ~/.codexbar/config.json. ";
 "Stored in ~/.codexbar/config.json. Paste the key from the Synthetic dashboard." = "مخزنة في ~/.codexbar/config.json. الصق المفتاح من لوحة Synthetic.";
 "Stored in ~/.codexbar/config.json. Paste your Coding Plan API key from Model Studio." = "مخزن في ~/.codexbar/config.json. الصق مفتاح خطة البرمجة الخاصة بك API من Model Studio.";
@@ -353,7 +353,7 @@
 "Stores local Codex usage history (8 weeks) to personalize Pace predictions." = "يخزن تاريخ استخدام Codex محليا (8 أسابيع) لتخصيص توقعات Pac.";
 "Surprise me" = "فاجئني";
 "Switcher shows icons" = "المحول يعرض الأيقونات";
-"Symlink CodexBarCLI to /usr/local/bin and /opt/homebrew/bin as codexbar." = "Symlink CodexBarCLI إلى /usr/local/bin و /opt/homebrew/bin ك codexbar.";
+"Symlink CodexBarCLI to /usr/local/bin and /opt/homebrew/bin as codexbar." = "Symlink ScapoliteCLI إلى /usr/local/bin و /opt/homebrew/bin ك codexbar.";
 "System" = "النظام";
 "Temporarily shows the loading animation after the next refresh." = "يعرض مؤقتا حركة التحميل بعد التحديث التالي.";
 "terminal_app_subtitle" = "الطرفية المستخدمة في إجراء الطرفية المفتوحة";
@@ -420,8 +420,8 @@
 "cursor_on_demand" = "عند الطلب: %@";
 "cursor_on_demand_with_limit" = "عند الطلب: %1$@ / %2$@";
 "extra_usage_format" = "الاستخدام الإضافي: %1$@ / %2$@";
-"jetbrains_detected_generate" = "تم اكتشاف: %@. استخدم مساعد الذكاء الاصطناعي مرة واحدة لتوليد بيانات الحصص، ثم قم بتحديث CodexBar.";
-"jetbrains_detected_select" = "تم اكتشاف: %@. اختر IDE المفضل لديك في الإعدادات، ثم قم بتحديث CodexBar.";
+"jetbrains_detected_generate" = "تم اكتشاف: %@. استخدم مساعد الذكاء الاصطناعي مرة واحدة لتوليد بيانات الحصص، ثم قم بتحديث Scapolite.";
+"jetbrains_detected_select" = "تم اكتشاف: %@. اختر IDE المفضل لديك في الإعدادات، ثم قم بتحديث Scapolite.";
 "last_fetch_failed_with_provider" = "آخر %@ فشل في الجلب:";
 "last_spend" = "آخر إنفاق: %@";
 "mcp_model_usage" = "%1$@: %2$@";
@@ -431,10 +431,10 @@
 "metric_primary" = "الابتدائي (%@)";
 "metric_secondary" = "الثانوية (%@)";
 "metric_tertiary" = "الثالثية (%@)";
-"multiple_workspaces_found" = "CodexBar وجدت عدة مساحات عمل ل %@. يرجى اختيار مساحة العمل التي ستضيفها.";
+"multiple_workspaces_found" = "Scapolite وجدت عدة مساحات عمل ل %@. يرجى اختيار مساحة العمل التي ستضيفها.";
 "ory_session_…=…; csrftoken=…" = "ory_session_...=...; csrftoken=...";
 "overview_choose_providers" = "اختر حتى %@ المزودين";
-"remove_account_message" = "إزالة %@ من CodexBar؟ سيتم حذف Codex المنزل الذي يديره.";
+"remove_account_message" = "إزالة %@ من Scapolite؟ سيتم حذف Codex المنزل الذي يديره.";
 "version_format" = "النسخة %@";
 "vertex_ai_login_instructions" = "لتتبع Vertex AI الاستخدام، قم بالتحقق باستخدام Google Cloud.\n\n1. افتح الطرفية\n2. تشغيل: gcloud مصادقة التطبيق - login\n3. اتبع تعليمات المتصفح لتوقيع in\n4. هل تضبط مشروعك: gcloud config set project PROJECT_ID\n\nOpen الآن؟";
 "workspaceID is set but only opencode, opencodego, and deepgram support workspaceID." = "يتم تعيين WorkspaceID لكن فقط opencode وopencodego وdeepgram يدعمون WorkspaceID.";
@@ -475,7 +475,7 @@
 "language_italian" = "إيطاليانو";
 "language_polish" = "بولسكي";
 "start_at_login_title" = "ابدأ عند تسجيل الدخول";
-"start_at_login_subtitle" = "يفتح تلقائيا CodexBar عند تشغيل جهاز الماك.";
+"start_at_login_subtitle" = "يفتح تلقائيا Scapolite عند تشغيل جهاز الماك.";
 "show_cost_summary_subtitle" = "يقرأ سجلات الاستخدام المحلية. يعرض اليوم + نافذة التاريخ المحددة في القائمة.";
 "cost_summary_style_title" = "نمط العرض";
 "cost_summary_style_inline" = "مضمن فقط";
@@ -551,7 +551,7 @@
 "quota_warning_warning" = "تحذير";
 "quota_warning_critical" = "حرج";
 "apply" = "قدم";
-"quit_app" = "إنهاء CodexBar";
+"quit_app" = "إنهاء Scapolite";
 
 /* Tab titles */
 "tab_general" = "عام";
@@ -599,8 +599,8 @@
 "managed_login_missing_email" = "تم تسجيل Codex الدخول، لكن لم يكن هناك بريد إلكتروني للحساب متاح. حاول مرة أخرى بعد التأكد من تسجيل الدخول بالكامل.";
 "login_success_notification_title" = "%@ تسجيل الدخول ناجحا";
 "login_success_notification_body" = "يمكنك العودة إلى التطبيق؛ انتهى التوثيق.";
-"workspace_selection_cancelled" = "CodexBar وجدت عدة مساحات عمل، لكن لم يتم اختيار مساحة عمل.";
-"unsafe_managed_home" = "رفض CodexBar تعديل مسار منزلي مدار غير متوقع: %@";
+"workspace_selection_cancelled" = "Scapolite وجدت عدة مساحات عمل، لكن لم يتم اختيار مساحة عمل.";
+"unsafe_managed_home" = "رفض Scapolite تعديل مسار منزلي مدار غير متوقع: %@";
 "menu_bar_metric_title" = "مقياس شريط القائمة";
 "menu_bar_metric_subtitle" = "اختر أي نافذة تحدد نسبة شريط القوائم.";
 "menu_bar_metric_subtitle_deepseek" = "يظهر توازن DeepSeek في شريط القوائم.";
@@ -683,8 +683,8 @@
 "record_shortcut" = "سجل اختصاراً";
 "press_shortcut" = "اضغط على الاختصار";
 "install_cli" = "تثبيت CLI";
-"install_cli_subtitle" = "Symlink CodexBarCLI إلى /usr/local/bin و /opt/homebrew/bin ك codexbar.";
-"cli_not_found" = "CodexBarCLI غير موجود في حزمة التطبيقات.";
+"install_cli_subtitle" = "Symlink ScapoliteCLI إلى /usr/local/bin و /opt/homebrew/bin ك codexbar.";
+"cli_not_found" = "ScapoliteCLI غير موجود في حزمة التطبيقات.";
 "no_writable_bin_dirs" = "لم يتم العثور على أي سجلات قابلة للكتابة.";
 "show_debug_settings_title" = "عرض إعدادات التصحيح";
 "show_debug_settings_subtitle" = "اعرض أدوات استكشاف الأخطاء في تبويب التصحيح.";
@@ -725,7 +725,7 @@
 
 /* Debug Pane */
 "use_javascriptcore_plugin_engine" = "استخدام JavaScriptCore لإضافات المزوّد";
-"use_javascriptcore_plugin_engine_subtitle" = "للرجوع المتوافق فقط. أعد تشغيل CodexBar للتطبيق؛ يتجاوز CODEXBAR_PLUGIN_ENGINE هذا الإعداد.";
+"use_javascriptcore_plugin_engine_subtitle" = "للرجوع المتوافق فقط. أعد تشغيل Scapolite للتطبيق؛ يتجاوز CODEXBAR_PLUGIN_ENGINE هذا الإعداد.";
 "section_logging" = "قطع الأشجار";
 "enable_file_logging" = "تمكين تسجيل الملفات";
 "enable_file_logging_subtitle" = "اكتب السجلات إلى %@ للتصحيح.";
@@ -781,7 +781,7 @@
 "login_shell_path" = "PATH shell تسجيل الدخول (التقاط بدء التشغيل)";
 "cleared" = "تم الموافقة.";
 "no_fetch_attempts" = "لم تحاول الجلب حتى الآن.";
-"macOS Tahoe can block menu bar apps in System Settings → Menu Bar → Allow in the Menu Bar. CodexBar is running, but macOS may be hiding its icon. Open Menu Bar settings and turn CodexBar on." = "macOS Tahoe يمكنها حظر تطبيقات شريط القوائم في إعدادات النظام → شريط القوائم → السماح في شريط القوائم. CodexBar قيد التشغيل، لكن قد يكون macOS يخفي أيقونته. افتح إعدادات شريط القوائم وفعل CodexBar.";
+"macOS Tahoe can block menu bar apps in System Settings → Menu Bar → Allow in the Menu Bar. CodexBar is running, but macOS may be hiding its icon. Open Menu Bar settings and turn CodexBar on." = "macOS Tahoe يمكنها حظر تطبيقات شريط القوائم في إعدادات النظام → شريط القوائم → السماح في شريط القوائم. Scapolite قيد التشغيل، لكن قد يكون macOS يخفي أيقونته. افتح إعدادات شريط القوائم وفعل Scapolite.";
 
 /* Metric preferences */
 "metric_pref_automatic" = "أوتوماتيكي";
@@ -824,7 +824,7 @@
 "refresh_adaptive" = "تكيفي";
 "refresh_adaptive_agent_aware" = "تكيفي (مدرك لنشاط الوكيل)";
 "adaptive_activity_consent_title" = "السماح بالتحديث المستجيب للنشاط؟";
-"adaptive_activity_consent_message" = "يمكن لوضع التحديث التكيفي المدرك لنشاط الوكيل فحص قائمة العمليات المحلية قيد التشغيل، بما في ذلك أسطر الأوامر، للتعرّف على Codex وClaude، ثم قراءة بيانات تعريف الجلسات المعروفة كل 30 ثانية أثناء البرمجة. عند إيقاف Agent Sessions، لا يستخدم CodexBar سوى وقت أحدث نشاط في الذاكرة ويتجاهل مسارات الجلسات وهوياتها. لا تُرسل بيانات النشاط هذه إلى أي مكان، ويظل الاكتشاف عن بُعد وSSH متوقفين. إذا رفضت، فسيعود CodexBar إلى الوضع التكيفي العادي دون عمليات فحص النشاط المحلي.";
+"adaptive_activity_consent_message" = "يمكن لوضع التحديث التكيفي المدرك لنشاط الوكيل فحص قائمة العمليات المحلية قيد التشغيل، بما في ذلك أسطر الأوامر، للتعرّف على Codex وClaude، ثم قراءة بيانات تعريف الجلسات المعروفة كل 30 ثانية أثناء البرمجة. عند إيقاف Agent Sessions، لا يستخدم Scapolite سوى وقت أحدث نشاط في الذاكرة ويتجاهل مسارات الجلسات وهوياتها. لا تُرسل بيانات النشاط هذه إلى أي مكان، ويظل الاكتشاف عن بُعد وSSH متوقفين. إذا رفضت، فسيعود Scapolite إلى الوضع التكيفي العادي دون عمليات فحص النشاط المحلي.";
 "adaptive_activity_consent_allow" = "السماح بالنشاط المحلي";
 "adaptive_activity_consent_decline" = "استخدام التحديث التكيفي العادي";
 
@@ -873,7 +873,7 @@
 "Status Page" = "صفحة الحالة";
 "Open Status Page" = "فتح صفحة الحالة";
 "Settings..." = "الإعدادات...";
-"About CodexBar" = "حول CodexBar";
+"About CodexBar" = "حول Scapolite";
 "Quit" = "استقال";
 "Last %d day" = "آخر %d يوم";
 "Last %d days" = "آخر %d أيام";
@@ -974,8 +974,8 @@
 "Managed by Homebrew" = "تتم إدارته بواسطة Homebrew";
 "Copy update command" = "نسخ أمر التحديث";
 "Update to %@" = "التحديث إلى %@";
-"CodexBar %@ is available" = "CodexBar %@ متاح";
-"CodexBar is up to date" = "CodexBar محدَّث";
+"CodexBar %@ is available" = "Scapolite %@ متاح";
+"CodexBar is up to date" = "Scapolite محدَّث";
 "Checking for updates…" = "جارٍ البحث عن تحديثات…";
 "Updating with Homebrew…" = "جارٍ التحديث عبر Homebrew…";
 "Homebrew update failed. You can run this command in Terminal instead:" = "فشل التحديث عبر Homebrew. يمكنك تشغيل هذا الأمر في Terminal بدلاً من ذلك:";
@@ -1149,31 +1149,31 @@
 "Capacity Start" = "بدء السعة";
 "Changelog" = "سجل التغييرات";
 "Choose the Moonshot/Kimi API host for international or China mainland accounts." = "اختر المضيف Moonshot/Kimi API للحسابات الدولية أو القارية الصينية.";
-"CodexBar can't replace a system account that is signed in with an API key only setup." = "لا CodexBar استبدال حساب نظام مسجل الدخول بإعداد API فقط على المفتاح.";
-"CodexBar could not find saved auth for that account. Re-authenticate it and try again." = "لم CodexBar العثور على مصحة محفوظة لهذا الحساب. أعد التحقق من صحتك وحاول مرة أخرى.";
-"CodexBar could not read managed account storage. Recover the store before adding another account." = "لم يكن CodexBar قادرا على قراءة تخزين الحساب المدار. استرجع المتجر قبل إضافة حساب آخر.";
-"CodexBar could not read saved auth for that account. Re-authenticate it and try again." = "لم CodexBar أستطيع قراءة المصادقة المحفوظة لهذا الحساب. أعد التحقق من صحتك وحاول مرة أخرى.";
-"CodexBar could not read the current system account on this Mac." = "لم CodexBar أستطيع قراءة حساب النظام الحالي على هذا الجهاز.";
-"CodexBar could not replace the live Codex auth on this Mac." = "لم CodexBar استطعت استبدال المصادقة الحية Codex على هذا الجهاز.";
-"CodexBar could not safely preserve the current system account before switching." = "لم يكن بإمكان CodexBar الحفاظ على حساب النظام الحالي بأمان قبل التحويل.";
-"CodexBar could not save the current system account before switching." = "لم يكن بإمكان CodexBar حفظ حساب النظام الحالي قبل التحويل.";
-"CodexBar could not update managed account storage." = "لم يتمكن CodexBar تحديث تخزين الحساب المدار.";
-"CodexBar found another managed account that already uses the current system account. Resolve the duplicate account before switching." = "CodexBar وجدت حسابا مديرا آخر يستخدم حساب النظام الحالي بالفعل. قم بحل مشكلة الحساب المكرر قبل التغيير.";
-"CodexBar will ask macOS Keychain for “%@” so it can decrypt browser cookies and authenticate your account. Click OK to continue." = "سيطلب CodexBar macOS Keychain \"%@\" حتى يتمكن من فك تشفير ملفات تعريف الارتباط في المتصفح وتوثيق حسابك. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for the Claude Code OAuth token so it can fetch your Claude usage. Click OK to continue." = "سيطلب CodexBar macOS Keychain رمز Claude OAuth ليتمكن من جلب استخدامك Claude. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your Amp cookie header so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رأس الكوكيز Amp الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your Augment cookie header so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رأس الكوكيز Augment الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your Claude cookie header so it can fetch Claude web usage. Click OK to continue." = "CodexBar ستطلب macOS Keychain رأس الكوكيز Claude الخاص بك حتى يتمكن من جلب Claude استخدام الويب. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your Cursor cookie header so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رأس الكوكيز Cursor الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your Factory cookie header so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رأس الكوكيز Factory الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your GitHub Copilot token so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رمز GitHub Copilot الخاص بك حتى يتمكن من استدعاء الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your Kimi auth token so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رمز التوثيق Kimi الخاص بك حتى يتمكن من استدعاء الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your MiniMax API token so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رمز MiniMax API الخاص بك حتى يتمكن من استدعاء الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your MiniMax cookie header so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رأس الكوكيز MiniMax الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your OpenAI cookie header so it can fetch Codex dashboard extras. Click OK to continue." = "سيطلب CodexBar macOS Keychain رأس الكوكيز OpenAI الخاص بك حتى يتمكن من جلب إضافات Codex لوحة التحكم. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your OpenCode cookie header so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رأس الكوكيز OpenCode الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your Synthetic API key so it can fetch usage. Click OK to continue." = "CodexBar ستطلب macOS Keychain مفتاح Synthetic API الخاص بك حتى يتمكن من جلب الاستخدام. انقر موافقا للمتابعة.";
-"CodexBar will ask macOS Keychain for your z.ai API token so it can fetch usage. Click OK to continue." = "CodexBar سيطلب macOS Keychain رمز z.ai API الخاص بك حتى يتمكن من استدعاء الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar can't replace a system account that is signed in with an API key only setup." = "لا Scapolite استبدال حساب نظام مسجل الدخول بإعداد API فقط على المفتاح.";
+"CodexBar could not find saved auth for that account. Re-authenticate it and try again." = "لم Scapolite العثور على مصحة محفوظة لهذا الحساب. أعد التحقق من صحتك وحاول مرة أخرى.";
+"CodexBar could not read managed account storage. Recover the store before adding another account." = "لم يكن Scapolite قادرا على قراءة تخزين الحساب المدار. استرجع المتجر قبل إضافة حساب آخر.";
+"CodexBar could not read saved auth for that account. Re-authenticate it and try again." = "لم Scapolite أستطيع قراءة المصادقة المحفوظة لهذا الحساب. أعد التحقق من صحتك وحاول مرة أخرى.";
+"CodexBar could not read the current system account on this Mac." = "لم Scapolite أستطيع قراءة حساب النظام الحالي على هذا الجهاز.";
+"CodexBar could not replace the live Codex auth on this Mac." = "لم Scapolite استطعت استبدال المصادقة الحية Codex على هذا الجهاز.";
+"CodexBar could not safely preserve the current system account before switching." = "لم يكن بإمكان Scapolite الحفاظ على حساب النظام الحالي بأمان قبل التحويل.";
+"CodexBar could not save the current system account before switching." = "لم يكن بإمكان Scapolite حفظ حساب النظام الحالي قبل التحويل.";
+"CodexBar could not update managed account storage." = "لم يتمكن Scapolite تحديث تخزين الحساب المدار.";
+"CodexBar found another managed account that already uses the current system account. Resolve the duplicate account before switching." = "Scapolite وجدت حسابا مديرا آخر يستخدم حساب النظام الحالي بالفعل. قم بحل مشكلة الحساب المكرر قبل التغيير.";
+"CodexBar will ask macOS Keychain for “%@” so it can decrypt browser cookies and authenticate your account. Click OK to continue." = "سيطلب Scapolite macOS Keychain \"%@\" حتى يتمكن من فك تشفير ملفات تعريف الارتباط في المتصفح وتوثيق حسابك. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for the Claude Code OAuth token so it can fetch your Claude usage. Click OK to continue." = "سيطلب Scapolite macOS Keychain رمز Claude OAuth ليتمكن من جلب استخدامك Claude. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your Amp cookie header so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رأس الكوكيز Amp الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your Augment cookie header so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رأس الكوكيز Augment الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your Claude cookie header so it can fetch Claude web usage. Click OK to continue." = "Scapolite ستطلب macOS Keychain رأس الكوكيز Claude الخاص بك حتى يتمكن من جلب Claude استخدام الويب. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your Cursor cookie header so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رأس الكوكيز Cursor الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your Factory cookie header so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رأس الكوكيز Factory الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your GitHub Copilot token so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رمز GitHub Copilot الخاص بك حتى يتمكن من استدعاء الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your Kimi auth token so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رمز التوثيق Kimi الخاص بك حتى يتمكن من استدعاء الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your MiniMax API token so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رمز MiniMax API الخاص بك حتى يتمكن من استدعاء الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your MiniMax cookie header so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رأس الكوكيز MiniMax الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your OpenAI cookie header so it can fetch Codex dashboard extras. Click OK to continue." = "سيطلب Scapolite macOS Keychain رأس الكوكيز OpenAI الخاص بك حتى يتمكن من جلب إضافات Codex لوحة التحكم. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your OpenCode cookie header so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رأس الكوكيز OpenCode الخاص بك حتى يتمكن من استخدام الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your Synthetic API key so it can fetch usage. Click OK to continue." = "Scapolite ستطلب macOS Keychain مفتاح Synthetic API الخاص بك حتى يتمكن من جلب الاستخدام. انقر موافقا للمتابعة.";
+"CodexBar will ask macOS Keychain for your z.ai API token so it can fetch usage. Click OK to continue." = "Scapolite سيطلب macOS Keychain رمز z.ai API الخاص بك حتى يتمكن من استدعاء الاستخدام. انقر موافقا للمتابعة.";
 "Could not open Cursor login in your browser." = "لم أتمكن من فتح Cursor تسجيل الدخول في متصفحك.";
 "Could not open browser for Antigravity" = "لم أتمكن من فتح المتصفح من Antigravity";
 "Credits used" = "الاعتمادات المستخدمة";
@@ -1188,7 +1188,7 @@
 "Extra usage balance: %@" = "توازن الاستخدام الإضافي: %@";
 "Keychain Access Required" = "Keychain الوصول المطلوب";
 "keychain_prompt_learn_more" = "معرفة المزيد…";
-"keychain_prompt_privacy_note" = "يتولى macOS، وليس CodexBar، إدخال كلمة سر تسجيل الدخول إلى Mac. يمكنك تعطيل وصول سلسلة المفاتيح في أي وقت من الإعدادات ← متقدم.";
+"keychain_prompt_privacy_note" = "يتولى macOS، وليس Scapolite، إدخال كلمة سر تسجيل الدخول إلى Mac. يمكنك تعطيل وصول سلسلة المفاتيح في أي وقت من الإعدادات ← متقدم.";
 "Kiro menu bar value" = "Kiro قيمة شريط القائمة";
 "Label" = "العلامة التجارية";
 "No organizations loaded. Click Refresh after setting your API key." = "لا توجد منظمات محملة. انقر على تحديث بعد تعيين مفتاح API.";
@@ -1251,7 +1251,7 @@
 "Service" = "الخدمة";
 "Show or hide Kiro credits, percent, or both next to the menu bar icon." = "اعرض أو أخف Kiro الاعتمادات، النسبة المئوية، أو كلاهما بجانب أيقونة شريط القوائم.";
 "Show usage for organizations you belong to. Personal account is always shown." = "اعرض الاستخدام للمنظمات التي تنتمي إليها. الحساب الشخصي يعرض دائما.";
-"Sign in to cursor.com in your browser, then refresh Cursor in CodexBar." = "سجل الدخول إلى cursor.com في متصفحك، ثم قم بتحديث Cursor في CodexBar.";
+"Sign in to cursor.com in your browser, then refresh Cursor in CodexBar." = "سجل الدخول إلى cursor.com في متصفحك، ثم قم بتحديث Cursor في Scapolite.";
 "Simulated error text" = "نص خطأ محاكى";
 "StepFun platform account (phone number or email)." = "StepFun حساب المنصة (رقم الهاتف أو البريد الإلكتروني).";
 "Stored in ~/.codexbar/config.json." = "مخزنة في ~/.codexbar/config.json.";
@@ -1267,11 +1267,11 @@
 "Stored in ~/.codexbar/config.json. OPENAI_ADMIN_KEY is preferred; OPENAI_API_KEY still works." = "يفضل التخزين في ~/.codexbar/config.json. OPENAI_ADMIN_KEY؛ OPENAI_API_KEY لا يزال يعمل.";
 "Stored in ~/.codexbar/config.json. Requires an Anthropic Admin API key." = "التخزين في ~/.codexbar/config.json. يتطلب مفتاح API إداري بشري.";
 "Stored in ~/.codexbar/config.json. Used for /v1/quota-stats." = "مخزنة في ~/.codexbar/config.json. تستخدم /v1/quota-stats.";
-"Stored in ~/.codexbar/config.json. You can also provide CODEBUFF_API_KEY or let CodexBar read ~/.config/manicode/credentials.json (created by `codebuff login`)." = "مخزن في ~/.codexbar/config.json. يمكنك أيضا توفير CODEBUFF_API_KEY أو السماح CodexBar بقراءة ~/.config/manicode/credentials.json (تم إنشاؤه بواسطة `codebuff login`).";
+"Stored in ~/.codexbar/config.json. You can also provide CODEBUFF_API_KEY or let CodexBar read ~/.config/manicode/credentials.json (created by `codebuff login`)." = "مخزن في ~/.codexbar/config.json. يمكنك أيضا توفير CODEBUFF_API_KEY أو السماح Scapolite بقراءة ~/.config/manicode/credentials.json (تم إنشاؤه بواسطة `codebuff login`).";
 "Stored in ~/.codexbar/config.json. You can also provide KILO_API_KEY or ~/.local/share/kilo/auth.json (kilo.access)." = "مخزنة في ~/.codexbar/config.json. يمكنك أيضا توفير KILO_API_KEY أو ~/.local/share/kilo/auth.json (كيلو.أكس).";
 "T3 Chat cookie" = "T3 Chat كوكي";
 "Team mode" = "وضع الفريق";
-"That account is no longer available in CodexBar. Refresh the account list and try again." = "هذا الحساب لم يعد متاحا في عام CodexBar. قم بتحديث قائمة الحسابات وحاول مرة أخرى.";
+"That account is no longer available in CodexBar. Refresh the account list and try again." = "هذا الحساب لم يعد متاحا في عام Scapolite. قم بتحديث قائمة الحسابات وحاول مرة أخرى.";
 "The browser login did not complete in time. Try Antigravity login again." = "لم يكتمل تسجيل الدخول في المتصفح في الوقت المناسب. حاول تسجيل الدخول Antigravity مرة أخرى.";
 "Timed out waiting for Cursor login. %@" = "انتهى الوقت في انتظار تسجيل الدخول Cursor. %@";
 "Timed out waiting for Cursor login. %@ Last error: %@" = "انتهى الوقت في انتظار تسجيل الدخول Cursor. %@ آخر خطأ: %@";
@@ -1547,7 +1547,7 @@
 "5-hour usage" = "الاستخدام خلال 5 ساعات";
 "7-day usage" = "الاستخدام خلال 7 أيام";
 "Total usage" = "إجمالي الاستخدام";
-"claude_oauth_keychain_access_revoked" = "تم إلغاء وصول CodexBar إلى سلسلة مفاتيح Claude بسبب تدوير الرمز المميز في Claude Code. انقر على «تحديث» لمنح الوصول مجددًا، أو بدّل مصدر استخدام Claude إلى CLI/Web.";
+"claude_oauth_keychain_access_revoked" = "تم إلغاء وصول Scapolite إلى سلسلة مفاتيح Claude بسبب تدوير الرمز المميز في Claude Code. انقر على «تحديث» لمنح الوصول مجددًا، أو بدّل مصدر استخدام Claude إلى CLI/Web.";
 "claude_showing_last_known_usage" = "يتم عرض آخر بيانات استخدام معروفة، تم التقاطها %@.";
 "claude_limited_usage_detail" = "تفاصيل الاستخدام محدودة";
 /* Spend dashboard cost analysis */
@@ -1621,7 +1621,7 @@
 /* Overview share flow */
 "Share Usage Snapshot…" = "مشاركة ملخص الاستخدام…";
 "Usage snapshot unavailable" = "ملخص الاستخدام غير متاح";
-"CodexBar couldn't prepare a shareable usage snapshot. Refresh Usage & Spend and try again." = "تعذر على CodexBar إعداد ملخص استخدام قابل للمشاركة. حدّث الاستخدام والإنفاق ثم حاول مرة أخرى.";
+"CodexBar couldn't prepare a shareable usage snapshot. Refresh Usage & Spend and try again." = "تعذر على Scapolite إعداد ملخص استخدام قابل للمشاركة. حدّث الاستخدام والإنفاق ثم حاول مرة أخرى.";
 "Incomplete" = "غير مكتمل";
 "Est. subtotal (%@): %@" = "الإجمالي الفرعي التقديري (%@): %@";
 "Excluded requests with missing final usage: %d" = "الطلبات المستبعدة لعدم توفر بيانات الاستخدام النهائية: %d";
@@ -1640,3 +1640,61 @@
 "antigravity_quota_window_note" = "تكلفة النافذة تشمل كل النماذج · النافذة المعروضة هي الفئة الأكثر تقييدًا";
 "antigravity_no_priced_token_history" = "لا يتوفر سجل رموز Antigravity مُسعّر.";
 "Supported browsers: %@. Use Manual for other browsers." = "المتصفحات المدعومة: %@. استخدم الوضع اليدوي للمتصفحات الأخرى.";
+
+// Scapolite dashboard (English fallback)
+"AI usage, sessions, system health, and service status" = "AI usage, sessions, system health, and service status";
+"About Scapolite" = "About Scapolite";
+"Additional" = "Additional";
+"Battery" = "Battery";
+"Bot token" = "Bot token";
+"CPU" = "CPU";
+"CPU temperature" = "CPU temperature";
+"Charging" = "Charging";
+"Chat ID" = "Chat ID";
+"Commands" = "Commands";
+"Connect Bot" = "Connect Bot";
+"Connection" = "Connection";
+"Create a bot with @BotFather, send /start to it, then paste the bot token below." = "Create a bot with @BotFather, send /start to it, then paste the bot token below.";
+"Dashboard Section" = "Dashboard Section";
+"Disconnect" = "Disconnect";
+"Discover Chat ID" = "Discover Chat ID";
+"Disk" = "Disk";
+"Enable providers in Settings to see usage and balances." = "Enable providers in Settings to see usage and balances.";
+"Health Score" = "Health Score";
+"Leave blank to keep the saved token" = "Leave blank to keep the saved token";
+"Live provider health" = "Live provider health";
+"Maintenance" = "Maintenance";
+"Major outage" = "Major outage";
+"Memory" = "Memory";
+"Minor issue" = "Minor issue";
+"No battery" = "No battery";
+"No providers enabled" = "No providers enabled";
+"No quota windows reported." = "No quota windows reported.";
+"No sessions found" = "No sessions found";
+"On battery" = "On battery";
+"Open Scapolite Dashboard" = "Open Scapolite Dashboard";
+"Session discovery is off" = "Session discovery is off";
+"Enable local discovery to list recent Claude Code and Codex CLI/App sessions." = "Enable local discovery to list recent Claude Code and Codex CLI/App sessions.";
+"Enable Session Discovery" = "Enable Session Discovery";
+"Operational" = "Operational";
+"Partial outage" = "Partial outage";
+"Recent Claude Code and Codex CLI/App sessions appear here." = "Recent Claude Code and Codex CLI/App sessions appear here.";
+"Reconnecting…" = "Reconnecting…";
+"Save Connection" = "Save Connection";
+"Scapolite Help" = "Scapolite Help";
+"Scapolite talks only to the bot and chat you configure on this Mac." = "Scapolite talks only to the bot and chat you configure on this Mac.";
+"Send Test" = "Send Test";
+"Service Status" = "Service Status";
+"Service disruption detected" = "Service disruption detected";
+"Service recovered" = "Service recovered";
+"Setup" = "Setup";
+"Telegram configuration is incomplete." = "Telegram configuration is incomplete.";
+"Top Processes" = "Top Processes";
+"Untitled Session" = "Untitled Session";
+"Your private Telegram bot" = "Your private Telegram bot";
+"health" = "health";
+"remaining" = "remaining";
+"No matching OpenAI web session found." = "No matching OpenAI web session found.";
+"No matching OpenAI web session found for %@." = "No matching OpenAI web session found for %@.";
+"OpenAI cookies are for %@." = "OpenAI cookies are for %@.";
+"OpenAI cookies are for %1$@, not %2$@." = "OpenAI cookies are for %1$@, not %2$@.";

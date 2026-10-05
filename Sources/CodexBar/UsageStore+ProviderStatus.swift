@@ -14,6 +14,11 @@ extension UsageStore {
             var components: [ProviderStatusComponent]?
             if let override = self._test_providerStatusFetchOverride {
                 status = try await override(provider)
+                // Provider-specific by design: DeepSeek publishes RSS instead of the shared status JSON contract.
+            } else if provider == .deepseek,
+                      let feedURL = URL(string: "https://status.deepseek.com/feed.rss")
+            {
+                status = try await ProviderStatusFetcher.fetchDeepSeekStatus(from: feedURL)
             } else if let urlString = meta.statusPageURL, let baseURL = URL(string: urlString) {
                 let summary = try await ProviderStatusFetcher.fetchStatusSummary(from: baseURL)
                 status = summary.status

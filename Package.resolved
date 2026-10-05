@@ -1,5 +1,5 @@
 {
-  "originHash" : "cba4868c23977d1b162a600b7733b51d988c8c29c501aa1e8553b54955892b42",
+  "originHash" : "da361b5275c1d204bc7b0e03df5a6df2c67b3d7db29e013085a61926eb42278c",
   "pins" : [
     {
       "identity" : "commander",
@@ -17,6 +17,14 @@
       "state" : {
         "revision" : "772133d9dbe800fdac0473226822994c5c162c58",
         "version" : "3.1.0"
+      }
+    },
+    {
+      "identity" : "mole-widget",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TadelUnso/mole-widget",
+      "state" : {
+        "revision" : "748772f2e4419a83552feea296b0e8c6bec2909f"
       }
     },
     {

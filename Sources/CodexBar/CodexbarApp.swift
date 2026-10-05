@@ -52,7 +52,7 @@ struct CodexBarApp: App {
         let storedLevel = CodexBarLog.parseLevel(UserDefaults.standard.string(forKey: "debugLogLevel")) ?? .verbose
         let level = CodexBarLog.parseLevel(env["CODEXBAR_LOG_LEVEL"]) ?? storedLevel
         CodexBarLog.bootstrapIfNeeded(.init(
-            destination: .oslog(subsystem: "com.steipete.codexbar"),
+            destination: .oslog(subsystem: "com.taliyigit2.scapolite"),
             level: level,
             json: false))
 
@@ -61,7 +61,7 @@ struct CodexBarApp: App {
         let gitCommit = Bundle.main.object(forInfoDictionaryKey: "CodexGitCommit") as? String ?? "unknown"
         let buildTimestamp = Bundle.main.object(forInfoDictionaryKey: "CodexBuildTimestamp") as? String ?? "unknown"
         CodexBarLog.logger(LogCategories.app).info(
-            "CodexBar starting",
+            "Scapolite starting",
             metadata: [
                 "version": version,
                 "build": build,
@@ -114,9 +114,15 @@ struct CodexBarApp: App {
         }
         .commands {
             CommandGroup(replacing: .appInfo) {
-                Button(L("About CodexBar")) {
+                Button(L("About Scapolite")) {
                     self.appDelegate.openSettings(pane: .about)
                 }
+            }
+            CommandGroup(after: .newItem) {
+                Button(L("Open Scapolite Dashboard")) {
+                    self.appDelegate.openDashboard()
+                }
+                .keyboardShortcut("1", modifiers: .command)
             }
             CommandGroup(replacing: .appSettings) {
                 Button(self.settingsMenuTitle) {
@@ -125,8 +131,8 @@ struct CodexBarApp: App {
                 .keyboardShortcut(",", modifiers: .command)
             }
             CommandGroup(replacing: .help) {
-                Button(L("CodexBar Help")) {
-                    guard let url = URL(string: "https://github.com/steipete/CodexBar/blob/main/README.md")
+                Button(L("Scapolite Help")) {
+                    guard let url = URL(string: "https://github.com/taliyigit2-prog/Scapolite/blob/main/README.md")
                     else { return }
                     NSWorkspace.shared.open(url)
                 }
@@ -383,6 +389,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let updaterController: UpdaterProviding = makeUpdaterController()
     let cloudSyncState = CloudSyncState()
     private let confettiOverlayController = ScreenConfettiOverlayController()
+    private let serviceMonitor = ScapoliteServiceMonitor()
+    private let notchAlertController = ScapoliteNotchAlertController()
     private let confettiLogger = CodexBarLog.logger(LogCategories.confetti)
     private let dockIconController = DockIconController.shared
     private lazy var memoryPressureMonitor = MemoryPressureMonitor(trimAppCaches: { [weak self] in
@@ -398,6 +406,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var codexAccountPromotionCoordinator: CodexAccountPromotionCoordinator?
     private var cloudSyncCoordinator: CloudSyncCoordinator?
     private var settingsWindowController: SettingsWindowController?
+    private var dashboardWindowController: ScapoliteDashboardWindowController?
+    private var telegramController: ScapoliteTelegramController?
     private lazy var placeholderSettingsWindowGuard = PlaceholderSettingsWindowGuard(
         isKnownSettingsWindow: { [weak self] window in
             self?.settingsWindowController?.window === window
@@ -448,6 +458,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         MenuBarStatusItemWindowProbe.trace("did-finish-launching")
         self.dockIconController.start()
         self.memoryPressureMonitor.start()
+        self.serviceMonitor.onTransition = { [weak self] transition in
+            self?.notchAlertController.show(transition)
+            self?.telegramController?.sendServiceTransition(transition)
+        }
+        self.serviceMonitor.start()
         #if DEBUG
         self.installDebugMemoryPressureObserverIfNeeded()
         #endif
@@ -508,7 +523,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        self.dashboardWindowController?.stop()
         self.cloudSyncCoordinator?.stop()
+        self.serviceMonitor.stop()
+        self.telegramController?.stop()
+        self.notchAlertController.dismiss()
         self.memoryPressureMonitor.stop()
         #if DEBUG
         self.removeDebugMemoryPressureObserver()
@@ -539,6 +558,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 return
             }
             settingsWindowController.open(pane: pane)
+        }
+    }
+
+    func openDashboard() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self, let dashboardWindowController = self.dashboardWindowController else { return }
+            let presentationAttempt = self.dockIconController.promote(presentationTimeout: .seconds(2))
+            dashboardWindowController.open()
+            Task { @MainActor [weak self] in
+                await Task.yield()
+                self?.dockIconController.finishPresentationAttempt(presentationAttempt)
+            }
         }
     }
 
@@ -717,9 +748,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             statusController.setSettingsOpenHandler { [weak self] pane in
                 self?.openSettings(pane: pane)
             }
+            statusController.setDashboardOpenHandler { [weak self] in
+                self?.openDashboard()
+            }
             self.statusController = statusController
             if let concreteStatusController = statusController as? StatusItemController {
                 concreteStatusController.cloudSyncState = self.cloudSyncState
+                let telegramController = ScapoliteTelegramController(
+                    usageStore: store,
+                    sessions: concreteStatusController.agentSessions,
+                    serviceMonitor: self.serviceMonitor)
+                self.telegramController = telegramController
+                self.dashboardWindowController = ScapoliteDashboardWindowController(
+                    store: store,
+                    settings: settings,
+                    sessions: concreteStatusController.agentSessions,
+                    serviceMonitor: self.serviceMonitor,
+                    telegram: telegramController,
+                    openSettings: { [weak self] in self?.openSettings(pane: nil) })
+                telegramController.start()
                 MenuSwitchFlickerProbe.startIfRequested(controller: concreteStatusController)
             }
             return
@@ -750,7 +797,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusController.setSettingsOpenHandler { [weak self] pane in
             self?.openSettings(pane: pane)
         }
+        statusController.setDashboardOpenHandler { [weak self] in
+            self?.openDashboard()
+        }
         self.statusController = statusController
+        if let concreteStatusController = statusController as? StatusItemController {
+            let telegramController = ScapoliteTelegramController(
+                usageStore: fallbackStore,
+                sessions: concreteStatusController.agentSessions,
+                serviceMonitor: self.serviceMonitor)
+            self.telegramController = telegramController
+            self.dashboardWindowController = ScapoliteDashboardWindowController(
+                store: fallbackStore,
+                settings: fallbackSettings,
+                sessions: concreteStatusController.agentSessions,
+                serviceMonitor: self.serviceMonitor,
+                telegram: telegramController,
+                openSettings: { [weak self] in self?.openSettings(pane: nil) })
+            telegramController.start()
+        }
     }
 
     private func trimRebuildableCachesForMemoryPressure() -> MemoryPressureCacheTrimSummary {

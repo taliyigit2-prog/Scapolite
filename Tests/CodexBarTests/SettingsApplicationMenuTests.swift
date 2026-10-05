@@ -217,7 +217,7 @@ struct SettingsApplicationMenuTests {
         let applicationMenu = NSMenu(title: "CodexBar")
         applicationItem.submenu = applicationMenu
         mainMenu.addItem(applicationItem)
-        applicationMenu.addItem(NSMenuItem(title: "About CodexBar", action: nil, keyEquivalent: ""))
+        applicationMenu.addItem(NSMenuItem(title: "About Scapolite", action: nil, keyEquivalent: ""))
         applicationMenu.addItem(.separator())
         for _ in 0..<settingsItemCount {
             applicationMenu.addItem(self.makeSettingsItem(

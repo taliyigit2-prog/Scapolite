@@ -135,6 +135,16 @@ final class AgentSessionsStore {
         self.localSessions.count + self.remoteHosts.reduce(0) { $0 + $1.sessions.count }
     }
 
+    var sessionDiscoveryEnabled: Bool {
+        self.settings.agentSessionsEnabled
+    }
+
+    func enableSessionDiscovery() {
+        guard !self.settings.agentSessionsEnabled else { return }
+        self.settings.agentSessionsEnabled = true
+        self.settingsDidChange()
+    }
+
     /// Adaptive refresh uses local metadata only after explicit consent. Remote sessions remain
     /// behind the Agent Sessions setting because they can involve Tailscale discovery and SSH.
     var localMonitoringEnabled: Bool {

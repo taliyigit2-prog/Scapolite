@@ -50,7 +50,7 @@ public enum CopilotProviderDescriptor {
                 browserCookieOrder: BrowserCookieImportSupport.chromeOnly(
                     reason: "Budget imports must not prompt unrelated browsers"),
                 dashboardURL: "https://github.com/settings/copilot",
-                statusPageURL: "https://www.githubstatus.com/"),
+                statusPageURL: "https://copilot.statuspage.io/"),
             branding: ProviderBranding(
                 iconStyle: .init(provider: .copilot),
                 iconResourceName: "ProviderIcon-copilot",

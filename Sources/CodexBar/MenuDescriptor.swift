@@ -41,6 +41,7 @@ struct MenuDescriptor {
         case checkForUpdates = "arrow.triangle.2.circlepath.circle"
         case refresh = "arrow.clockwise"
         case dashboard = "chart.xyaxis.line"
+        case scapoliteDashboard = "rectangle.grid.2x2"
         case statusPage = "waveform.path.ecg"
         case changelog = "list.bullet.rectangle"
         case addAccount = "plus"
@@ -67,6 +68,7 @@ struct MenuDescriptor {
         case refresh
         case refreshAugmentSession
         case dashboard
+        case scapoliteDashboard
         case statusPage
         case changelog
         case addCodexAccount
@@ -632,8 +634,9 @@ struct MenuDescriptor {
         } else if canCheckForUpdates {
             entries.append(.action(L("Check for Updates…"), .checkForUpdates))
         }
-        let aboutLabel = L("About CodexBar") + (versionText.isEmpty ? "" : " (v\(versionText))")
+        let aboutLabel = L("About Scapolite") + (versionText.isEmpty ? "" : " (v\(versionText))")
         entries.append(contentsOf: [
+            .action(L("Open Scapolite Dashboard"), .scapoliteDashboard),
             .action(L("Refresh"), .refresh),
             .action(L("Settings..."), .settings),
             .action(aboutLabel, .about),
@@ -800,6 +803,7 @@ extension MenuDescriptor.MenuAction {
         case .quit: MenuDescriptor.MenuActionSystemImage.quit.rawValue
         case .refresh, .refreshAugmentSession: MenuDescriptor.MenuActionSystemImage.refresh.rawValue
         case .dashboard: MenuDescriptor.MenuActionSystemImage.dashboard.rawValue
+        case .scapoliteDashboard: MenuDescriptor.MenuActionSystemImage.scapoliteDashboard.rawValue
         case .statusPage: MenuDescriptor.MenuActionSystemImage.statusPage.rawValue
         case .changelog: MenuDescriptor.MenuActionSystemImage.changelog.rawValue
         case .addCodexAccount, .addProviderAccount: MenuDescriptor.MenuActionSystemImage.addAccount.rawValue

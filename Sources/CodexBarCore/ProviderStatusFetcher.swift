@@ -43,6 +43,223 @@ private enum StatusFeedDateParser {
 }
 
 package enum ProviderStatusFetcher {
+    private static let aiStudioStatusPageURL = URL(string: "https://aistudio.google.com/status")!
+    private static let aiStudioStatusRPCURL = URL(
+        string: "https://alkalimakersuite-pa.clients6.google.com/$rpc/" +
+            "google.internal.alkali.applications.makersuite.v1.MakerSuiteService/ListIncidentsHistory")!
+
+    /// Google AI Studio publishes incidents through the same public RPC used by its status page.
+    /// The page embeds a browser-restricted public key which may rotate, so resolve it at runtime
+    /// instead of shipping Google's key in the app.
+    @concurrent
+    package static func fetchAIStudioStatus(
+        transport: any ProviderHTTPTransport = ProviderHTTPClient.shared)
+        async throws -> ProviderStatus
+    {
+        var pageRequest = URLRequest(url: Self.aiStudioStatusPageURL)
+        pageRequest.timeoutInterval = 10
+        let (pageData, _) = try await transport.data(for: pageRequest)
+        let apiKey = try Self.parseAIStudioPublicAPIKey(data: pageData)
+
+        var request = URLRequest(url: Self.aiStudioStatusRPCURL)
+        request.httpMethod = "POST"
+        request.timeoutInterval = 10
+        request.httpBody = Data("[]".utf8)
+        request.setValue("application/json+protobuf", forHTTPHeaderField: "Content-Type")
+        request.setValue(apiKey, forHTTPHeaderField: "X-Goog-Api-Key")
+        request.setValue("https://aistudio.google.com/", forHTTPHeaderField: "Referer")
+        request.setValue("https://aistudio.google.com", forHTTPHeaderField: "Origin")
+        let (data, _) = try await transport.data(for: request)
+        return try Self.parseAIStudioIncidentHistory(data: data)
+    }
+
+    package static func parseAIStudioPublicAPIKey(data: Data) throws -> String {
+        guard let page = String(data: data, encoding: .utf8),
+              let expression = try? NSRegularExpression(pattern: #"\"WIu0Nc\":\"(AIza[^\"]+)\""#),
+              let match = expression.firstMatch(
+                  in: page,
+                  range: NSRange(page.startIndex..., in: page)),
+              let keyRange = Range(match.range(at: 1), in: page)
+        else {
+            throw URLError(.cannotParseResponse)
+        }
+        return String(page[keyRange])
+    }
+
+    package static func parseAIStudioIncidentHistory(data: Data) throws -> ProviderStatus {
+        let root = try JSONSerialization.jsonObject(with: data)
+        let incidents = Self.aiStudioIncidentArrays(in: root)
+        let active = incidents.compactMap(Self.aiStudioActiveIncident)
+        guard let worst = active.max(by: {
+            Self.indicatorRank($0.indicator) < Self.indicatorRank($1.indicator)
+        }) else {
+            return ProviderStatus(indicator: .none, description: nil, updatedAt: nil)
+        }
+        return ProviderStatus(
+            indicator: worst.indicator,
+            description: worst.description,
+            updatedAt: worst.updatedAt)
+    }
+
+    private static func aiStudioIncidentArrays(in value: Any) -> [[Any]] {
+        guard let array = value as? [Any] else { return [] }
+        if array.count >= 4,
+           array[0] is String,
+           array[1] is String,
+           array[3] is [Any]
+        {
+            return [array]
+        }
+        return array.flatMap(Self.aiStudioIncidentArrays)
+    }
+
+    private static func aiStudioActiveIncident(
+        _ incident: [Any])
+        -> (indicator: ProviderStatusIndicator, description: String, updatedAt: Date?)?
+    {
+        guard incident.count >= 4,
+              let title = incident[1] as? String,
+              let updates = incident[3] as? [Any],
+              let latest = updates.last as? [Any],
+              let state = latest.first as? NSNumber,
+              state.intValue != 4
+        else { return nil }
+
+        let severity = (incident[2] as? NSNumber)?.intValue ?? 1
+        let indicator: ProviderStatusIndicator = severity >= 2 ? .major : .minor
+        let updateText = latest.count > 3 ? latest[3] as? String : nil
+        let updatedAt = Self.aiStudioUpdateDate(latest)
+        return (indicator, updateText ?? title, updatedAt)
+    }
+
+    private static func aiStudioUpdateDate(_ update: [Any]) -> Date? {
+        guard update.count > 2,
+              let timestamps = update[2] as? [Any],
+              let raw = timestamps.first as? String,
+              let seconds = TimeInterval(raw)
+        else { return nil }
+        return Date(timeIntervalSince1970: seconds)
+    }
+
+    /// DeepSeek's status site is FlashDuty-backed and does not expose Statuspage's `/api/v2` API.
+    /// Its public RSS feed keeps the newest incident first and includes the current incident state.
+    @concurrent
+    package static func fetchDeepSeekStatus(
+        from feedURL: URL,
+        transport: any ProviderHTTPTransport = ProviderHTTPClient.shared)
+        async throws -> ProviderStatus
+    {
+        var request = URLRequest(url: feedURL)
+        request.timeoutInterval = 10
+        let (data, _) = try await transport.data(for: request)
+        return try Self.parseDeepSeekRSSStatus(data: data)
+    }
+
+    package static func parseDeepSeekRSSStatus(data: Data) throws -> ProviderStatus {
+        guard let xml = String(data: data, encoding: .utf8) else {
+            throw URLError(.cannotDecodeContentData)
+        }
+        guard let item = Self.firstRSSItem(in: xml) else {
+            return ProviderStatus(indicator: .none, description: nil, updatedAt: nil)
+        }
+
+        let title = Self.normalizedRSSField(Self.rssValue(named: "title", in: item))
+        let description = Self.normalizedRSSField(Self.rssValue(named: "description", in: item))
+        let status = Self.deepSeekIncidentStatus(from: description)
+        let indicator = Self.deepSeekIndicator(status: status, title: title)
+        let updatedAt = Self.deepSeekRSSDate(Self.rssValue(named: "pubDate", in: item))
+
+        return ProviderStatus(
+            indicator: indicator,
+            description: indicator == .none ? nil : title,
+            updatedAt: updatedAt)
+    }
+
+    private static func firstRSSItem(in xml: String) -> Substring? {
+        guard let start = xml.range(of: "<item>"),
+              let end = xml.range(of: "</item>", range: start.upperBound..<xml.endIndex)
+        else { return nil }
+        return xml[start.upperBound..<end.lowerBound]
+    }
+
+    private static func rssValue(named name: String, in item: Substring) -> String? {
+        let opening = "<\(name)>"
+        let closing = "</\(name)>"
+        guard let start = item.range(of: opening),
+              let end = item.range(of: closing, range: start.upperBound..<item.endIndex)
+        else { return nil }
+        return String(item[start.upperBound..<end.lowerBound])
+    }
+
+    private static func normalizedRSSField(_ value: String?) -> String? {
+        guard var value else { return nil }
+        let entities = [
+            "&lt;": "<",
+            "&gt;": ">",
+            "&amp;": "&",
+            "&quot;": "\"",
+            "&#39;": "'",
+            "&#xA;": "\n",
+            "&#10;": "\n",
+        ]
+        for (entity, replacement) in entities {
+            value = value.replacingOccurrences(of: entity, with: replacement)
+        }
+        value = value.replacingOccurrences(of: "</p>", with: "\n", options: .caseInsensitive)
+        value = value.replacingOccurrences(
+            of: #"<[^>]+>"#,
+            with: "",
+            options: .regularExpression)
+        let normalized = value
+            .split(whereSeparator: \.isNewline)
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+            .joined(separator: "\n")
+        return normalized.isEmpty ? nil : normalized
+    }
+
+    private static func deepSeekIncidentStatus(from description: String?) -> String? {
+        guard let description else { return nil }
+        for line in description.split(separator: "\n") {
+            let trimmed = line.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard trimmed.lowercased().hasPrefix("status:") else { continue }
+            return trimmed.dropFirst("status:".count).trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        return nil
+    }
+
+    private static func deepSeekIndicator(status: String?, title: String?) -> ProviderStatusIndicator {
+        let status = status?.lowercased() ?? ""
+        let title = title?.lowercased() ?? ""
+        if status.contains("resolved") || status.contains("operational") {
+            return .none
+        }
+        if status.contains("maintenance") {
+            return .maintenance
+        }
+        if status.contains("monitoring") || title.contains("degraded") || title.contains("性能下降") {
+            return .minor
+        }
+        if title.contains("partial") || title.contains("部分") {
+            return .major
+        }
+        if title.contains("unavailable") || title.contains("outage") || title.contains("中断") {
+            return .critical
+        }
+        if status.contains("investigating") || status.contains("identified") || !status.isEmpty {
+            return .major
+        }
+        return .unknown
+    }
+
+    private static func deepSeekRSSDate(_ raw: String?) -> Date? {
+        guard let raw else { return nil }
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
+        return formatter.date(from: raw.trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+
     /// Status feeds decode off the main actor: the Google Workspace incidents payload alone
     /// can be hundreds of kilobytes and cost 150-340ms to decode (#1399), and these helpers
     /// touch no store state.

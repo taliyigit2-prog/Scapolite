@@ -4,6 +4,8 @@
 
 ### Added
 
+- Scapolite: add a unified menu bar dashboard for AI usage, recent Claude Code and Codex sessions, local Mac health, six independent provider-status monitors with notch alerts, and a user-owned Telegram bot.
+- Scapolite: add English, Turkish, Russian, German, Italian, French, and Spanish dashboard translations plus localized project READMEs.
 - Claude: show promotional cloud-session credits separately from prepaid credits in menus, settings, and CLI output, including exhausted, expired, and unavailable states (#4194, #4214). Thanks @dstier-git!
 - Antigravity: opt in to additional Gemini profile homes in provider settings or config.json to combine local token/cost history without double-counting copied conversations (#4177). Thanks @keeuu!
 ### Fixed

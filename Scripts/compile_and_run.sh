@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Reset CodexBar: kill running instances, build, package, relaunch, verify.
+# Reset Scapolite: kill running instances, build, package, relaunch, verify.
 
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-APP_BUNDLE="${ROOT_DIR}/CodexBar.app"
-APP_PROCESS_PATTERN="CodexBar.app/Contents/MacOS/CodexBar"
+APP_BUNDLE="${ROOT_DIR}/Scapolite.app"
+APP_PROCESS_PATTERN="Scapolite.app/Contents/MacOS/CodexBar"
 DEBUG_PROCESS_PATTERN="${ROOT_DIR}/.build/debug/CodexBar"
 RELEASE_PROCESS_PATTERN="${ROOT_DIR}/.build/release/CodexBar"
 LOCK_KEY="$(printf '%s' "${ROOT_DIR}" | shasum -a 256 | cut -c1-8)"
@@ -90,14 +90,7 @@ resolve_signing_mode() {
     return
   fi
 
-  local candidate="Developer ID Application: Peter Steinberger (Y5PE65HELJ)"
-  if has_signing_identity "${candidate}"; then
-    APP_IDENTITY="${candidate}"
-    export APP_IDENTITY
-    SIGNING_MODE="identity"
-    return
-  fi
-
+  local candidate
   candidate="$(detect_codesigning_identity)"
   if [[ -n "${candidate}" ]]; then
     APP_IDENTITY="${candidate}"
@@ -280,7 +273,7 @@ fi
 # 5) Verify the app stays up for at least a moment (launch can be >1s on some systems).
 for _ in {1..10}; do
   if pgrep -f "${APP_PROCESS_PATTERN}" >/dev/null 2>&1; then
-    log "OK: CodexBar is running."
+    log "OK: Scapolite is running."
     exit 0
   fi
   sleep 0.4

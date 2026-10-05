@@ -135,20 +135,10 @@ extension StatusItemController {
 
     private func measuredStandardMenuWidthCacheToken(for action: MenuDescriptor.MenuAction) -> String {
         switch action {
-        case .installUpdate:
-            "installUpdate"
-        case .checkForUpdates:
-            "checkForUpdates"
-        case .refresh:
-            "refresh"
-        case .refreshAugmentSession:
-            "refreshAugmentSession"
-        case .dashboard:
-            "dashboard"
-        case .statusPage:
-            "statusPage"
-        case .changelog:
-            "changelog"
+        case .installUpdate, .checkForUpdates, .refresh, .refreshAugmentSession, .dashboard,
+             .scapoliteDashboard, .statusPage, .changelog, .openCodexWorkspaces, .settings,
+             .about, .quit:
+            Self.measuredStandardMenuWidthCacheToken(forSimpleAction: action)
         case .addCodexAccount:
             "addCodexAccount:\(self.codexAddAccountSubtitle() ?? "")"
         case let .requestCodexSystemPromotion(id):
@@ -161,20 +151,32 @@ extension StatusItemController {
             "openTerminal:\(command)"
         case let .loginToProvider(url):
             "loginToProvider:\(url)"
-        case .openCodexWorkspaces:
-            CodexWorkspacesWindowIdentity.menuItem
-        case .settings:
-            "settings"
         case let .providerSettings(provider):
             "providerSettings:\(provider.rawValue)"
-        case .about:
-            "about"
-        case .quit:
-            "quit"
         case let .copyError(message):
             "copyError:\(message)"
         case let .focusAgentSession(session, remoteHost):
             "focusAgentSession:\(remoteHost ?? "local"):\(session.id)"
+        }
+    }
+
+    private static func measuredStandardMenuWidthCacheToken(forSimpleAction action: MenuDescriptor
+        .MenuAction) -> String
+    {
+        switch action {
+        case .installUpdate: "installUpdate"
+        case .checkForUpdates: "checkForUpdates"
+        case .refresh: "refresh"
+        case .refreshAugmentSession: "refreshAugmentSession"
+        case .dashboard: "dashboard"
+        case .scapoliteDashboard: "scapoliteDashboard"
+        case .statusPage: "statusPage"
+        case .changelog: "changelog"
+        case .openCodexWorkspaces: CodexWorkspacesWindowIdentity.menuItem
+        case .settings: "settings"
+        case .about: "about"
+        case .quit: "quit"
+        default: preconditionFailure("Expected a simple menu action")
         }
     }
 }

@@ -4,7 +4,7 @@ import Security
 #endif
 
 public enum AppGroupSupport {
-    public static let defaultTeamID = "Y5PE65HELJ"
+    public static let defaultTeamID = "SCAPOLITE0"
     public static let teamIDInfoKey = "CodexBarTeamID"
     public static let legacyReleaseGroupID = "group.com.steipete.codexbar"
     public static let legacyDebugGroupID = "group.com.steipete.codexbar.debug"
@@ -40,7 +40,7 @@ public enum AppGroupSupport {
     }
 
     static func currentGroupID(teamID: String, bundleID: String?) -> String {
-        let base = "\(teamID).com.steipete.codexbar"
+        let base = "\(teamID).\(self.hostBundleID(bundleID))"
         return self.isDebugBundleID(bundleID) ? "\(base).debug" : base
     }
 
@@ -111,7 +111,7 @@ public enum AppGroupSupport {
     {
         let base = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
             ?? fileManager.temporaryDirectory
-        let directory = base.appendingPathComponent("CodexBar", isDirectory: true)
+        let directory = base.appendingPathComponent("Scapolite", isDirectory: true)
         try? fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
         return directory
     }
@@ -214,6 +214,17 @@ public enum AppGroupSupport {
     private static func isDebugBundleID(_ bundleID: String?) -> Bool {
         guard let bundleID, !bundleID.isEmpty else { return false }
         return bundleID.contains(".debug")
+    }
+
+    private static func hostBundleID(_ bundleID: String?) -> String {
+        guard var bundleID, !bundleID.isEmpty else { return "com.taliyigit2.scapolite" }
+        if bundleID.hasSuffix(".widget") {
+            bundleID.removeLast(".widget".count)
+        }
+        if bundleID.hasSuffix(".debug") {
+            bundleID.removeLast(".debug".count)
+        }
+        return bundleID
     }
 
     private static func codeSignatureTeamID(bundleURL: URL?) -> String? {

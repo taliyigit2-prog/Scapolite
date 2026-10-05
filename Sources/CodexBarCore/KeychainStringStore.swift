@@ -47,17 +47,28 @@ package struct KeychainStringStore: Sendable {
     private let log: CodexBarLogger
     private let operations: Operations
 
-    package init(account: String, promptKind: KeychainPromptContext.Kind, logCategory: String) {
-        self.init(account: account, promptKind: promptKind, logCategory: logCategory, operations: .live)
+    package init(
+        account: String,
+        service: String = "com.steipete.CodexBar",
+        promptKind: KeychainPromptContext.Kind,
+        logCategory: String)
+    {
+        self.init(
+            account: account,
+            service: service,
+            promptKind: promptKind,
+            logCategory: logCategory,
+            operations: .live)
     }
 
     init(
         account: String,
+        service: String = "com.steipete.CodexBar",
         promptKind: KeychainPromptContext.Kind,
         logCategory: String,
         operations: Operations)
     {
-        self.context = KeychainPromptContext(kind: promptKind, service: "com.steipete.CodexBar", account: account)
+        self.context = KeychainPromptContext(kind: promptKind, service: service, account: account)
         self.log = CodexBarLog.logger(logCategory)
         self.operations = operations
     }
@@ -71,11 +82,23 @@ package struct KeychainStringStore: Sendable {
     }
 
     package func load() throws -> String? {
+        try self.load(allowsUserInteraction: true)
+    }
+
+    package func loadWithoutUserInteraction() throws -> String? {
+        try self.load(allowsUserInteraction: false)
+    }
+
+    private func load(allowsUserInteraction: Bool) throws -> String? {
         guard !KeychainAccessGate.isDisabled else { return nil }
         var query = self.query
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         query[kSecReturnData as String] = true
-        self.operations.preflight(self.context)
+        if allowsUserInteraction {
+            self.operations.preflight(self.context)
+        } else {
+            KeychainNoUIQuery.apply(to: &query)
+        }
         let (status, data) = self.operations.read(query)
         if status == errSecItemNotFound { return nil }
         try self.check(status, operation: "read")

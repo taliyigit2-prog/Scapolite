@@ -45,7 +45,7 @@ grep -Fq 'CODEXBAR_SIGNING=identity ./Scripts/package_app.sh release' "$RELEASE_
 
 TEMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/codexbar-package-signing.XXXXXX")
 trap 'rm -f "$FUNCTIONS_FILE"; rm -rf "$TEMP_DIR"' EXIT
-APP="$TEMP_DIR/CodexBar.app"
+APP="$TEMP_DIR/Scapolite.app"
 mkdir -p "$APP/Contents/Frameworks/Sparkle.framework"
 
 xattr() {
@@ -86,7 +86,7 @@ import tempfile
 from pathlib import Path
 
 source = Path(sys.argv[1]).read_text()
-start = source.index('BUNDLE_ID="com.steipete.codexbar"')
+start = source.index('BUNDLE_ID="com.taliyigit2.scapolite"')
 end = source.index('BUILD_TIMESTAMP=', start)
 generation = source[start:end]
 start = source.index('if [[ "$EMBED_PROVISIONING_PROFILE" == "1" ]]; then')
@@ -104,7 +104,7 @@ for team, configuration, signing, profile_present in itertools.product(
 ):
     with tempfile.TemporaryDirectory(prefix='codexbar-entitlement-test-') as directory:
         root = Path(directory)
-        app = root / 'CodexBar.app'
+        app = root / 'Scapolite.app'
         (app / 'Contents').mkdir(parents=True)
         profile = root / 'Scripts/profiles/CodexBar-DeveloperID.provisionprofile'
         if profile_present:
@@ -117,12 +117,12 @@ for team, configuration, signing, profile_present in itertools.product(
         identity_stub = f'security() {{ echo \'  1) {"A" * 40} "{env["APP_IDENTITY"]}"\'; }}'
         result = subprocess.run(['bash', '-eu', '-c', identity_stub + '\n' + helper + '\n' + generation + '\n' + embedding],
                                 env=env, capture_output=True, text=True)
-        cloudkit = team == 'Y5PE65HELJ' and configuration == 'release' and signing == 'identity'
+        cloudkit = False
         if cloudkit and not profile_present:
             assert result.returncode != 0 and 'Missing' in result.stderr, result.stderr
             continue
         assert result.returncode == 0, (team, configuration, signing, profile_present, result.stderr)
-        bundle = 'com.steipete.codexbar' + ('.debug' if configuration == 'debug' else '')
+        bundle = 'com.taliyigit2.scapolite' + ('.debug' if configuration == 'debug' else '')
         expected_group = f'{team}.{bundle}'
         app_entitlements = plistlib.loads((root / '.build/entitlements/CodexBar.entitlements').read_bytes())
         widget_entitlements = plistlib.loads((root / '.build/entitlements/CodexBarWidget.entitlements').read_bytes())
@@ -195,7 +195,7 @@ with tempfile.TemporaryDirectory(prefix='codexbar-identity-test-') as directory:
         app_entitlements = plistlib.loads(app_path.read_bytes())
         widget_entitlements = plistlib.loads((app_path.parent / 'CodexBarWidget.entitlements').read_bytes())
         suffix = '.debug' if configuration == 'debug' else ''
-        expected_group = [f'{expected_team}.com.steipete.codexbar{suffix}']
+        expected_group = [f'{expected_team}.com.taliyigit2.scapolite{suffix}']
         expected_app = {'com.apple.security.application-groups': expected_group}
         if lldb == '1':
             expected_app['com.apple.security.get-task-allow'] = True
@@ -212,16 +212,16 @@ with tempfile.TemporaryDirectory(prefix='codexbar-release-identity-test-') as di
     package_stub = root / 'Scripts/package_app.sh'
     package_stub.write_text('#!/bin/bash\n[[ "$*" == release && "$CODEXBAR_SIGNING" == identity ]] || exit 99\nprintf "%s" "$APP_IDENTITY"\n')
     package_stub.chmod(0o755)
-    for identity in [None, fork]:
+    for identity in [fork]:
         env = dict(os.environ, ARCHES_VALUE='arm64')
         env.pop('APP_IDENTITY', None)
         if identity is not None:
             env['APP_IDENTITY'] = identity
         result = subprocess.run(['bash', '-eu', '-c', identity_assignment + '\n' + package_call],
                                 cwd=root, env=env, capture_output=True, text=True)
-        expected = identity or 'Developer ID Application: Peter Steinberger (Y5PE65HELJ)'
+        expected = identity
         assert result.returncode == 0 and result.stdout == expected, result
-print('2 release identity forwarding cases passed without signing or notarization.')
+print('1 release identity forwarding case passed without signing or notarization.')
 
 # Source only the selection functions, never the build/kill/launch entry point.
 dev_source = Path(sys.argv[3]).read_text()

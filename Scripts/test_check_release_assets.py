@@ -32,15 +32,15 @@ case "$tool" in
     ;;
   ditto)
     if [[ "$FAIL_TOOL" == symlink-app ]]; then
-      ln -s "$EXISTING_APP" "${!#}/CodexBar.app"
+      ln -s "$EXISTING_APP" "${!#}/Scapolite.app"
     elif [[ "$FAIL_TOOL" != missing-app ]]; then
-      mkdir -p "${!#}/CodexBar.app"
+      mkdir -p "${!#}/Scapolite.app"
     fi
     ;;
   codesign)
     [[ "$*" == '--verify --deep --strict --all-architectures --verbose=2 '* ]] || exit 1
     [[ -d "${!#}" ]] || exit 1
-    if [[ "$FAIL_TOOL" == wrong-signer && "$*" == *'certificate leaf[subject.OU] = "Y5PE65HELJ"'* ]]; then
+    if [[ "$FAIL_TOOL" == wrong-signer && "$*" == *'certificate leaf[subject.OU] = "TESTTEAM123"'* ]]; then
       exit 42
     fi
     ;;
@@ -63,6 +63,7 @@ esac
                     "FAIL_TOOL": failure,
                     "ARCHES": arches,
                     "EXISTING_APP": str(existing_app),
+                    "SCAPOLITE_RELEASE_TEAM_ID": "TESTTEAM123",
                 },
                 capture_output=True,
                 text=True,
@@ -75,18 +76,18 @@ esac
         result, calls = self.run_check()
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("mac-release <check-assets> <v0.0.1>", calls)
-        self.assertIn("/v0.0.1/CodexBar-macos-universal-0.0.1.zip", calls)
+        self.assertIn("/taliyigit2-prog/Scapolite/releases/download/v0.0.1/Scapolite-macos-universal-0.0.1.zip", calls)
         self.assertIn("ditto <-x> <-k> <--norsrc>", calls)
         self.assertIn("codesign <--verify> <--deep> <--strict> <--all-architectures>", calls)
-        self.assertIn('<--test-requirement> <=anchor apple generic and identifier "com.steipete.codexbar"', calls)
-        self.assertIn('certificate leaf[subject.OU] = "Y5PE65HELJ"', calls)
+        self.assertIn('<--test-requirement> <=anchor apple generic and identifier "com.taliyigit2.scapolite"', calls)
+        self.assertIn('certificate leaf[subject.OU] = "TESTTEAM123"', calls)
         self.assertIn("certificate 1[field.1.2.840.113635.100.6.2.6] exists", calls)
         self.assertIn("certificate leaf[field.1.2.840.113635.100.6.1.13] exists", calls)
 
     def test_single_architecture_uses_matching_release_asset(self):
         result, calls = self.run_check(arches="arm64")
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn("CodexBar-macos-arm64-0.0.1.zip", calls)
+        self.assertIn("Scapolite-macos-arm64-0.0.1.zip", calls)
 
     def test_invalid_signature_is_rejected(self):
         result, calls = self.run_check("codesign")

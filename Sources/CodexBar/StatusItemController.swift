@@ -8,6 +8,7 @@ import QuartzCore
 @MainActor
 protocol StatusItemControlling: AnyObject {
     func setSettingsOpenHandler(_ handler: @escaping @MainActor (SettingsPane?) -> Void)
+    func setDashboardOpenHandler(_ handler: @escaping @MainActor () -> Void)
     func openMenuFromShortcut()
     func runLoginFlowFromSettings(provider: UsageProvider) async
     func celebrationOriginPoint(for provider: UsageProvider?) -> CGPoint?
@@ -19,6 +20,10 @@ protocol StatusItemControlling: AnyObject {
 }
 
 extension StatusItemControlling {
+    func setDashboardOpenHandler(_ handler: @escaping @MainActor () -> Void) {
+        _ = handler
+    }
+
     func celebrationOriginPoint(for provider: UsageProvider?) -> CGPoint? {
         nil
     }
@@ -45,8 +50,8 @@ final class StatusItemController: NSObject, NSMenuDelegate, StatusItemControllin
     private static let defaultMenuRefreshEnabled = !SettingsStore.isRunningTests
     private(set) static var menuRefreshEnabled = !SettingsStore.isRunningTests
     static let quotaWarningFlashDuration: TimeInterval = 60
-    private nonisolated static let statusItemAccessibilityTitle = "CodexBar"
-    private nonisolated static let debugStatusItemAccessibilityTitle = "CodexBar Debug"
+    private nonisolated static let statusItemAccessibilityTitle = "Scapolite"
+    private nonisolated static let debugStatusItemAccessibilityTitle = "Scapolite Debug"
     private nonisolated static let statusItemAccessibilityIdentifierPrefix = "CodexBar.StatusItem"
     private nonisolated static let mergedLegacyDefaultItemIndex = 0
 
@@ -253,6 +258,7 @@ final class StatusItemController: NSObject, NSMenuDelegate, StatusItemControllin
 
     let preferencesSelection: PreferencesSelection
     var settingsOpenHandler: (@MainActor (SettingsPane?) -> Void)?
+    var dashboardOpenHandler: (@MainActor () -> Void)?
     var animationDriver: DisplayLinkDriver?
     var animationPhase: Double = 0
     var animationPattern: LoadingPattern = .knightRider

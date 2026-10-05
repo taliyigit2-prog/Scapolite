@@ -50,6 +50,9 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-log", from: "1.15.1"),
         .package(url: "https://github.com/sindresorhus/KeyboardShortcuts", from: "3.1.0"),
         .package(url: "https://github.com/zats/Vortex", revision: "ef5392088d4aeb255c4eee83157dbdafcd31bf07"),
+        .package(
+            url: "https://github.com/TadelUnso/mole-widget",
+            revision: "748772f2e4419a83552feea296b0e8c6bec2909f"),
         sweetCookieKitDependency,
     ],
     targets: {
@@ -190,6 +193,7 @@ let package = Package(
                 dependencies: [
                     .product(name: "Sparkle", package: "Sparkle"),
                     .product(name: "KeyboardShortcuts", package: "KeyboardShortcuts"),
+                    .product(name: "MoleWidgetCore", package: "mole-widget"),
                     .product(name: "Vortex", package: "Vortex"),
                     "AdaptiveRefreshCore",
                     "CodexBarCore",

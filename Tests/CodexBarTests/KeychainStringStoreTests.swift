@@ -31,6 +31,18 @@ struct KeychainStringStoreTests {
         #expect(backend.query?[kSecReturnData as String] as? Bool == true)
     }
 
+    @Test
+    func `noninteractive load suppresses prompts and applies no UI policy`() throws {
+        let backend = Backend(data: Data("synthetic-value".utf8))
+        let value = try KeychainAccessGate.withTaskOverrideForTesting(false) {
+            try self.store(backend).loadWithoutUserInteraction()
+        }
+        #expect(value == "synthetic-value")
+        #expect(backend.calls == ["read"])
+        #expect(backend.query?[kSecUseAuthenticationContext as String] != nil)
+        #expect(backend.query?[kSecUseAuthenticationUI as String] != nil)
+    }
+
     @Test(arguments: [Data(), Data(" \n".utf8), Data([0xFF])])
     func `empty and non UTF8 stored strings remain absent`(data: Data) throws {
         let backend = Backend(data: data)
