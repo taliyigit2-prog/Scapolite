@@ -1697,3 +1697,22 @@
 "Your private Telegram bot" = "Il tuo bot Telegram privato";
 "health" = "salute";
 "remaining" = "rimanente";
+
+/* Shared settings fallbacks */
+"Provider service status: %@" = "Stato del servizio del provider: %@";
+"Low Power Mode" = "Modalità risparmio energetico";
+"When on, runs automatic provider, local usage, and storage refreshes no more often than every 30 minutes. Manual refresh remains available. Automatic follows the system Low Power Mode setting." = "Quando è attiva, aggiorna automaticamente provider, utilizzo locale e archiviazione non più di una volta ogni 30 minuti. L'aggiornamento manuale resta disponibile. Automatico segue l'impostazione di sistema della modalità risparmio energetico.";
+"Portable preferences" = "Preferenze portabili";
+"Export Preferences…" = "Esporta preferenze…";
+"Import Preferences…" = "Importa preferenze…";
+"Provider Switcher Shortcuts…" = "Scorciatoie per cambiare provider…";
+"Preferences could not be transferred" = "Impossibile trasferire le preferenze";
+"Save display and notification preferences for your dotfiles. Accounts, credentials, login, local paths and consent stay on this Mac." = "Salva le preferenze di visualizzazione e notifica nei tuoi dotfile. Account, credenziali, accessi, percorsi locali e consensi restano su questo Mac.";
+"Provider Switcher Shortcuts" = "Scorciatoie per cambiare provider";
+"These shortcuts work while the provider switcher menu is open. Use ctrl, alt, shift and cmd with a letter, digit, left or right; use none to disable an action." = "Queste scorciatoie funzionano quando il menu di selezione del provider è aperto. Usa ctrl, alt, shift e cmd con una lettera, una cifra, sinistra o destra; usa none per disattivare un'azione.";
+"Examples: alt+cmd+2, shift+right. Refresh (cmd+r), Settings (cmd+,) and Quit (cmd+q) are reserved." = "Esempi: alt+cmd+2, shift+right. Aggiorna (cmd+r), Impostazioni (cmd+,) ed Esci (cmd+q) sono riservati.";
+"Previous provider" = "Provider precedente";
+"Next provider" = "Provider successivo";
+"Select position %@" = "Seleziona posizione %@";
+"Stay Awake" = "Mantieni attivo";
+"Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep." = "Impedisce lo stop del sistema mentre è in esecuzione un agente locale, anche se inattivo. Consuma batteria; non impedisce lo stop alla chiusura del coperchio né lo spegnimento dello schermo.";

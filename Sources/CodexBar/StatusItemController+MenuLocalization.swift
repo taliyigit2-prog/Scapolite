@@ -14,6 +14,7 @@ extension StatusItemController {
             codexBarLocalizationSignature(),
             self.settings.hidePersonalInfo ? "hide-personal-info" : "show-personal-info",
             L("Overview"),
+            L("System"),
             L("Cost"),
             pluginSignature,
         ].joined(separator: "|")

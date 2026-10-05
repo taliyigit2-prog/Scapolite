@@ -23,6 +23,7 @@ extension StatusItemController {
 
     private func cancelShutdownTasks() {
         self.agentSessions.stop()
+        self.scapoliteMetrics.stop()
         self.store.credentialNotificationsStopped = true
         self.store.retireCredentialNotifications()
         self.menuAppearanceObserver?.stop()

@@ -31,6 +31,39 @@ struct ScapoliteServiceTransition: Sendable {
     let current: ScapoliteServiceHealth
 }
 
+enum ScapoliteServiceAlertSimulation {
+    static func transitions(now: Date = Date()) -> [ScapoliteServiceTransition] {
+        let services = [
+            ScapoliteMonitoredService(
+                id: "simulation-claude",
+                name: "Claude",
+                statusURL: URL(string: "https://status.claude.com/")!,
+                source: .statuspage(URL(string: "https://status.claude.com/")!)),
+            ScapoliteMonitoredService(
+                id: "simulation-codex",
+                name: "Codex / OpenAI",
+                statusURL: URL(string: "https://status.openai.com/")!,
+                source: .statuspage(URL(string: "https://status.openai.com/")!)),
+        ]
+        return services.flatMap { service in
+            let healthy = ScapoliteServiceHealth(
+                service: service,
+                indicator: .none,
+                detail: nil,
+                updatedAt: now)
+            let outage = ScapoliteServiceHealth(
+                service: service,
+                indicator: .critical,
+                detail: "Simulated service outage",
+                updatedAt: now)
+            return [
+                ScapoliteServiceTransition(previous: healthy, current: outage),
+                ScapoliteServiceTransition(previous: outage, current: healthy),
+            ]
+        }
+    }
+}
+
 enum ScapoliteServiceTransitionPolicy {
     static func transition(
         previous: ScapoliteServiceHealth?,

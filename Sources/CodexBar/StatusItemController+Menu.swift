@@ -258,15 +258,17 @@ extension StatusItemController {
         let includesOverview = self.includesOverviewTab(enabledProviders: enabledProviders)
         let switcherSelection = self.resolvedMergedMenuSelection(enabledProviders: enabledProviders)
         let isOverviewSelected = switcherSelection == .overview
+        let isSystemSelected = switcherSelection == .system
         let isPluginSelected = Self.isUserPluginSelection(switcherSelection)
         let selectedProvider: UsageProvider? = switch switcherSelection {
         case .overview: self.resolvedMenuProvider(enabledProviders: enabledProviders)
+        case .system: nil
         case let .provider(instanceID): instanceID.firstPartyProvider
         case nil: provider
         }
         // Provider-specific by design: Codex remains the empty merged-menu selection fallback.
         let currentProvider = selectedProvider ?? enabledProviders.first ?? .codex
-        let suppressAccountSwitchers = isOverviewSelected || isPluginSelected
+        let suppressAccountSwitchers = isOverviewSelected || isSystemSelected || isPluginSelected
         let rawCodexAccountDisplay = suppressAccountSwitchers ? nil : self.codexAccountMenuDisplay(for: currentProvider)
         let codexAccountDisplay = suppressAccountSwitchers
             ? nil
@@ -281,7 +283,7 @@ extension StatusItemController {
             showAllAccounts: showAllAccounts)
         let descriptor = self.makeMenuDescriptor(
             provider: selectedProvider,
-            includeContextualActions: !isOverviewSelected && !isPluginSelected)
+            includeContextualActions: !isOverviewSelected && !isSystemSelected && !isPluginSelected)
         let menuWidth = self.menuCardWidth(
             for: enabledProviders,
             selectedProvider: selectedProvider,
@@ -844,6 +846,8 @@ extension StatusItemController {
                 self.addOverviewEmptyState(to: menu, enabledProviders: enabledProviders)
                 menu.addItem(.separator())
             }
+        } else if switcherSelection == .system {
+            self.addScapoliteSystemMenuContent(to: menu, width: context.menuWidth)
         } else {
             let addedOpenAIWebItems = self.addMenuCards(to: menu, context: context, captureMenu: captureMenu)
             self.addOpenAIWebItemsIfNeeded(
@@ -996,62 +1000,6 @@ extension StatusItemController {
         menu.persistentActionDelegate = self
         StatusMenuAppearance.pin(menu)
         return menu
-    }
-
-    private func makeProviderSwitcherItem(
-        providers: [UsageProvider],
-        includesOverview: Bool,
-        selected: ProviderSwitcherSelection,
-        menu: NSMenu,
-        width: CGFloat) -> NSMenuItem
-    {
-        let view = ProviderSwitcherView(
-            providers: providers,
-            pluginProviders: self.topLevelUserProviderPlugins(),
-            selected: selected,
-            includesOverview: includesOverview,
-            width: width,
-            showsIcons: self.settings.switcherShowsIcons,
-            iconProvider: { [weak self] provider in
-                self?.switcherIcon(for: provider) ?? NSImage()
-            },
-            pluginIconProvider: { [weak self] plugin in
-                self?.userPluginSwitcherIcon(for: plugin) ?? NSImage()
-            },
-            weeklyRemainingProvider: { [weak self] provider in
-                self?.switcherWeeklyRemaining(for: provider)
-            },
-            onSelect: { [weak self, weak menu] selection in
-                guard let self, let menu else { return }
-                MenuSwitchFlickerProbe.debugLog("onSelect \(selection)")
-                var provider: UsageProvider?
-                self.preservingMergedSwitcherContentCachesDuringInvalidation {
-                    switch selection {
-                    case .overview:
-                        self.settings.mergedMenuLastSelectedWasOverview = true
-                        provider = self.resolvedMenuProvider()
-                    case let .provider(selectedProvider):
-                        self.settings.mergedMenuLastSelectedWasOverview = false
-                        self.selectedMenuProvider = selectedProvider
-                        provider = selectedProvider.firstPartyProvider
-                    }
-                    switch selection {
-                    case .overview:
-                        // Provider-specific by design: Codex is the persisted fallback for an empty overview.
-                        self.lastMenuProvider = (provider ?? .codex).instanceID
-                    case let .provider(provider):
-                        self.lastMenuProvider = provider
-                    }
-                    self.lastMergedSwitcherSelection = selection
-                    self.refreshProviderSelectionDependentUI(deferRendering: true)
-                }
-                self.requestProviderSwitcherMenuRebuild(menu, provider: provider)
-            })
-        let item = NSMenuItem()
-        item.title = ""
-        item.view = view
-        item.isEnabled = false
-        return item
     }
 
     private func makeTokenAccountSwitcherItem(
@@ -1406,54 +1354,6 @@ extension StatusItemController {
         if !hasCredits, webItems.canShowBuyCredits {
             menu.addItem(self.makeBuyCreditsItem())
         }
-    }
-
-    private func switcherIcon(for provider: UsageProvider) -> NSImage {
-        if let brand = ProviderBrandIcon.image(for: provider) {
-            return brand
-        }
-
-        // Fallback to the dynamic icon renderer if resources are missing (e.g. dev bundle mismatch).
-        let snapshot = self.store.snapshot(for: provider.instanceID)
-        let showUsed = self.settings.usageBarsShowUsed
-        let style = self.store.style(for: provider)
-        let now = Date()
-        let resolved = snapshot.map {
-            IconRemainingResolver.resolvedPercents(
-                snapshot: $0,
-                style: style,
-                showUsed: showUsed,
-                secondaryOverrideWindowID: self.settings.copilotIconSecondaryWindowOverrideID(snapshot: $0),
-                now: now)
-        }
-        let primary = resolved?.primary
-        let weekly = resolved?.secondary
-        let creditsProjection = self.store.codexConsumerProjectionIfNeeded(
-            for: provider,
-            surface: .menuBar,
-            snapshotOverride: snapshot,
-            now: now)
-        let credits = creditsProjection?.menuBarFallback == .creditsBalance
-            ? self.store.codexMenuBarCreditsRemaining(
-                snapshotOverride: snapshot,
-                now: now)
-            : nil
-        let stale = self.store.isStale(provider: provider)
-        let indicator = self.store.statusIndicator(for: provider)
-        let image = IconRenderer.makeIcon(
-            primaryRemaining: primary,
-            weeklyRemaining: weekly,
-            creditsRemaining: credits,
-            stale: stale,
-            style: style,
-            blink: 0,
-            wiggle: 0,
-            tilt: 0,
-            statusIndicator: indicator,
-            hideCritters: self.settings.menuBarHidesCritters,
-            quotaLayoutPolicy: .provider(provider))
-        image.isTemplate = true
-        return image
     }
 
     private func makeBuyCreditsItem() -> NSMenuItem {

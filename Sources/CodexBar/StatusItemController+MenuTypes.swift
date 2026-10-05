@@ -18,7 +18,7 @@ extension StatusItemController {
 extension ProviderSwitcherSelection {
     var provider: UsageProvider? {
         switch self {
-        case .overview:
+        case .overview, .system:
             nil
         case let .provider(instanceID):
             instanceID.firstPartyProvider
@@ -27,7 +27,7 @@ extension ProviderSwitcherSelection {
 
     var instanceID: ProviderInstanceID? {
         switch self {
-        case .overview: nil
+        case .overview, .system: nil
         case let .provider(instanceID): instanceID
         }
     }

@@ -19,6 +19,7 @@ final class ScapoliteNotchAlertController {
             recovered: recovered)
         let hostingView = NSHostingView(rootView: ScapoliteNotchAlertView(alert: alert))
         hostingView.frame = NSRect(x: 0, y: 0, width: 460, height: 92)
+        hostingView.setAccessibilityIdentifier("scapolite-service-alert-content")
 
         let panel = self.panel ?? self.makePanel()
         panel.contentView = hostingView
@@ -60,6 +61,8 @@ final class ScapoliteNotchAlertController {
             backing: .buffered,
             defer: false)
         panel.level = .statusBar
+        panel.identifier = NSUserInterfaceItemIdentifier("com.taliyigit2.scapolite.notch-alert")
+        panel.title = "Scapolite Service Alert"
         panel.backgroundColor = .clear
         panel.isOpaque = false
         panel.hasShadow = true

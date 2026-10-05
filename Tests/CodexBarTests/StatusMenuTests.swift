@@ -638,7 +638,8 @@ struct StatusMenuTests {
         controller.menuWillOpen(menu)
 
         let buttons = self.switcherButtons(in: menu)
-        #expect(buttons.count == store.enabledProvidersForDisplay().count + 1)
+        // Provider buttons plus the Overview and Mac system tabs.
+        #expect(buttons.count == store.enabledProvidersForDisplay().count + 2)
         #expect(buttons.contains(where: { $0.tag == 0 }))
         #expect(buttons.first(where: { $0.state == .on })?.tag == 2)
     }
@@ -721,7 +722,8 @@ struct StatusMenuTests {
         controller.menuRefreshEnabledOverrideForTesting = true
 
         let initialButtons = self.switcherButtons(in: menu)
-        #expect(initialButtons.count == activeProviders.count)
+        // Overview is hidden, while the Mac system tab remains available.
+        #expect(initialButtons.count == activeProviders.count + 1)
 
         _ = settings.setMergedOverviewProviderSelection(
             provider: .codex,
@@ -732,7 +734,7 @@ struct StatusMenuTests {
         controller.menuWillOpen(menu)
 
         let updatedButtons = self.switcherButtons(in: menu)
-        #expect(updatedButtons.count == activeProviders.count + 1)
+        #expect(updatedButtons.count == activeProviders.count + 2)
     }
 
     @Test
@@ -1601,7 +1603,8 @@ extension StatusMenuTests {
 
         let ids = self.representedIDs(in: menu)
         let switcherButtons = self.switcherButtons(in: menu)
-        #expect(switcherButtons.count == store.enabledProvidersForDisplay().count)
+        // The explicit empty Overview selection hides only Overview, not the Mac system tab.
+        #expect(switcherButtons.count == store.enabledProvidersForDisplay().count + 1)
         #expect(switcherButtons.contains(where: { $0.title == "Overview" }) == false)
         #expect(switcherButtons.contains(where: { $0.state == .on && $0.tag == 0 }))
         #expect(ids.contains("menuCard"))

@@ -605,6 +605,9 @@ extension StatusItemController {
 
     private func viewportRestoreSwitcherSelection(for menu: NSMenu) -> ProviderSwitcherSelection? {
         guard self.shouldMergeIcons, menu === self.mergedMenu else { return nil }
+        if self.scapoliteSystemMenuSelected {
+            return .system
+        }
         if self.isMergedOverviewSelected(in: menu) {
             return .overview
         }

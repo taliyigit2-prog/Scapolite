@@ -6,10 +6,13 @@
 
 - Scapolite: add a unified menu bar dashboard for AI usage, recent Claude Code and Codex sessions, local Mac health, six independent provider-status monitors with notch alerts, and a user-owned Telegram bot.
 - Scapolite: add English, Turkish, Russian, German, Italian, French, and Spanish dashboard translations plus localized project READMEs.
+- Scapolite: add a System tab to the merged menu with live CPU, memory, disk, battery, network, temperature, and top-process metrics.
+- Scapolite: show remaining quota percentages in the menu bar by default and provide a debug simulation for Claude and Codex/OpenAI outage and recovery notch alerts.
 - Claude: show promotional cloud-session credits separately from prepaid credits in menus, settings, and CLI output, including exhausted, expired, and unavailable states (#4194, #4214). Thanks @dstier-git!
 - Antigravity: opt in to additional Gemini profile homes in provider settings or config.json to combine local token/cost history without double-counting copied conversations (#4177). Thanks @keeuu!
 ### Fixed
 
+- Scapolite: localize previously untranslated Turkish settings controls and clarify Turkish menu terminology.
 - Browser cookies: adopt SweetCookieKit 0.5.5 for Aside, Opera, and Opera Neon support, including Cursor account switching, and let Muse (muse.ai) automatically import from the full supported browser catalog (#4215, #2429). Thanks @mvicari!
 
 ## 0.71.1 — 2026-10-03

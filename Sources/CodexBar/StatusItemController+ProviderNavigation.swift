@@ -42,13 +42,14 @@ extension StatusItemController {
         guard self.shouldMergeIcons else { return }
         let enabledProviders = self.store.enabledFirstPartyProvidersForDisplay()
         let switcherProviderIDs = self.switcherProviderIDs(enabledFirstPartyProviders: enabledProviders)
-        guard switcherProviderIDs.count > 1 else { return }
+        guard !switcherProviderIDs.isEmpty else { return }
 
         let includesOverview = self.includesOverviewTab(enabledProviders: enabledProviders)
         var selections = switcherProviderIDs.map { ProviderSwitcherSelection.provider($0) }
         if includesOverview {
             selections.insert(.overview, at: 0)
         }
+        selections.append(.system)
 
         let current = self.resolvedSwitcherSelection(
             enabledProviders: enabledProviders,
@@ -61,16 +62,23 @@ extension StatusItemController {
         let menuProvider: UsageProvider? = switch selection {
         case .overview:
             self.navigationResolvedProvider(enabledProviders: enabledProviders) ?? .codex
+        case .system:
+            nil
         case let .provider(instanceID):
             instanceID.firstPartyProvider
         }
         self.preservingMergedSwitcherContentCachesDuringInvalidation {
             switch selection {
             case .overview:
+                self.scapoliteSystemMenuSelected = false
                 self.settings.mergedMenuLastSelectedWasOverview = true
                 self.lastMenuProvider =
                     (self.navigationResolvedProvider(enabledProviders: enabledProviders) ?? .codex).instanceID
+            case .system:
+                self.scapoliteSystemMenuSelected = true
+                self.settings.mergedMenuLastSelectedWasOverview = false
             case let .provider(provider):
+                self.scapoliteSystemMenuSelected = false
                 self.settings.mergedMenuLastSelectedWasOverview = false
                 self.selectedMenuProvider = provider
                 self.lastMenuProvider = provider

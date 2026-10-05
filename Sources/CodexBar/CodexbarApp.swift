@@ -467,6 +467,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.installDebugMemoryPressureObserverIfNeeded()
         #endif
         self.ensureStatusController()
+        #if DEBUG
+        self.runScapoliteAlertSimulationIfRequested()
+        #endif
         self.closeSwiftUISettingsPlaceholderWindow()
         self.observeSettingsApplicationMenuLanguage()
         self.scheduleSettingsApplicationMenuValidation(
@@ -506,6 +509,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             self.hasInstalledLimitResetObservers = true
         }
     }
+
+    #if DEBUG
+    private func runScapoliteAlertSimulationIfRequested() {
+        guard CommandLine.arguments.contains("--simulate-scapolite-outages") else { return }
+        Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(1))
+            for transition in ScapoliteServiceAlertSimulation.transitions() {
+                guard let self else { return }
+                self.notchAlertController.show(transition)
+                try? await Task.sleep(for: .seconds(3))
+            }
+        }
+    }
+    #endif
 
     /// The SwiftUI `Settings` scene exists only to own the app-menu Settings command; the real
     /// settings window is AppKit-managed (`SettingsWindowController`). macOS can still present or

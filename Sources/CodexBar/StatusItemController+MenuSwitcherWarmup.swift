@@ -42,7 +42,7 @@ extension StatusItemController {
         guard menu.items.first?.view is ProviderSwitcherView else { return }
         let enabledProviders = self.store.enabledFirstPartyProvidersForDisplay()
         let switcherProviderIDs = self.switcherProviderIDs(enabledFirstPartyProviders: enabledProviders)
-        guard switcherProviderIDs.count > 1 else { return }
+        guard !switcherProviderIDs.isEmpty else { return }
         let includesOverview = self.includesOverviewTab(enabledProviders: enabledProviders)
         let currentSelection = self.resolvedSwitcherSelection(
             enabledProviders: enabledProviders,
@@ -51,6 +51,7 @@ extension StatusItemController {
         if includesOverview {
             selections.insert(.overview, at: 0)
         }
+        selections.append(.system)
         for selection in selections where selection != currentSelection {
             self.warmMergedSwitcherContentIfMissing(
                 for: selection,
@@ -65,21 +66,22 @@ extension StatusItemController {
         enabledProviders: [UsageProvider])
     {
         let isOverviewSelected = selection == .overview
+        let isSystemSelected = selection == .system
         let selectedProvider = isOverviewSelected
             ? self.resolvedMenuProvider(enabledProviders: enabledProviders)
-            : selection.provider
+            : (isSystemSelected ? nil : selection.provider)
         let currentProvider = selectedProvider ?? enabledProviders.first ?? .codex
         let isPluginSelected = Self.isUserPluginSelection(selection)
-        let codexAccountDisplay = isOverviewSelected || isPluginSelected
+        let codexAccountDisplay = isOverviewSelected || isSystemSelected || isPluginSelected
             ? nil
             : self.codexAccountMenuDisplay(for: currentProvider)
-        let tokenAccountDisplay = isOverviewSelected || isPluginSelected
+        let tokenAccountDisplay = isOverviewSelected || isSystemSelected || isPluginSelected
             ? nil
             : self.tokenAccountMenuDisplay(for: currentProvider)
         let showAllAccounts = (tokenAccountDisplay?.showAll ?? false) || (codexAccountDisplay?.showAll ?? false)
         let descriptor = self.makeMenuDescriptor(
             provider: selectedProvider,
-            includeContextualActions: !isOverviewSelected && !isPluginSelected)
+            includeContextualActions: !isOverviewSelected && !isSystemSelected && !isPluginSelected)
         let menuWidth = self.menuCardWidth(
             for: enabledProviders,
             selectedProvider: selectedProvider,

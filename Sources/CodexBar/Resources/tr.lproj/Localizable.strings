@@ -23,7 +23,7 @@
 "Never" = "Asla";
 "Macs" = "Mac'ler";
 "No synced Macs yet." = "Henüz eşzamanlanan Mac yok.";
-"Secrets use iCloud end-to-end encryption via encryptedValues. Hooks and machine-local paths never sync." = "Gizli bilgiler encryptedValues aracılığıyla iCloud uçtan uca şifrelemesiyle korunur. Kancalar ve makineye özgü yollar hiçbir zaman eşzamanlanmaz.";
+"Secrets use iCloud end-to-end encryption via encryptedValues. Hooks and machine-local paths never sync." = "Gizli bilgiler encryptedValues aracılığıyla iCloud uçtan uca şifrelemesiyle korunur. Otomasyonlar ve makineye özgü yollar hiçbir zaman eşzamanlanmaz.";
 "Last seen %@" = "Son görülme: %@";
 "This Mac" = "Bu Mac";
 "another Mac" = "başka bir Mac";
@@ -164,7 +164,7 @@
 "Done" = "Bitti";
 "Effective PATH" = "Etkili PATH";
 "Email" = "E-posta";
-"Enable Merge Icons to configure Overview tab providers." = "Genel Bakış sekmesindeki sağlayıcıları yapılandırmak için Simgeleri birleştir'i etkinleştirin.";
+"Enable Merge Icons to configure Overview tab providers." = "Genel bakış sekmesindeki sağlayıcıları yapılandırmak için Simgeleri birleştir'i etkinleştirin.";
 "Enable file logging" = "Dosya günlüğünü etkinleştir";
 "Enabled" = "Etkin";
 "Error" = "Hata";
@@ -230,8 +230,8 @@
 "No cost history data." = "Maliyet geçmişi verisi yok.";
 "No data available" = "Kullanılabilir veri yok";
 "No data yet" = "Henüz veri yok";
-"Workspaces" = "Çalışma Alanları";
-"No enabled providers available for Overview." = "Genel Bakış için etkin sağlayıcı yok.";
+"Workspaces" = "Çalışma alanları";
+"No enabled providers available for Overview." = "Genel bakış için etkin sağlayıcı yok.";
 "No providers selected" = "Sağlayıcı seçilmedi";
 "No token accounts yet." = "Henüz token hesabı yok.";
 "No usage breakdown data." = "Kullanım dökümü verisi yok.";
@@ -268,9 +268,9 @@
 "Optional override if workspace lookup fails." = "Çalışma alanı araması başarısız olursa isteğe bağlı geçersiz kılma.";
 "Options" = "Seçenekler";
 "Override auto-detection with a custom IDE base path" = "Otomatik algılamayı özel bir IDE temel yoluyla geçersiz kıl";
-"Overview" = "Genel Bakış";
-"Overview rows always follow provider order." = "Genel Bakış satırları her zaman sağlayıcı sırasını takip eder.";
-"Overview tab providers" = "Genel Bakış sekmesi sağlayıcıları";
+"Overview" = "Genel bakış";
+"Overview rows always follow provider order." = "Genel bakış satırları her zaman sağlayıcı sırasını takip eder.";
+"Overview tab providers" = "Genel bakış sekmesi sağlayıcıları";
 "Paste API key…" = "API anahtarı yapıştır…";
 "Paste API token…" = "API tokenı yapıştır…";
 "Paste key…" = "Anahtar yapıştır…";
@@ -560,14 +560,14 @@
 "tab_menu_bar" = "Menü çubuğu";
 "tab_menu" = "Menü";
 "tab_advanced" = "Gelişmiş";
-"tab_hooks" = "Kancalar";
+"tab_hooks" = "Otomasyonlar";
 
 /* Hooks Pane */
-"hooks_enable_title" = "Kancaları etkinleştir";
+"hooks_enable_title" = "Otomasyonları etkinleştir";
 "hooks_enable_subtitle" = "Kota veya sağlayıcı olayları gerçekleştiğinde harici komutlar çalıştır.";
-"hooks_trust_warning" = "Kancalar Mac'inizde yerel komutlar çalıştırabilir. Yalnızca güvendiğiniz komutları yapılandırın.";
+"hooks_trust_warning" = "Otomasyonlar Mac'inizde yerel komutlar çalıştırabilir. Yalnızca güvendiğiniz komutları yapılandırın.";
 "hooks_rules_header" = "Kurallar";
-"hooks_empty" = "Yapılandırılmış kanca yok.";
+"hooks_empty" = "Yapılandırılmış otomasyon yok.";
 "hooks_add_rule" = "Kural ekle";
 "hooks_delete_rule" = "Kuralı sil";
 "hooks_rule_enabled" = "Etkin";
@@ -614,10 +614,10 @@
 "menu_bar_style_subtitle" = "Menü çubuğu öğesinin nasıl çizileceğini belirler.";
 "menu_bar_inactive_display_contrast_title" = "Etkin olmayan ekranlarda görünürlüğü artır";
 "menu_bar_inactive_display_contrast_subtitle" = "Simge ve ölçümün diğer ekranlarda okunabilir kalması için yüksek kontrastlı işleme kullanır.";
-"menu_bar_style_critters" = "Canavarlar";
-"menu_bar_style_bars" = "Ölçüm çubukları";
+"menu_bar_style_critters" = "Animasyonlu simgeler";
+"menu_bar_style_bars" = "Kullanım çubukları";
 "menu_bar_style_icon_percent" = "Simge ve yüzde";
-"switcher_rows_title" = "Değiştirici satırları";
+"switcher_rows_title" = "Sağlayıcı geçişi görünümü";
 "switcher_rows_icons" = "Sağlayıcı simgeleri";
 "switcher_rows_progress" = "Haftalık ilerleme";
 "usage_bars_fill_title" = "Kullanım çubuklarının dolumu";
@@ -631,8 +631,8 @@
 "merge_icons_title" = "Simgeleri birleştir";
 "merge_icons_subtitle" = "Sağlayıcı seçicili tek bir menü çubuğu simgesi kullan.";
 "merged_icon_style_title" = "Birleşik simge stili";
-"merged_icon_style_subtitle" = "Değiştirici sağlayıcılar arasında tek tek geçiş yapar; Yığılmış ise iki sağlayıcıyı aynı anda, her biri kendi satırında gösterir.";
-"merged_icon_style_switcher" = "Değiştirici";
+"merged_icon_style_subtitle" = "Geçiş görünümü sağlayıcıları tek tek gösterir; Yığılmış görünüm iki sağlayıcıyı ayrı satırlarda aynı anda gösterir.";
+"merged_icon_style_switcher" = "Geçiş";
 "merged_icon_style_stacked" = "Yığılmış";
 "merge_icon_stacked_top_provider_title" = "Üst satır";
 "merge_icon_stacked_bottom_provider_title" = "Alt satır";
@@ -659,11 +659,11 @@
 "multi_account_layout_subtitle" = "Bölümlü hesap seçiciyi veya alt alta hesap kartlarını seçin.";
 "multi_account_layout_segmented" = "Bölümlü";
 "multi_account_layout_stacked" = "Alt alta";
-"overview_tab_providers_title" = "Genel Bakış sekmesi sağlayıcıları";
+"overview_tab_providers_title" = "Genel bakış sekmesi sağlayıcıları";
 "configure" = "Yapılandır…";
-"overview_enable_merge_icons_hint" = "Genel Bakış sekmesindeki sağlayıcıları yapılandırmak için Simgeleri birleştir'i etkinleştirin.";
-"overview_no_providers_hint" = "Genel Bakış için kullanılabilir etkin sağlayıcı yok.";
-"overview_rows_follow_order" = "Genel Bakış satırları her zaman sağlayıcı sırasını takip eder.";
+"overview_enable_merge_icons_hint" = "Genel bakış sekmesindeki sağlayıcıları yapılandırmak için Simgeleri birleştir'i etkinleştirin.";
+"overview_no_providers_hint" = "Genel bakış için kullanılabilir etkin sağlayıcı yok.";
+"overview_rows_follow_order" = "Genel bakış satırları her zaman sağlayıcı sırasını takip eder.";
 "overview_no_providers_selected" = "Sağlayıcı seçilmedi";
 "agent_sessions_title" = "Ajan oturumları";
 "agent_sessions_subtitle" = "Menüde yerel ve SSH ile keşfedilen Codex ve Claude Code oturumlarını göster.";
@@ -825,6 +825,23 @@
 "adaptive_activity_consent_decline" = "Normal uyarlanabilir modu kullan";
 
 /* Additional keys */
+"Provider service status: %@" = "Sağlayıcı hizmet durumu: %@";
+"Low Power Mode" = "Düşük Güç Modu";
+"When on, runs automatic provider, local usage, and storage refreshes no more often than every 30 minutes. Manual refresh remains available. Automatic follows the system Low Power Mode setting." = "Açıkken sağlayıcı, yerel kullanım ve depolama verileri en fazla 30 dakikada bir otomatik yenilenir. Elle yenileme her zaman kullanılabilir. Otomatik seçeneği sistemin Düşük Güç Modu ayarını izler.";
+"Portable preferences" = "Taşınabilir tercihler";
+"Export Preferences…" = "Tercihleri dışa aktar…";
+"Import Preferences…" = "Tercihleri içe aktar…";
+"Provider Switcher Shortcuts…" = "Sağlayıcı geçişi kısayolları…";
+"Preferences could not be transferred" = "Tercihler aktarılamadı";
+"Save display and notification preferences for your dotfiles. Accounts, credentials, login, local paths and consent stay on this Mac." = "Görünüm ve bildirim tercihlerini dotfiles yapılandırmanızda saklayın. Hesaplar, kimlik bilgileri, oturum açma verileri, yerel yollar ve izinler bu Mac'te kalır.";
+"Provider Switcher Shortcuts" = "Sağlayıcı geçişi kısayolları";
+"These shortcuts work while the provider switcher menu is open. Use ctrl, alt, shift and cmd with a letter, digit, left or right; use none to disable an action." = "Bu kısayollar sağlayıcı geçişi menüsü açıkken çalışır. Bir harf, rakam, sol veya sağ tuşuyla birlikte ctrl, alt, shift ve cmd kullanın; bir eylemi devre dışı bırakmak için none yazın.";
+"Examples: alt+cmd+2, shift+right. Refresh (cmd+r), Settings (cmd+,) and Quit (cmd+q) are reserved." = "Örnekler: alt+cmd+2, shift+right. Yenile (cmd+r), Ayarlar (cmd+,) ve Çık (cmd+q) kısayolları ayrılmıştır.";
+"Previous provider" = "Önceki sağlayıcı";
+"Next provider" = "Sonraki sağlayıcı";
+"Select position %@" = "%@. konumu seç";
+"Stay Awake" = "Uyanık tut";
+"Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep." = "Yerel bir ajan işlemi çalışırken boşta olsa bile sistemin uykuya geçmesini engeller. Pil tüketir; kapağın kapanmasıyla oluşan uykuyu veya ekran uykusunu engellemez.";
 "not_found" = "Bulunamadı";
 
 /* Cost estimation */
@@ -836,7 +853,7 @@
 "z.ai API token not found. Set apiKey in ~/.codexbar/config.json or Z_AI_API_KEY." = "z.ai API tokenı bulunamadı. ~/.codexbar/config.json dosyasında apiKey ayarlayın veya Z_AI_API_KEY kullanın.";
 "Missing DeepSeek API key." = "DeepSeek API anahtarı eksik.";
 "%@ is unavailable in the current environment." = "%@ geçerli ortamda kullanılamıyor.";
-"All Systems Operational" = "Tüm sistemler çalışır durumda";
+"All Systems Operational" = "Tüm hizmetler çalışıyor";
 "Last 30 days" = "Son 30 gün";
 "Last 30 days:" = "Son 30 gün:";
 "This month" = "Bu ay";
@@ -865,7 +882,7 @@
 "Top model" = "En çok kullanılan model";
 "Storage" = "Depolama";
 "Add Account..." = "Hesap ekle...";
-"Usage Dashboard" = "Kullanım gösterge paneli";
+"Usage Dashboard" = "Kullanım panosu";
 "Status Page" = "Durum sayfası";
 "Open Status Page" = "Durum sayfasını aç";
 "Settings..." = "Ayarlar...";
@@ -948,7 +965,7 @@
 "Hover a bar for details" = "Ayrıntılar için bir çubuğun üzerine gelin";
 "%@: %@ · %@ tokens" = "%@: %@ · %@ token";
 "%@: %@" = "%@: %@";
-"No providers selected for Overview." = "Genel Bakış için sağlayıcı seçilmedi.";
+"No providers selected for Overview." = "Genel bakış için sağlayıcı seçilmedi.";
 "No overview data available." = "Kullanılabilir genel bakış verisi yok.";
 "Auto uses the local IDE API first, then Google OAuth when the IDE is closed." = "Otomatik mod önce yerel IDE API'sini kullanır, IDE kapatıldığında Google OAuth'a geçer.";
 "Login with Google" = "Google ile giriş yap";
@@ -1440,9 +1457,9 @@
 "menu_bar_layout_token_weekly_pace" = "Haftalık tempo";
 "menu_bar_layout_token_auto_pace" = "Otomatik tempo";
 "menu_bar_layout_token_bar" = "Kullanım çubuğu";
-"menu_bar_layout_token_resets_in" = "Sıfırlamaya";
+"menu_bar_layout_token_resets_in" = "Sıfırlanmaya kalan";
 "menu_bar_layout_token_reset_at" = "Sıfırlama saati";
-"menu_bar_layout_token_runs_out" = "Biter";
+"menu_bar_layout_token_runs_out" = "Tahmini bitiş";
 "menu_bar_layout_token_cost_today" = "Bugünkü maliyet";
 "menu_bar_layout_token_cost_30d" = "30 günlük maliyet";
 "menu_bar_layout_token_space" = "Boşluk";
@@ -1464,7 +1481,7 @@
 "Cost today unavailable" = "Bugünkü maliyet: kullanılamıyor";
 "30-day cost unavailable" = "30 günlük maliyet: kullanılamıyor";
 "Resets" = "Sıfırlamalar";
-"codex_workspaces_title" = "Çalışma Alanları";
+"codex_workspaces_title" = "Çalışma alanları";
 "codex_workspaces_estimated_local_logs" = "Yerel Codex günlüklerinden tahmin edildi";
 "codex_workspaces_no_local_usage" = "Henüz yerel Codex kullanımı yok";
 "codex_workspaces_tokens" = "Tokenlar";
@@ -1505,7 +1522,7 @@
 "More" = "Daha fazla";
 
 /* Provider Plugins */
-"Plugins" = "Plugins";
+"Plugins" = "Eklentiler";
 "Install…" = "Yükle…";
 "Install plugin" = "Eklenti yükle";
 "Copies a JavaScript or TypeScript file into the plugins directory." = "Bir JavaScript veya TypeScript dosyasını eklentiler dizinine kopyalar.";
@@ -1605,7 +1622,7 @@
 "menu_bar_layout_conditional_default_scoped_weekly" = "Model haftasının %60'ından fazlası kullanıldı";
 "Visible usage items" = "Görünür kullanım öğeleri";
 "Restore Defaults" = "Varsayılanları Geri Yükle";
-"Choose which usage rows appear in this provider's menu, Settings preview, and Overview." = "Bu sağlayıcının menüsünde, Ayarlar önizlemesinde ve Genel Bakış'ta hangi kullanım satırlarının görüneceğini seçin.";
+"Choose which usage rows appear in this provider's menu, Settings preview, and Overview." = "Bu sağlayıcının menüsünde, Ayarlar önizlemesinde ve Genel bakışta hangi kullanım satırlarının görüneceğini seçin.";
 "%@ (unavailable)" = "%@ (kullanılamıyor)";
 "Spending cap, not balance" = "Harcama sınırı, bakiye değil";
 
@@ -1624,8 +1641,8 @@
 "Est. subtotal (%@): %@" = "Tahmini ara toplam (%@): %@";
 "Excluded requests with missing final usage: %d" = "Nihai kullanım verileri eksik olduğu için hariç tutulan istekler: %d";
 
-"overview_layout_title" = "Genel Bakış düzeni";
-"overview_layout_subtitle" = "Genel Bakış’ın ne kadar bilgi göstereceğini seçin.";
+"overview_layout_title" = "Genel bakış düzeni";
+"overview_layout_subtitle" = "Genel bakışın ne kadar bilgi göstereceğini seçin.";
 "overview_layout_detailed" = "Ayrıntılı";
 "overview_layout_compact" = "Kompakt";
 
@@ -1641,7 +1658,7 @@
 
 /* Scapolite panosu */
 "AI usage, sessions, system health, and service status" = "Yapay zekâ kullanımı, oturumlar, sistem sağlığı ve servis durumu";
-"About Scapolite" = "Scapolite Hakkında";
+"About Scapolite" = "Scapolite hakkında";
 "No matching OpenAI web session found." = "Eşleşen OpenAI web oturumu bulunamadı.";
 "No matching OpenAI web session found for %@." = "%@ için eşleşen OpenAI web oturumu bulunamadı.";
 "OpenAI cookies are for %@." = "OpenAI çerezleri %@ hesabına ait.";
@@ -1654,15 +1671,15 @@
 "Charging" = "Şarj oluyor";
 "Chat ID" = "Sohbet kimliği";
 "Commands" = "Komutlar";
-"Connect Bot" = "Botu Bağla";
+"Connect Bot" = "Botu bağla";
 "Connection" = "Bağlantı";
 "Create a bot with @BotFather, send /start to it, then paste the bot token below." = "@BotFather ile bir bot oluşturun, bota /start gönderin ve bot tokenini aşağıya yapıştırın.";
-"Dashboard Section" = "Pano Bölümü";
-"Disconnect" = "Bağlantıyı Kes";
-"Discover Chat ID" = "Sohbet Kimliğini Bul";
+"Dashboard Section" = "Pano bölümü";
+"Disconnect" = "Bağlantıyı kes";
+"Discover Chat ID" = "Sohbet kimliğini bul";
 "Disk" = "Disk";
 "Enable providers in Settings to see usage and balances." = "Kullanım ve bakiyeleri görmek için Ayarlar'dan sağlayıcıları etkinleştirin.";
-"Health Score" = "Sağlık Puanı";
+"Health Score" = "Sağlık puanı";
 "Leave blank to keep the saved token" = "Kayıtlı tokeni korumak için boş bırakın";
 "Live provider health" = "Canlı servis durumu";
 "Maintenance" = "Bakım";
@@ -1674,24 +1691,24 @@
 "No quota windows reported." = "Bildirilen kota aralığı yok.";
 "No sessions found" = "Oturum bulunamadı";
 "On battery" = "Pille çalışıyor";
-"Open Scapolite Dashboard" = "Scapolite Panosunu Aç";
+"Open Scapolite Dashboard" = "Scapolite panosunu aç";
 "Session discovery is off" = "Oturum keşfi kapalı";
 "Enable local discovery to list recent Claude Code and Codex CLI/App sessions." = "Son Claude Code ve Codex CLI/Uygulama oturumlarını listelemek için yerel keşfi etkinleştirin.";
-"Enable Session Discovery" = "Oturum Keşfini Etkinleştir";
+"Enable Session Discovery" = "Oturum keşfini etkinleştir";
 "Operational" = "Çalışıyor";
 "Partial outage" = "Kısmi kesinti";
 "Recent Claude Code and Codex CLI/App sessions appear here." = "Son Claude Code ve Codex CLI/Uygulama oturumları burada görünür.";
 "Reconnecting…" = "Yeniden bağlanıyor…";
-"Save Connection" = "Bağlantıyı Kaydet";
-"Scapolite Help" = "Scapolite Yardım";
+"Save Connection" = "Bağlantıyı kaydet";
+"Scapolite Help" = "Scapolite yardımı";
 "Scapolite talks only to the bot and chat you configure on this Mac." = "Scapolite yalnızca bu Mac'te yapılandırdığınız bot ve sohbetle iletişim kurar.";
-"Send Test" = "Test Gönder";
-"Service Status" = "Servis Durumu";
+"Send Test" = "Test gönder";
+"Service Status" = "Hizmet durumu";
 "Service disruption detected" = "Servis kesintisi algılandı";
 "Service recovered" = "Servis düzeldi";
 "Setup" = "Kurulum";
 "Telegram configuration is incomplete." = "Telegram yapılandırması eksik.";
-"Top Processes" = "En Yoğun İşlemler";
+"Top Processes" = "En yoğun işlemler";
 "Untitled Session" = "Adsız Oturum";
 "Your private Telegram bot" = "Özel Telegram botunuz";
 "health" = "sağlık";

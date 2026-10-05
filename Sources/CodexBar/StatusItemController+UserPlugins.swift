@@ -46,6 +46,9 @@ extension StatusItemController {
         enabledProviders: [UsageProvider],
         includesOverview: Bool) -> ProviderSwitcherSelection
     {
+        if self.scapoliteSystemMenuSelected {
+            return .system
+        }
         if includesOverview, self.settings.mergedMenuLastSelectedWasOverview {
             return .overview
         }

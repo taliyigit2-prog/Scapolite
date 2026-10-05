@@ -4,6 +4,7 @@ import QuartzCore
 
 enum ProviderSwitcherSelection: Hashable {
     case overview
+    case system
     case provider(ProviderInstanceID)
 }
 
@@ -50,6 +51,7 @@ final class ProviderSwitcherView: NSView {
         pluginProviders: [UserProviderPlugin] = [],
         selected: ProviderSwitcherSelection?,
         includesOverview: Bool,
+        includesSystem: Bool = false,
         width: CGFloat,
         showsIcons: Bool,
         iconProvider: (UsageProvider) -> NSImage,
@@ -76,15 +78,10 @@ final class ProviderSwitcherView: NSView {
                 title: plugin.manifest.name)
         })
         if includesOverview {
-            let overviewIcon = Self.overviewIcon()
-            overviewIcon.isTemplate = true
-            overviewIcon.size = NSSize(width: 16, height: 16)
-            segments.insert(
-                Segment(
-                    selection: .overview,
-                    image: overviewIcon,
-                    title: L("Overview")),
-                at: 0)
+            segments.insert(Self.overviewSegment(), at: 0)
+        }
+        if includesSystem {
+            segments.append(Self.systemSegment())
         }
         self.segments = segments
         self.onSelect = onSelect
@@ -683,7 +680,7 @@ final class ProviderSwitcherView: NSView {
         switch selection {
         case let .provider(instanceID):
             instanceID.firstPartyProvider.flatMap(self.weeklyRemainingProvider)
-        case .overview:
+        case .overview, .system:
             nil
         }
     }
@@ -888,6 +885,20 @@ final class ProviderSwitcherView: NSView {
             return symbol
         }
         return NSImage(size: NSSize(width: 16, height: 16))
+    }
+
+    private static func overviewSegment() -> Segment {
+        let icon = Self.overviewIcon()
+        icon.isTemplate = true
+        icon.size = NSSize(width: 16, height: 16)
+        return Segment(selection: .overview, image: icon, title: L("Overview"))
+    }
+
+    private static func systemSegment() -> Segment {
+        let icon = NSImage(systemSymbolName: "cpu", accessibilityDescription: L("System")) ?? NSImage()
+        icon.isTemplate = true
+        icon.size = NSSize(width: 16, height: 16)
+        return Segment(selection: .system, image: icon, title: L("System"))
     }
 
     private static func switcherTitle(for provider: UsageProvider) -> String {
@@ -1160,7 +1171,7 @@ extension ProviderSwitcherView {
             guard let provider = instanceID.firstPartyProvider else { return NSColor.secondaryLabelColor }
             let color = ProviderAccentPalette.color(for: provider)
             return NSColor(deviceRed: color.red, green: color.green, blue: color.blue, alpha: 1)
-        case .overview:
+        case .overview, .system:
             return NSColor.secondaryLabelColor
         }
     }

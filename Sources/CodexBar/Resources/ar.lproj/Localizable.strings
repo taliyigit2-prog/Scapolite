@@ -1698,3 +1698,22 @@
 "No matching OpenAI web session found for %@." = "No matching OpenAI web session found for %@.";
 "OpenAI cookies are for %@." = "OpenAI cookies are for %@.";
 "OpenAI cookies are for %1$@, not %2$@." = "OpenAI cookies are for %1$@, not %2$@.";
+
+/* Shared settings fallbacks */
+"Provider service status: %@" = "Provider service status: %@";
+"Low Power Mode" = "Low Power Mode";
+"When on, runs automatic provider, local usage, and storage refreshes no more often than every 30 minutes. Manual refresh remains available. Automatic follows the system Low Power Mode setting." = "When on, runs automatic provider, local usage, and storage refreshes no more often than every 30 minutes. Manual refresh remains available. Automatic follows the system Low Power Mode setting.";
+"Portable preferences" = "Portable preferences";
+"Export Preferences…" = "Export Preferences…";
+"Import Preferences…" = "Import Preferences…";
+"Provider Switcher Shortcuts…" = "Provider Switcher Shortcuts…";
+"Preferences could not be transferred" = "Preferences could not be transferred";
+"Save display and notification preferences for your dotfiles. Accounts, credentials, login, local paths and consent stay on this Mac." = "Save display and notification preferences for your dotfiles. Accounts, credentials, login, local paths and consent stay on this Mac.";
+"Provider Switcher Shortcuts" = "Provider Switcher Shortcuts";
+"These shortcuts work while the provider switcher menu is open. Use ctrl, alt, shift and cmd with a letter, digit, left or right; use none to disable an action." = "These shortcuts work while the provider switcher menu is open. Use ctrl, alt, shift and cmd with a letter, digit, left or right; use none to disable an action.";
+"Examples: alt+cmd+2, shift+right. Refresh (cmd+r), Settings (cmd+,) and Quit (cmd+q) are reserved." = "Examples: alt+cmd+2, shift+right. Refresh (cmd+r), Settings (cmd+,) and Quit (cmd+q) are reserved.";
+"Previous provider" = "Previous provider";
+"Next provider" = "Next provider";
+"Select position %@" = "Select position %@";
+"Stay Awake" = "Stay Awake";
+"Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep." = "Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep.";

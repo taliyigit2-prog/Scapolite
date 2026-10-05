@@ -48,6 +48,19 @@ struct ScapoliteServiceTransitionTests {
         #expect(recoveryTransition.current.indicator == .none)
     }
 
+    @Test("debug simulation exercises Claude and Codex outage and recovery alerts")
+    func simulationCoverage() {
+        let transitions = ScapoliteServiceAlertSimulation.transitions(
+            now: Date(timeIntervalSince1970: 100))
+
+        #expect(transitions.count == 4)
+        #expect(transitions.map(\.current.service.name) == [
+            "Claude", "Claude", "Codex / OpenAI", "Codex / OpenAI",
+        ])
+        #expect(transitions.map(\.current.indicator) == [.critical, .none, .critical, .none])
+        #expect(transitions.allSatisfy { $0.previous.indicator != $0.current.indicator })
+    }
+
     private func health(_ indicator: ProviderStatusIndicator) -> ScapoliteServiceHealth {
         ScapoliteServiceHealth(
             service: self.service,

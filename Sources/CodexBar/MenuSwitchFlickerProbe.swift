@@ -330,6 +330,7 @@ enum MenuSwitchFlickerProbe {
             if includesOverview {
                 segments.insert(.overview, at: 0)
             }
+            segments.append(.system)
             self.originalSegment = segments.firstIndex(of: selection)
             self.targetSegment = segments.firstIndex { candidate in
                 candidate != selection && candidate != .overview

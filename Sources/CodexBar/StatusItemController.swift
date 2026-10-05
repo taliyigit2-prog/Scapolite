@@ -1,5 +1,6 @@
 import AppKit
 import CodexBarCore
+import MoleWidgetCore
 import Observation
 import QuartzCore
 
@@ -136,6 +137,8 @@ final class StatusItemController: NSObject, NSMenuDelegate, StatusItemControllin
     }
 
     let agentSessions: AgentSessionsStore
+    let scapoliteMetrics = MetricsStore()
+    var scapoliteSystemMenuSelected = false
     lazy var menuCardRefreshMonitor = self.makeMenuCardRefreshMonitor()
 
     let account: AccountInfo
@@ -435,6 +438,7 @@ final class StatusItemController: NSObject, NSMenuDelegate, StatusItemControllin
         self.wireAgentSessionUpdates()
         if !SettingsStore.isRunningTests {
             self.agentSessions.start()
+            self.scapoliteMetrics.start()
         }
         self.updateVisibility()
         self.updateIcons()
