@@ -10,11 +10,15 @@ enum ProviderDetectionPolicy {
         let geminiCLIInstalled: Bool
         let geminiConfigured: Bool
         let antigravityAvailable: Bool
+        var antigravityCLIInstalled = false
     }
 
-    static func enabledProviders(signals: Signals) -> Set<UsageProvider> {
+    static func enabledProviders(
+        signals: Signals,
+        preserving alreadyEnabled: Set<UsageProvider> = []) -> Set<UsageProvider>
+    {
         // Provider-specific by design: first-run detection probes these four concrete CLI/app credential sources.
-        var enabled: Set<UsageProvider> = []
+        var enabled = alreadyEnabled
         if signals.codexCLIInstalled {
             enabled.insert(.codex)
         }
@@ -24,7 +28,7 @@ enum ProviderDetectionPolicy {
         if signals.geminiCLIInstalled, signals.geminiConfigured {
             enabled.insert(.gemini)
         }
-        if signals.antigravityAvailable {
+        if signals.antigravityAvailable || signals.antigravityCLIInstalled {
             enabled.insert(.antigravity)
         }
 
@@ -60,15 +64,22 @@ extension SettingsStore {
         let antigravityRunning = await AntigravityStatusProbe.isRunning()
         let antigravityLoggedIn = FileManager.default.fileExists(
             atPath: AntigravityOAuthCredentialsStore().fileURL.path)
+        let antigravityCLIInstalled = BinaryLocator.resolveAntigravityBinary() != nil
         let logger = CodexBarLog.logger(LogCategories.providerDetection)
 
+        // Debug and release builds share config.json but have separate first-launch defaults.
+        // Detection must not disable a provider already enabled in the shared configuration.
+        let alreadyEnabled = Set(self.configSnapshot.providers.compactMap { entry in
+            entry.enabled == true ? entry.id.firstPartyProvider : nil
+        })
         let enabledProviders = ProviderDetectionPolicy.enabledProviders(signals: .init(
             codexCLIInstalled: codexCLIInstalled,
             claudeCLIInstalled: claudeCLIInstalled,
             claudeDesktopInstalled: claudeDesktopInstalled,
             geminiCLIInstalled: geminiCLIInstalled,
             geminiConfigured: geminiConfigured,
-            antigravityAvailable: antigravityRunning || antigravityLoggedIn))
+            antigravityAvailable: antigravityRunning || antigravityLoggedIn,
+            antigravityCLIInstalled: antigravityCLIInstalled), preserving: alreadyEnabled)
 
         logger.info(
             "Provider detection results",
@@ -80,6 +91,7 @@ extension SettingsStore {
                 "geminiConfigured": geminiConfigured ? "1" : "0",
                 "antigravityRunning": antigravityRunning ? "1" : "0",
                 "antigravityLoggedIn": antigravityLoggedIn ? "1" : "0",
+                "antigravityCLIInstalled": antigravityCLIInstalled ? "1" : "0",
             ])
         logger.info(
             "Provider detection enablement",

@@ -15,6 +15,7 @@
 - Antigravity: opt in to additional Gemini profile homes in provider settings or config.json to combine local token/cost history without double-counting copied conversations (#4177). Thanks @keeuu!
 ### Fixed
 
+- Scapolite: detect Antigravity CLI on first launch and preserve providers enabled in shared configuration; disable browser integration for quota-only Claude CLI probes to avoid unrelated macOS app-data access requests.
 - Scapolite: keep Claude's exhausted overall weekly limit separate from model-specific allowances and show unavailable quota cadences as a dash.
 - Scapolite: localize previously untranslated Turkish settings controls and clarify Turkish menu terminology.
 - Browser cookies: adopt SweetCookieKit 0.5.5 for Aside, Opera, and Opera Neon support, including Cursor account switching, and let Muse (muse.ai) automatically import from the full supported browser catalog (#4215, #2429). Thanks @mvicari!

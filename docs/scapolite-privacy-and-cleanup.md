@@ -4,6 +4,20 @@ Scapolite keeps account credentials, cookies, usage snapshots, discovered sessio
 user's Mac. Tests use fabricated accounts and in-memory credential stores. Live QA output must stay outside the
 checkout; never commit account screenshots, configuration exports, session transcripts or diagnostic logs.
 
+## macOS access warnings
+
+Quota-only Claude CLI sessions explicitly disable browser integration with `--no-chrome`. They do not need
+browser profiles, tools or Remote Control, and this override does not change the user's normal Claude sessions.
+See the [official Claude CLI reference](https://code.claude.com/docs/en/cli-reference). macOS may attribute a
+child CLI's denied app-data read to Scapolite; an access-denied notification is not evidence of an upload.
+Do not grant Full Disk Access simply to dismiss it. Optional browser-cookie imports and desktop-session
+discovery are separate data sources and can require permission.
+
+Packaging uses SwiftPM's `--disable-keychain` and Xcode's `-packageAuthorizationProvider netrc` so package
+resolution does not unlock the login Keychain. Ad-hoc signing does not require an Apple Developer identity.
+Debug and release builds share provider configuration but have separate app preferences; first-launch
+detection preserves enabled providers and recognizes Antigravity CLI without requiring its IDE to be running.
+
 ## Reviewed history
 
 The initial Gitleaks audit scanned 7,498 commits and reported 46 inherited matches. None came from the two

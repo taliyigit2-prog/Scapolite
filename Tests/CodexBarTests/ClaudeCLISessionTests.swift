@@ -206,6 +206,7 @@ struct ClaudeCLISessionTests {
             "--allowed-tools",
             "",
             "--strict-mcp-config",
+            "--no-chrome",
             "--settings",
             #"{"remoteControlAtStartup":false}"#,
             "--session-id",

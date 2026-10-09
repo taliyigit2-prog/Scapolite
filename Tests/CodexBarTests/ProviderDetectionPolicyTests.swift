@@ -4,6 +4,33 @@ import Testing
 
 struct ProviderDetectionPolicyTests {
     @Test
+    func `Antigravity CLI is detected without a running IDE or app OAuth credentials`() {
+        let enabled = ProviderDetectionPolicy.enabledProviders(signals: .init(
+            codexCLIInstalled: true,
+            claudeCLIInstalled: true,
+            claudeDesktopInstalled: false,
+            geminiCLIInstalled: false,
+            geminiConfigured: false,
+            antigravityAvailable: false,
+            antigravityCLIInstalled: true))
+
+        #expect(enabled == [.codex, .claude, .antigravity])
+    }
+
+    @Test
+    func `first launch in another app domain preserves configured providers`() {
+        let enabled = ProviderDetectionPolicy.enabledProviders(signals: .init(
+            codexCLIInstalled: true,
+            claudeCLIInstalled: true,
+            claudeDesktopInstalled: false,
+            geminiCLIInstalled: false,
+            geminiConfigured: false,
+            antigravityAvailable: false), preserving: [.antigravity, .cursor])
+
+        #expect(enabled == [.codex, .claude, .antigravity, .cursor])
+    }
+
+    @Test
     func `fresh install detects Codex and Claude Desktop without unconfigured Gemini`() {
         let enabled = ProviderDetectionPolicy.enabledProviders(signals: .init(
             codexCLIInstalled: true,

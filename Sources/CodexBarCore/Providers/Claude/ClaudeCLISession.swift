@@ -401,8 +401,8 @@ actor ClaudeCLISession {
         return directory
     }
 
-    /// Opt usage probes out of Remote Control without changing saved settings or managed policy.
-    static let probeSettingsArguments = ["--settings", #"{"remoteControlAtStartup":false}"#]
+    /// Quota-only probes need neither browser integration nor Remote Control. Keep the user's saved settings intact.
+    static let probeSettingsArguments = ["--no-chrome", "--settings", #"{"remoteControlAtStartup":false}"#]
 
     static func launchArguments(sessionID: UUID) -> [String] {
         // Reuse a probe-owned ID: interactive `/usage` cannot use print-only no-persistence.
