@@ -557,6 +557,7 @@ extension SettingsStore {
             statusChecksEnabled: notificationDefaults.statusChecksEnabled,
             scapoliteServiceNotificationsEnabled: userDefaults.object(
                 forKey: "scapoliteServiceNotificationsEnabled") as? Bool ?? true,
+            // Provider-specific by design: Claude, Codex and Antigravity are the requested default menu bar trio.
             scapoliteMenuBarProvidersRaw: userDefaults.stringArray(forKey: "scapoliteMenuBarProviders")
                 ?? [UsageProvider.claude.rawValue, UsageProvider.codex.rawValue, UsageProvider.antigravity.rawValue],
             stayAwakeEnabled: userDefaults.bool(forKey: "stayAwakeEnabled"),

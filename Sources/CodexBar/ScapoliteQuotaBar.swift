@@ -28,7 +28,7 @@ struct ScapoliteQuotaBar {
         }
 
         init(provider: UsageProvider, snapshot: UsageSnapshot?, windows: ProviderSemanticWindows, stale: Bool = false) {
-            // Model-specific rights cannot stand in for Claude's overall plan quota.
+            // Provider-specific by design: Claude uses overall weekly quota; Antigravity names its limiting family.
             let weekly = provider == .claude ? snapshot?.secondary : windows.weekly
             let titles = provider == .antigravity ? [windows.session, weekly].compactMap { window in
                 snapshot?.extraRateWindows?.first(where: { $0.usageKnown && $0.window == window })?.title
