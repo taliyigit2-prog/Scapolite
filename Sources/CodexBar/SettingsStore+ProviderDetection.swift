@@ -93,6 +93,7 @@ extension SettingsStore {
                 "antigravityLoggedIn": antigravityLoggedIn ? "1" : "0",
                 "antigravityCLIInstalled": antigravityCLIInstalled ? "1" : "0",
             ])
+        // Provider-specific by design: these four installed-app/CLI detectors alone own first-launch enablement.
         logger.info(
             "Provider detection enablement",
             metadata: [
