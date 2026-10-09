@@ -192,7 +192,7 @@ PY
 
 KEYBOARD_SHORTCUTS_UTIL="$ROOT/.build/checkouts/KeyboardShortcuts/Sources/KeyboardShortcuts/Utilities.swift"
 if [[ ! -f "$KEYBOARD_SHORTCUTS_UTIL" ]]; then
-  swift build -c "$CONF" --arch "${ARCH_LIST[0]}"
+  swift build --disable-keychain -c "$CONF" --arch "${ARCH_LIST[0]}"
 fi
 patch_keyboard_shortcuts
 
@@ -247,7 +247,7 @@ stage_build_products() {
 }
 
 for ARCH in "${ARCH_LIST[@]}"; do
-  swift build -c "$CONF" --arch "$ARCH"
+  swift build --disable-keychain -c "$CONF" --arch "$ARCH"
   stage_build_products "$ARCH"
 done
 
@@ -493,6 +493,7 @@ build_widget_extension() {
     -derivedDataPath "$derived_dir" \
     -skipPackageUpdates \
     -disableAutomaticPackageResolution \
+    -packageAuthorizationProvider netrc \
     -skipMacroValidation \
     -skipPackagePluginValidation \
     CODEXBAR_WIDGET_BUNDLE_ID="$WIDGET_BUNDLE_ID" \
