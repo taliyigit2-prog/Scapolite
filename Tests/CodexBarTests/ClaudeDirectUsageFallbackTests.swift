@@ -64,11 +64,11 @@ struct ClaudeDirectUsageFallbackTests {
             #expect(!invocations.contains("secret-env"))
             #expect(!invocations.contains("remote-registration-would-occur"))
             #expect(self.log.arguments(for: "direct") == [
-                "--strict-mcp-config", "--settings", #"{"remoteControlAtStartup":false}"#, "/usage",
+                "--strict-mcp-config", "--no-chrome", "--settings", #"{"remoteControlAtStartup":false}"#, "/usage",
             ])
             let ptyArguments = self.log.arguments(for: "pty")
             #expect(Array(ptyArguments.dropLast()) == [
-                "--allowed-tools", "", "--strict-mcp-config",
+                "--allowed-tools", "", "--strict-mcp-config", "--no-chrome",
                 "--settings", #"{"remoteControlAtStartup":false}"#, "--session-id",
             ])
             let sessionID = try #require(ptyArguments.last)
