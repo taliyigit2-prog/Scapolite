@@ -11,11 +11,12 @@ Scapolite, [CodexBar](https://github.com/steipete/CodexBar) temeli üzerine kuru
 > [!IMPORTANT]
 > Projenin henüz Apple Developer ID hesabı yoktur. Bu nedenle uygulama kaynak koddan/ad-hoc imzayla paketlenir, noter onaylı değildir ve otomatik güncellemeler bilerek kapalıdır.
 
-## Beş ana görünüm
+## Altı ana görünüm
 
 | Görünüm | İçerik |
 | --- | --- |
 | **Kullanım** | Kota pencereleri, sıfırlanma zamanları, krediler, harcamalar ve kullandıkça öde bakiyeleri. |
+| **Harcama** | Abonelik kotasından ayrı yerel maliyet geçmişi ve raporlar. |
 | **Oturumlar** | Son **Claude Code** ve **Codex CLI/Codex uygulaması** oturumları; tek tıkla ilgili pencereye geçiş. |
 | **Sistem** | `MoleWidgetCore` ile CPU, bellek, disk, ağ, pil, sıcaklık, sağlık puanı ve en yoğun işlemler. |
 | **Servis Durumu** | OpenAI, Claude, Google AI Studio/Gemini API, Cursor, GitHub Copilot ve DeepSeek için bağımsız durum takibi. |
@@ -88,3 +89,9 @@ Ayrıntılar için [Keychain açıklaması](../keychain-prompts.md), [sağlayıc
 Uygulama temeli [CodexBar](https://github.com/steipete/CodexBar), sistem metrikleri ise sabitlenmiş Swift paketi olarak [mole-widget](https://github.com/TadelUnso/mole-widget) projesinden gelir. [Lunavect](https://github.com/lovach/Lunavect) hızlı sohbet geçişi araştırmasında referans alınmıştır; karakter çizimleri Scapolite'a dahil edilmemiştir.
 
 Scapolite [MIT Lisansı](../../LICENSE) ile dağıtılır. Tam ve güncel teknik açıklama için [İngilizce README'yi](../../README.md) kullanın.
+
+## Menü çubuğu ve ayarlar
+
+Üç sağlayıcı logosu yan yana gösterilebilir: üst satır kalan oturum hakkı, alt satır kalan haftalık haktır. **Ayarlar → Menü Çubuğu** bölümünde seçim ve sıra değiştirilebilir. GPT göstergesi Codex kotasıdır; ChatGPT web mesaj limiti değildir. Claude’un genel haftalık hakkı, modele özel haklarla karıştırılmaz. Bilinmeyen veya farklı süreli kotalar tire olarak gösterilir.
+
+Servis bildirimleri varsayılan olarak açıktır; **Ayarlar → Bildirimler** bölümünden kapatılabilir ve tek bildirimle test edilebilir. Takip ve Telegram bundan etkilenmez. Harcama raporları kontrol panelindeki **Harcama** sekmesindedir. Ayarlar beş ana bölüme indirildi; sağlayıcı ayarları korunur.

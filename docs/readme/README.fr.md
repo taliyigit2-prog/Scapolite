@@ -11,11 +11,12 @@ Scapolite est un cockpit macOS open source construit sur les fondations de [Code
 > [!IMPORTANT]
 > Le projet ne dispose pas encore d'un compte Apple Developer ID. L'app est donc compilée depuis les sources avec une signature ad-hoc, n'est pas notariée et les mises à jour automatiques sont volontairement désactivées.
 
-## Cinq vues
+## Six vues
 
 | Vue | Contenu |
 | --- | --- |
 | **Usage** | Fenêtres de quota, réinitialisations, crédits, dépenses et soldes pay-as-you-go. |
+| **Dépenses** | Historique et rapports des coûts locaux, séparés des quotas d’abonnement. |
 | **Sessions** | Sessions récentes de **Claude Code** et **Codex CLI/app Codex**, avec mise au premier plan en un clic. |
 | **System** | CPU, mémoire, disque, réseau, batterie, température, score de santé et processus via `MoleWidgetCore`. |
 | **Service Status** | Suivi indépendant d'OpenAI, Claude, Google AI Studio/Gemini API, Cursor, GitHub Copilot et DeepSeek. |
@@ -77,3 +78,9 @@ En savoir plus : [Trousseau](../keychain-prompts.md), [fournisseurs](../provider
 L'app repose sur [CodexBar](https://github.com/steipete/CodexBar) ; les métriques système proviennent du paquet épinglé [mole-widget](https://github.com/TadelUnso/mole-widget). [Lunavect](https://github.com/lovach/Lunavect) a servi de référence de recherche pour le changement rapide de conversation ; ses illustrations de personnages ne sont pas incluses.
 
 Scapolite est distribué sous [licence MIT](../../LICENSE). Le [README anglais](../../README.md) contient la description technique complète et à jour.
+
+## Barre des menus et réglages
+
+Jusqu’à trois logos côte à côte : quota de session restant en haut, quota hebdomadaire en bas. Choix et ordre dans les réglages de la barre des menus. GPT désigne le quota Codex, pas les limites de messages ChatGPT. Le quota hebdomadaire général de Claude n’est pas remplacé par celui d’un modèle ; les périodes inconnues affichent un tiret.
+
+Les alertes de panne sont activées par défaut ; désactivez-les ou testez une seule alerte dans les réglages des notifications. La surveillance et Telegram restent actifs. Les rapports de dépenses sont dans le tableau de bord. Les réglages ont cinq sections principales ; les options des fournisseurs sont conservées.

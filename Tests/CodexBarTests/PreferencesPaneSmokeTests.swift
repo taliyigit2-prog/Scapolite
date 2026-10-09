@@ -122,21 +122,6 @@ struct PreferencesPaneSmokeTests {
     }
 
     @Test
-    func `overview provider limit text shows the configured maximum`() {
-        let text = MenuBarPane.overviewProviderLimitText()
-
-        #expect(text.contains("6"))
-        #expect(!text.contains("%@"))
-    }
-
-    @Test
-    func `inactive display contrast is available only for icon and percent`() {
-        #expect(!MenuBarPane.inactiveDisplayContrastAvailable(for: .critters))
-        #expect(!MenuBarPane.inactiveDisplayContrastAvailable(for: .bars))
-        #expect(MenuBarPane.inactiveDisplayContrastAvailable(for: .iconAndPercent))
-    }
-
-    @Test
     func `menu bar icon style maps existing booleans`() {
         let settings = Self.makeSettingsStore(suite: "PreferencesPaneSmokeTests-menu-bar-icon-style")
 

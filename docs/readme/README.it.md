@@ -11,11 +11,12 @@ Scapolite è un cockpit open source per la barra dei menu di macOS, costruito su
 > [!IMPORTANT]
 > Il progetto non dispone ancora di un account Apple Developer ID. L'app viene quindi compilata dal sorgente con firma ad-hoc, non è notarizzata e gli aggiornamenti automatici sono disattivati intenzionalmente.
 
-## Cinque viste
+## Sei viste
 
 | Vista | Contenuto |
 | --- | --- |
 | **Usage** | Finestre di quota, reset, crediti, spesa e saldi pay-as-you-go. |
+| **Spesa** | Cronologia e report dei costi locali separati dalle quote di abbonamento. |
 | **Sessions** | Sessioni recenti di **Claude Code** e **Codex CLI/app Codex**, con passaggio alla finestra in un clic. |
 | **System** | CPU, memoria, disco, rete, batteria, temperatura, punteggio di salute e processi tramite `MoleWidgetCore`. |
 | **Service Status** | Monitoraggio indipendente di OpenAI, Claude, Google AI Studio/Gemini API, Cursor, GitHub Copilot e DeepSeek. |
@@ -77,3 +78,9 @@ Approfondimenti: [Portachiavi](../keychain-prompts.md), [provider](../providers.
 L'app si basa su [CodexBar](https://github.com/steipete/CodexBar); le metriche di sistema provengono dal pacchetto fissato [mole-widget](https://github.com/TadelUnso/mole-widget). [Lunavect](https://github.com/lovach/Lunavect) è stato studiato come riferimento per il cambio rapido delle conversazioni; le sue illustrazioni dei personaggi non sono incluse.
 
 Scapolite è distribuito con [licenza MIT](../../LICENSE). Per la descrizione tecnica completa e aggiornata consulta il [README inglese](../../README.md).
+
+## Barra dei menu e impostazioni
+
+Fino a tre loghi affiancati: quota residua della sessione sopra, quota settimanale sotto. Scelta e ordine nelle impostazioni della barra dei menu. GPT indica la quota Codex, non i limiti dei messaggi ChatGPT. La quota settimanale generale di Claude non viene sostituita da quella di un singolo modello; i periodi sconosciuti mostrano un trattino.
+
+Gli avvisi di disservizio sono attivi per impostazione predefinita e possono essere disattivati o provati una volta nelle impostazioni delle notifiche. Monitoraggio e Telegram restano attivi. I report di spesa sono nel pannello. Le impostazioni hanno cinque sezioni principali; le opzioni dei fornitori restano disponibili.

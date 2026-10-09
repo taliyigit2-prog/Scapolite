@@ -7,67 +7,62 @@ struct AdvancedPane: View {
     @Bindable var store: UsageStore
     @State private var isInstallingCLI = false
     @State private var cliStatus: String?
+    @State private var showsHooks = false
+    @State private var showsPlugins = false
 
     var body: some View {
         Form {
+            PreferencesTransferSection(settings: self.settings)
+
             Section {
-                LabeledContent {
-                    Button {
-                        Task { await self.installCLI() }
-                    } label: {
-                        if self.isInstallingCLI {
-                            ProgressView().controlSize(.small)
-                        } else {
-                            Text(L("install_cli"))
-                        }
+                SettingsMenuPicker(
+                    selection: self.$settings.preferredCurrencyCode,
+                    options: PreferredCurrencyOption.codes,
+                    label: { Text(L("currency_title")) },
+                    optionLabel: { Text(verbatim: PreferredCurrencyOption.label(for: $0)) })
+                    .onChange(of: self.settings.preferredCurrencyCode) { _, code in
+                        guard CurrencyExchange.requiresLiveRates(preferredCurrencyCode: code) else { return }
+                        Task { await CurrencyExchange.shared.fetchLatestRatesIfNeeded(preferredCurrencyCode: code) }
                     }
-                    .disabled(self.isInstallingCLI)
-                } label: {
-                    SettingsRowLabel(L("install_cli"), subtitle: L("install_cli_subtitle"))
-                }
+                Toggle(L("Track costs"), isOn: self.$settings.costUsageEnabled)
             } header: {
-                Text(L("section_command_line"))
-            } footer: {
-                if let status = self.cliStatus {
-                    SettingsSectionFooter(status)
-                }
+                Text(L("Usage & Spend"))
             }
 
             Section {
-                Toggle(isOn: self.$settings.hidePersonalInfo) {
-                    SettingsRowLabel(
-                        L("hide_personal_info_title"),
-                        subtitle: L("hide_personal_info_subtitle") + " " + L("hide_cost_history_identity_subtitle"))
-                }
-
-                Toggle(isOn: self.$settings.debugDisableKeychainAccess) {
-                    SettingsRowLabel(
-                        L("disable_keychain_access_title"),
-                        subtitle: L("disable_keychain_access_subtitle"))
-                }
-            } header: {
-                Text(L("section_privacy"))
-            } footer: {
-                SettingsSectionFooter(L("keychain_access_caption"))
-            }
-
-            Section {
-                Toggle(isOn: self.$settings.providerStorageFootprintsEnabled) {
-                    SettingsRowLabel(
-                        L("show_provider_storage_usage_title"),
-                        subtitle: L("show_provider_storage_usage_subtitle"))
-                }
-
-                Toggle(isOn: self.$settings.debugMenuEnabled) {
-                    SettingsRowLabel(L("show_debug_settings_title"), subtitle: L("show_debug_settings_subtitle"))
+                Button(L("tab_hooks")) { self.showsHooks = true }
+                Button(L("Plugins")) { self.showsPlugins = true }
+                DisclosureGroup(L("Tools")) {
+                    Button(L("install_cli")) { Task { await self.installCLI() } }
+                        .disabled(self.isInstallingCLI)
+                    if let status = self.cliStatus {
+                        Text(status).font(.caption).foregroundStyle(.secondary)
+                    }
+                    Toggle(L("Stay Awake"), isOn: self.$settings.stayAwakeEnabled)
+                    Toggle(L("disable_keychain_access_title"), isOn: self.$settings.debugDisableKeychainAccess)
+                    AgentSessionHostsEditor(settings: self.settings)
                 }
             } header: {
-                Text(L("section_diagnostics"))
+                Text(L("Advanced"))
             }
         }
         .formStyle(.grouped)
         .toggleStyle(.switch)
         .scrollContentBackground(.hidden)
+        .sheet(isPresented: self.$showsHooks) {
+            VStack {
+                HooksPane(settings: self.settings)
+                Button(L("Close")) { self.showsHooks = false }.padding()
+            }
+            .frame(width: 700, height: 500)
+        }
+        .sheet(isPresented: self.$showsPlugins) {
+            VStack {
+                PluginsPane(settings: self.settings, store: self.store)
+                Button(L("Close")) { self.showsPlugins = false }.padding()
+            }
+            .frame(width: 700, height: 500)
+        }
     }
 }
 

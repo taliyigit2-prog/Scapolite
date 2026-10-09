@@ -1713,3 +1713,17 @@
 "Your private Telegram bot" = "Özel Telegram botunuz";
 "health" = "sağlık";
 "remaining" = "kaldı";
+
+"Top: remaining session quota. Bottom: remaining weekly quota." = "Üstte kalan oturum kotası, altta kalan haftalık kota gösterilir.";
+"Enable a provider to show its quota in the menu bar." = "Menü çubuğunda kotasını görmek için bir sağlayıcıyı etkinleştirin.";
+"Choose up to three providers" = "En fazla üç sağlayıcı seçin";
+"Preview" = "Önizleme";
+"Move up" = "Yukarı taşı";
+"Move down" = "Aşağı taşı";
+"Order" = "Sıralama";
+"Service disruption notifications" = "Servis kesintisi bildirimleri";
+"Show test notification" = "Test bildirimi göster";
+"Tools" = "Araçlar";
+"Spend" = "Harcama";
+"Credential expiry" = "Giriş bilgilerinin süresinin dolması";
+"Notify once when a provider account needs you to sign in again." = "Bir sağlayıcı hesabına yeniden giriş gerektiğinde bir kez bildirim gönder.";

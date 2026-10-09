@@ -189,7 +189,7 @@ struct PreferencesView: View {
         case .general:
             GeneralPane(settings: self.settings)
         case .iCloudSync:
-            ICloudSyncPane(settings: self.settings, state: self.cloudSyncState)
+            GeneralPane(settings: self.settings)
         case .usageSpend:
             SpendDashboardPane(settings: self.settings, store: self.store)
         case .notifications:
@@ -197,7 +197,7 @@ struct PreferencesView: View {
         case .menuBar:
             MenuBarPane(settings: self.settings, store: self.store)
         case .menu:
-            MenuPane(settings: self.settings, store: self.store)
+            MenuBarPane(settings: self.settings, store: self.store)
         case .advanced:
             AdvancedPane(settings: self.settings, store: self.store)
         case .hooks:
@@ -223,6 +223,9 @@ struct PreferencesView: View {
     }
 
     private func ensureValidSelection() {
+        if [.iCloudSync, .usageSpend, .menu, .hooks, .plugins].contains(self.selection.pane) {
+            self.selection.pane = .general
+        }
         if !self.settings.debugMenuEnabled, self.selection.pane == .debug {
             self.selection.pane = .general
         }

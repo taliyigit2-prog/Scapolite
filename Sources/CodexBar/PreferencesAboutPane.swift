@@ -4,7 +4,6 @@ import SwiftUI
 @MainActor
 struct AboutPane: View {
     let updater: UpdaterProviding
-    @State private var iconHover = false
     @AppStorage("autoUpdateEnabled") private var autoUpdateEnabled: Bool = true
     @AppStorage(UpdateChannel.userDefaultsKey)
     private var updateChannelRaw: String = UpdateChannel.defaultChannel.rawValue
@@ -31,7 +30,9 @@ struct AboutPane: View {
                     .listRowBackground(Color.clear)
             }
 
-            self.updatesSection
+            if self.updater.isAvailable || self.homebrewUpdater != nil {
+                self.updatesSection
+            }
 
             Section {
                 AboutLinkRow(
@@ -94,10 +95,6 @@ struct AboutPane: View {
             }
             if let homebrewUpdater = self.homebrewUpdater {
                 AboutHomebrewUpdateStatusView(updater: homebrewUpdater)
-            } else if !self.updater.isAvailable {
-                AboutUpdatesUnavailableView(
-                    reason: self.updater.unavailableReason ?? L("updates_unavailable"),
-                    command: self.updater.manualUpdateCommand)
             }
         } header: {
             Text(L("section_updates"))
@@ -105,41 +102,21 @@ struct AboutPane: View {
     }
 
     private var hero: some View {
-        VStack(spacing: 10) {
+        HStack(spacing: 12) {
             if let image = NSApplication.shared.applicationIconImage {
-                Button(action: self.openProjectHome) {
-                    Image(nsImage: image)
-                        .resizable()
-                        .frame(width: 92, height: 92)
-                        .cornerRadius(16)
-                        .scaleEffect(self.iconHover ? 1.05 : 1.0)
-                        .shadow(color: self.iconHover ? .accentColor.opacity(0.25) : .clear, radius: 6)
-                }
-                .buttonStyle(.plain)
-                .focusEffectDisabled()
-                .onHover { hovering in
-                    withAnimation(.spring(response: 0.32, dampingFraction: 0.78)) {
-                        self.iconHover = hovering
-                    }
-                }
+                Image(nsImage: image).resizable().frame(width: 36, height: 36)
             }
-
-            VStack(spacing: 2) {
-                Text("Scapolite")
-                    .font(.title3).bold()
+            VStack(alignment: .leading, spacing: 3) {
+                Text("Scapolite").font(.headline)
                 Text(String(format: L("version_format"), AppVersion.displayString))
                     .foregroundStyle(.secondary)
                 if let buildTimestamp {
-                    Text(String(format: L("built_format"), buildTimestamp))
-                        .font(.footnote)
+                    Text(String(format: L("built_format"), buildTimestamp)).font(.caption)
                         .foregroundStyle(.secondary)
                 }
-                Text(L("about_tagline"))
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
             }
+            Spacer()
         }
-        .padding(.vertical, 6)
     }
 
     private var updateChannel: UpdateChannel {

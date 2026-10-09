@@ -144,6 +144,32 @@ extension SettingsStore {
         }
     }
 
+    var scapoliteServiceNotificationsEnabled: Bool {
+        get { self.defaultsState.scapoliteServiceNotificationsEnabled }
+        set {
+            self.setDefault(
+                \.scapoliteServiceNotificationsEnabled, newValue, key: "scapoliteServiceNotificationsEnabled")
+            if !newValue {
+                NotificationCenter.default.post(name: .scapoliteServiceAlertsDisabled, object: nil)
+            }
+        }
+    }
+
+    var scapoliteCompactQuotaBarEnabled: Bool {
+        self.userDefaults.integer(forKey: "scapoliteMenuBarDefaultsMigrationVersion") >= 2
+            || self.userDefaults.object(forKey: "scapoliteMenuBarProviders") != nil
+    }
+
+    var scapoliteMenuBarProviders: [UsageProvider] {
+        get { ScapoliteQuotaBar.providers(self.defaultsState.scapoliteMenuBarProvidersRaw) }
+        set {
+            self.setDefault(
+                \.scapoliteMenuBarProvidersRaw,
+                ScapoliteQuotaBar.providers(newValue.map(\.rawValue)).map(\.rawValue),
+                key: "scapoliteMenuBarProviders")
+        }
+    }
+
     var stayAwakeEnabled: Bool {
         get { self.defaultsState.stayAwakeEnabled }
         set { self.setDefault(\.stayAwakeEnabled, newValue, key: "stayAwakeEnabled") }

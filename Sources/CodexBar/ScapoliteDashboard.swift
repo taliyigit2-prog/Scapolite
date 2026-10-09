@@ -1,11 +1,13 @@
 import AppKit
 import CodexBarCore
 import MoleWidgetCore
+import Observation
 import SwiftUI
 
 @MainActor
 final class ScapoliteDashboardWindowController: NSWindowController, NSWindowDelegate {
     private let metrics = MetricsStore()
+    private let selection = ScapoliteDashboardSelection()
 
     init(
         store: UsageStore,
@@ -16,6 +18,7 @@ final class ScapoliteDashboardWindowController: NSWindowController, NSWindowDele
         openSettings: @escaping @MainActor () -> Void)
     {
         let rootView = ScapoliteDashboardView(
+            selection: self.selection,
             store: store,
             settings: settings,
             sessions: sessions,
@@ -43,7 +46,8 @@ final class ScapoliteDashboardWindowController: NSWindowController, NSWindowDele
         fatalError("init(coder:) has not been implemented")
     }
 
-    func open() {
+    func open(spend: Bool = false) {
+        if spend { self.selection.tab = .spend }
         self.metrics.start()
         guard let window = self.window else { return }
         window.centerIfNeeded()
@@ -70,6 +74,7 @@ extension NSWindow {
 
 private enum ScapoliteDashboardTab: String, CaseIterable, Identifiable {
     case usage
+    case spend
     case sessions
     case system
     case status
@@ -82,6 +87,7 @@ private enum ScapoliteDashboardTab: String, CaseIterable, Identifiable {
     var title: String {
         switch self {
         case .usage: L("Usage")
+        case .spend: L("Spend")
         case .sessions: L("Sessions")
         case .system: L("System")
         case .status: L("Service Status")
@@ -92,6 +98,7 @@ private enum ScapoliteDashboardTab: String, CaseIterable, Identifiable {
     var systemImage: String {
         switch self {
         case .usage: "chart.bar.fill"
+        case .spend: "chart.line.uptrend.xyaxis"
         case .sessions: "bubble.left.and.bubble.right.fill"
         case .system: "cpu.fill"
         case .status: "waveform.path.ecg"
@@ -100,7 +107,14 @@ private enum ScapoliteDashboardTab: String, CaseIterable, Identifiable {
     }
 }
 
+@MainActor
+@Observable
+private final class ScapoliteDashboardSelection {
+    var tab = ScapoliteDashboardTab.usage
+}
+
 private struct ScapoliteDashboardView: View {
+    @Bindable var selection: ScapoliteDashboardSelection
     let store: UsageStore
     let settings: SettingsStore
     let sessions: AgentSessionsStore
@@ -109,16 +123,16 @@ private struct ScapoliteDashboardView: View {
     let telegram: ScapoliteTelegramController
     let openSettings: @MainActor () -> Void
 
-    @State private var selectedTab = ScapoliteDashboardTab.usage
-
     var body: some View {
         VStack(spacing: 0) {
             self.header
             Divider()
             Group {
-                switch self.selectedTab {
+                switch self.selection.tab {
                 case .usage:
                     ScapoliteUsageView(store: self.store)
+                case .spend:
+                    SpendDashboardPane(settings: self.settings, store: self.store)
                 case .sessions:
                     ScapoliteSessionsView(sessions: self.sessions)
                 case .system:
@@ -147,7 +161,7 @@ private struct ScapoliteDashboardView: View {
 
             Spacer()
 
-            Picker(L("Dashboard Section"), selection: self.$selectedTab) {
+            Picker(L("Dashboard Section"), selection: self.$selection.tab) {
                 ForEach(ScapoliteDashboardTab.allCases) { tab in
                     Label(tab.title, systemImage: tab.systemImage)
                         .tag(tab)
@@ -365,7 +379,8 @@ private struct ScapoliteUsageCard: View {
                     ScapoliteUsageBar(title: metadata.opusLabel ?? L("Additional"), window: tertiary, accent: accent)
                 }
                 ForEach(snapshot.extraRateWindows ?? [], id: \.id) { named in
-                    ScapoliteUsageBar(title: named.title, window: named.window, accent: accent)
+                    ScapoliteUsageBar(
+                        title: named.title, window: named.window, accent: accent, usageKnown: named.usageKnown)
                 }
                 if snapshot.primary == nil,
                    snapshot.secondary == nil,
@@ -396,6 +411,11 @@ private struct ScapoliteUsageBar: View {
     let title: String
     let window: RateWindow
     let accent: ProviderColor
+    var usageKnown = true
+
+    private var measured: Bool {
+        self.usageKnown && !self.window.isSyntheticPlaceholder && self.window.usedPercent.isFinite
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -403,12 +423,15 @@ private struct ScapoliteUsageBar: View {
                 Text(self.title)
                     .font(.caption.weight(.medium))
                 Spacer()
-                Text("\(Int(self.window.remainingPercent.rounded()))% \(L("remaining"))")
+                Text(self.measured
+                    ? "\(Int(min(100, max(0, self.window.remainingPercent)).rounded()))% \(L("remaining"))" : "—")
                     .font(.caption.monospacedDigit())
                     .foregroundStyle(.secondary)
             }
-            ProgressView(value: min(100, max(0, self.window.usedPercent)), total: 100)
-                .tint(Color(red: self.accent.red, green: self.accent.green, blue: self.accent.blue))
+            if self.measured {
+                ProgressView(value: min(100, max(0, self.window.usedPercent)), total: 100)
+                    .tint(Color(red: self.accent.red, green: self.accent.green, blue: self.accent.blue))
+            }
             if let resetsAt = self.window.resetsAt {
                 Text("\(L("Resets")) \(resetsAt.formatted(date: .abbreviated, time: .shortened))")
                     .font(.caption2)

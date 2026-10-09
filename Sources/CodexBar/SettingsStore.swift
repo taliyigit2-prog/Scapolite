@@ -555,6 +555,10 @@ extension SettingsStore {
             debugLoadingPatternRaw: userDefaults.string(forKey: "debugLoadingPattern"),
             debugKeepCLISessionsAlive: userDefaults.object(forKey: "debugKeepCLISessionsAlive") as? Bool ?? false,
             statusChecksEnabled: notificationDefaults.statusChecksEnabled,
+            scapoliteServiceNotificationsEnabled: userDefaults.object(
+                forKey: "scapoliteServiceNotificationsEnabled") as? Bool ?? true,
+            scapoliteMenuBarProvidersRaw: userDefaults.stringArray(forKey: "scapoliteMenuBarProviders")
+                ?? [UsageProvider.claude.rawValue, UsageProvider.codex.rawValue, UsageProvider.antigravity.rawValue],
             stayAwakeEnabled: userDefaults.bool(forKey: "stayAwakeEnabled"),
             credentialExpiryNotificationsEnabled: userDefaults.bool(forKey: "credentialExpiryNotificationsEnabled"),
             sessionQuotaNotificationsEnabled: notificationDefaults.sessionQuotaNotificationsEnabled,
@@ -712,18 +716,34 @@ extension SettingsStore {
 
     static func applyScapoliteMenuBarDefaultsMigration(userDefaults: UserDefaults) {
         let migrationKey = "scapoliteMenuBarDefaultsMigrationVersion"
-        guard userDefaults.integer(forKey: migrationKey) < 1 else { return }
+        guard userDefaults.integer(forKey: migrationKey) < 2 else { return }
 
-        // Scapolite is quota-first: show the automatic (normally 5-hour) remaining percentage
-        // in the menu bar and stack the first two active providers, which are Codex and Claude
-        // on the default installation. Users can still select a different style afterwards.
+        // Scapolite uses one compact group with a session and weekly row per provider.
         userDefaults.set(true, forKey: "menuBarShowsBrandIconWithPercent")
         userDefaults.set(true, forKey: "mergeIcons")
         userDefaults.set(true, forKey: "mergeIconsStacked")
+        userDefaults.set(RefreshFrequency.twoMinutes.rawValue, forKey: "refreshFrequency")
+        userDefaults.set(LowPowerModePreference.automatic.rawValue, forKey: "backgroundWorkLowPowerModePreference")
         // Provider-specific by design: Scapolite's default stacked quota display pairs Codex and Claude.
-        userDefaults.set(UsageProvider.codex.rawValue, forKey: "mergeIconStackedTopProvider")
-        userDefaults.set(UsageProvider.claude.rawValue, forKey: "mergeIconStackedBottomProvider")
-        userDefaults.set(1, forKey: migrationKey)
+        if userDefaults.integer(forKey: migrationKey) < 1 {
+            userDefaults.set(UsageProvider.codex.rawValue, forKey: "mergeIconStackedTopProvider")
+            userDefaults.set(UsageProvider.claude.rawValue, forKey: "mergeIconStackedBottomProvider")
+        }
+        if userDefaults.object(forKey: "scapoliteMenuBarProviders") == nil {
+            let previous = ["mergeIconStackedTopProvider", "mergeIconStackedBottomProvider"]
+                .compactMap { userDefaults.string(forKey: $0) }
+            let providers = ScapoliteQuotaBar.providers(previous + [UsageProvider.antigravity.rawValue])
+            userDefaults.set(providers.map(\.rawValue), forKey: "scapoliteMenuBarProviders")
+        }
+        for key in [
+            "randomBlinkEnabled",
+            "confettiOnSessionLimitResetsEnabled",
+            "confettiOnWeeklyLimitResetsEnabled",
+            "usageBarsShowUsed",
+        ] {
+            userDefaults.set(false, forKey: key)
+        }
+        userDefaults.set(2, forKey: migrationKey)
     }
 
     private static func loadLowPowerModePreference(userDefaults: UserDefaults) -> LowPowerModePreference {

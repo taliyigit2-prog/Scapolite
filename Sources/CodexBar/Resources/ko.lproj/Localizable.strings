@@ -1682,3 +1682,17 @@
 "Select position %@" = "Select position %@";
 "Stay Awake" = "Stay Awake";
 "Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep." = "Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep.";
+
+"Top: remaining session quota. Bottom: remaining weekly quota." = "Top: remaining session quota. Bottom: remaining weekly quota.";
+"Enable a provider to show its quota in the menu bar." = "Enable a provider to show its quota in the menu bar.";
+"Choose up to three providers" = "Choose up to three providers";
+"Preview" = "Preview";
+"Move up" = "Move up";
+"Move down" = "Move down";
+"Order" = "Order";
+"Service disruption notifications" = "Service disruption notifications";
+"Show test notification" = "Show test notification";
+"Tools" = "Tools";
+"Spend" = "Spend";
+"Credential expiry" = "Credential expiry";
+"Notify once when a provider account needs you to sign in again." = "Notify once when a provider account needs you to sign in again.";

@@ -11,11 +11,12 @@ Scapolite es un panel de código abierto para la barra de menús de macOS, const
 > [!IMPORTANT]
 > El proyecto todavía no dispone de una cuenta Apple Developer ID. La app se compila desde el código fuente con firma ad-hoc, no está notarizada y las actualizaciones automáticas están desactivadas intencionadamente.
 
-## Cinco vistas
+## Seis vistas
 
 | Vista | Contenido |
 | --- | --- |
 | **Usage** | Ventanas de cuota, reinicios, créditos, gasto y saldos de pago por uso. |
+| **Gastos** | Historial e informes de costes locales separados de las cuotas de suscripción. |
 | **Sessions** | Sesiones recientes de **Claude Code** y **Codex CLI/app Codex**, con cambio a la ventana en un clic. |
 | **System** | CPU, memoria, disco, red, batería, temperatura, puntuación de salud y procesos mediante `MoleWidgetCore`. |
 | **Service Status** | Seguimiento independiente de OpenAI, Claude, Google AI Studio/Gemini API, Cursor, GitHub Copilot y DeepSeek. |
@@ -77,3 +78,9 @@ Más información: [Llavero](../keychain-prompts.md), [proveedores](../providers
 La app se basa en [CodexBar](https://github.com/steipete/CodexBar); las métricas del sistema proceden del paquete fijado [mole-widget](https://github.com/TadelUnso/mole-widget). [Lunavect](https://github.com/lovach/Lunavect) se estudió como referencia para cambiar rápidamente de conversación; sus ilustraciones de personajes no están incluidas.
 
 Scapolite se distribuye bajo la [licencia MIT](../../LICENSE). El [README en inglés](../../README.md) contiene la descripción técnica completa y actualizada.
+
+## Barra de menús y ajustes
+
+Hasta tres logotipos juntos: cuota restante de sesión arriba y semanal abajo. Selección y orden en los ajustes de la barra de menús. GPT muestra la cuota de Codex, no los límites de mensajes de ChatGPT. La cuota semanal general de Claude no se sustituye por la de un modelo; los períodos desconocidos muestran un guion.
+
+Las alertas de interrupción están activadas por defecto; pueden desactivarse o probarse una vez desde los ajustes de notificaciones. La supervisión y Telegram siguen activos. Los informes de gastos están en el panel. Los ajustes tienen cinco secciones principales; se conservan las opciones de los proveedores.

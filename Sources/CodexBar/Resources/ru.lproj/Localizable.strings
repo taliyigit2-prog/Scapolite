@@ -1714,3 +1714,17 @@
 "Select position %@" = "Select position %@";
 "Stay Awake" = "Stay Awake";
 "Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep." = "Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep.";
+
+"Top: remaining session quota. Bottom: remaining weekly quota." = "Сверху — остаток квоты сеанса, снизу — недельной квоты.";
+"Enable a provider to show its quota in the menu bar." = "Включите поставщика, чтобы видеть его квоту в строке меню.";
+"Choose up to three providers" = "Выберите до трёх поставщиков";
+"Preview" = "Предпросмотр";
+"Move up" = "Переместить вверх";
+"Move down" = "Переместить вниз";
+"Order" = "Порядок";
+"Service disruption notifications" = "Уведомления о сбоях сервисов";
+"Show test notification" = "Показать тестовое уведомление";
+"Tools" = "Инструменты";
+"Spend" = "Расходы";
+"Credential expiry" = "Истечение срока авторизации";
+"Notify once when a provider account needs you to sign in again." = "Однократное уведомление, когда требуется повторный вход в аккаунт поставщика.";

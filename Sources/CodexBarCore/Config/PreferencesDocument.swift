@@ -26,6 +26,7 @@ public struct PreferencesDocument: Codable, Sendable {
         "confettiOnWeeklyLimitResetsEnabled", "limitResetNotificationsEnabled", "menuBarShowsHighestUsage",
         "showOptionalCreditsAndExtraUsage", "providerChangelogLinksEnabled", "providersSortedAlphabetically",
         "refreshAllProvidersOnMenuOpen", "mergeIcons", "mergeIconsStacked", "switcherShowsIcons",
+        "scapoliteServiceNotificationsEnabled",
     ])
     private static let stringChoices: [String: [String]] = [
         "refreshFrequency": [
@@ -49,6 +50,7 @@ public struct PreferencesDocument: Codable, Sendable {
         self.boolKeys.union(self.stringChoices.keys).union(self.thresholdKeys).union([
             "weeklyProgressWorkDays", "preferredCurrencyCode", "mergedOverviewSelectedProviders",
             "switcherShortcuts",
+            "scapoliteMenuBarProviders",
         ])
     }
 
@@ -137,9 +139,11 @@ public struct PreferencesDocument: Codable, Sendable {
                             }; return false
                         }
                 } else {
-                    valid = key == "mergedOverviewSelectedProviders" && values.count <= 6 && values.allSatisfy {
-                        if case let .string(raw) = $0 { return UsageProvider(rawValue: raw) != nil }; return false
-                    }
+                    let limit = key == "scapoliteMenuBarProviders" ? 3 : 6
+                    valid = ["mergedOverviewSelectedProviders", "scapoliteMenuBarProviders"].contains(key)
+                        && values.count <= limit && values.allSatisfy {
+                            if case let .string(raw) = $0 { return UsageProvider(rawValue: raw) != nil }; return false
+                        }
                 }
             case .object:
                 valid = key == "switcherShortcuts"

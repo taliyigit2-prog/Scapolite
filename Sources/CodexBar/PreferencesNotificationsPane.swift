@@ -7,62 +7,41 @@ struct NotificationsPane: View {
     var body: some View {
         Form {
             Section {
-                Toggle(isOn: self.$settings.credentialExpiryNotificationsEnabled) {
-                    SettingsRowLabel(
-                        "Credential expiry",
-                        subtitle: "Notify once when a provider account needs you to sign in again.")
+                Toggle(L("Service disruption notifications"), isOn: self.$settings.scapoliteServiceNotificationsEnabled)
+                    .accessibilityIdentifier("scapolite-service-notifications-toggle")
+                Button(L("Show test notification")) {
+                    NotificationCenter.default.post(name: .scapoliteTestServiceAlert, object: nil)
                 }
-
-                Toggle(isOn: self.$settings.sessionQuotaNotificationsEnabled) {
-                    SettingsRowLabel(
-                        L("quota_depleted_title"),
-                        subtitle: L("session_quota_notifications_subtitle"))
-                }
-
-                Toggle(isOn: self.$settings.quotaWarningNotificationsEnabled) {
-                    SettingsRowLabel(
-                        L("threshold_warnings_title"),
-                        subtitle: L("quota_warning_notifications_subtitle"))
-                }
-
-                Toggle(isOn: self.$settings.predictivePaceWarningNotificationsEnabled) {
-                    SettingsRowLabel(
-                        L("predictive_pace_warnings_title"),
-                        subtitle: L("predictive_pace_warnings_subtitle"))
-                }
-
-                Toggle(isOn: self.$settings.limitResetNotificationsEnabled) {
-                    SettingsRowLabel(
-                        L("limit_reset_notifications_title"),
-                        subtitle: L("limit_reset_notifications_subtitle"))
-                }
-
-                let warningSettingsVisibility = QuotaWarningSettingsVisibility(
-                    thresholdWarningsEnabled: self.settings.quotaWarningNotificationsEnabled,
-                    predictiveWarningsEnabled: self.settings.predictivePaceWarningNotificationsEnabled)
-                if warningSettingsVisibility.showsDeliveryControls {
-                    GlobalQuotaWarningSettingsView(
-                        settings: self.settings,
-                        showsThresholdControls: warningSettingsVisibility.showsThresholdControls)
-                }
+                .disabled(!self.settings.scapoliteServiceNotificationsEnabled)
+                .accessibilityIdentifier("scapolite-test-service-notification")
             } header: {
-                Text(L("section_alerts"))
+                Text(L("Service Status"))
             }
 
             Section {
-                SettingsMenuPicker(
-                    selection: self.$settings.confettiCelebrationOption,
-                    options: NotificationsSettingsMenuOptions.confettiCelebrations,
-                    label: {
-                        SettingsRowLabel(
-                            L("confetti_on_reset_title"),
-                            subtitle: L("confetti_on_reset_subtitle"))
-                    },
-                    optionLabel: { option in
-                        Text(option.label)
-                    })
+                Toggle(isOn: self.$settings.credentialExpiryNotificationsEnabled) {
+                    SettingsRowLabel(
+                        L("Credential expiry"),
+                        subtitle: L("Notify once when a provider account needs you to sign in again."))
+                }
+                Toggle(L("quota_depleted_title"), isOn: self.$settings.sessionQuotaNotificationsEnabled)
+                Toggle(L("threshold_warnings_title"), isOn: self.$settings.quotaWarningNotificationsEnabled)
+                DisclosureGroup(L("Advanced")) {
+                    Toggle(
+                        L("predictive_pace_warnings_title"),
+                        isOn: self.$settings.predictivePaceWarningNotificationsEnabled)
+                    Toggle(L("limit_reset_notifications_title"), isOn: self.$settings.limitResetNotificationsEnabled)
+                    let visibility = QuotaWarningSettingsVisibility(
+                        thresholdWarningsEnabled: self.settings.quotaWarningNotificationsEnabled,
+                        predictiveWarningsEnabled: self.settings.predictivePaceWarningNotificationsEnabled)
+                    if visibility.showsDeliveryControls {
+                        GlobalQuotaWarningSettingsView(
+                            settings: self.settings,
+                            showsThresholdControls: visibility.showsThresholdControls)
+                    }
+                }
             } header: {
-                Text(L("section_celebrations"))
+                Text(L("section_alerts"))
             }
         }
         .formStyle(.grouped)

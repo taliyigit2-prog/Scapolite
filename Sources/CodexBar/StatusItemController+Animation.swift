@@ -11,6 +11,7 @@ extension StatusItemController {
         2.7 / StatusItemController.loadingAnimationFPS
     private nonisolated static let loadingAnimationMaxContinuousDuration: TimeInterval = 30.0
     func needsMenuBarIconAnimation() -> Bool {
+        if !self.scapoliteQuotaBarProviders.isEmpty { return false }
         // Stacked rows always render through the layout-token path (`applyStoredStackedMenuBarLayoutIfNeeded`
         // requires `menuBarShowsBrandIconWithPercent`), which has no phase-driven blink/wiggle/tilt/morph
         // rendering — scheduling the 30 FPS driver here would only burn CPU for frames that never change.
@@ -39,6 +40,10 @@ extension StatusItemController {
         #if DEBUG
         guard !self.isReleasedForTesting else { return }
         #endif
+        if !self.scapoliteQuotaBarProviders.isEmpty {
+            self.stopBlinking()
+            return
+        }
         // Stacked rows render exclusively through the layout-token path, which — like the loading
         // animation `needsMenuBarIconAnimation()` already excludes stacked mode from — never consumes
         // blinkAmounts/wiggleAmounts/tiltAmounts. Starting the blink task here would just wake and redraw
@@ -276,6 +281,10 @@ extension StatusItemController {
             return true
         }
 
+        if let rendered = self.applyScapoliteQuotaBar(providers: self.scapoliteQuotaBarProviders, to: self.statusItem) {
+            return rendered
+        }
+
         let style = self.store.iconStyle
         let showUsed = self.settings.usageBarsShowUsed
         let showBrandPercent = self.settings.menuBarShowsBrandIconWithPercent
@@ -505,14 +514,13 @@ extension StatusItemController {
     @discardableResult
     func applyIcon(for provider: UsageProvider, phase: Double?) -> Bool {
         guard let button = self.statusItems[provider.instanceID]?.button else { return false }
+        if let rendered = self.applySingleScapoliteQuotaBar(provider: provider) { return rendered }
         let snapshot = self.store.menuBarSnapshot(for: provider.instanceID)
         // IconRenderer treats these values as a left-to-right "progress fill" percentage; depending on the
         // user setting we pass either "percent left" or "percent used".
         let showUsed = self.settings.usageBarsShowUsed
         let showBrandPercent = self.settings.menuBarShowsBrandIconWithPercent
-        if !showBrandPercent {
-            self.statusItems[provider.instanceID]?.length = NSStatusItem.variableLength
-        }
+        self.prepareLegacyQuotaBarLength(provider: provider)
         let style: IconStyle = self.store.style(for: provider)
         let warningFlash = self.quotaWarningFlashActive(provider: provider)
 

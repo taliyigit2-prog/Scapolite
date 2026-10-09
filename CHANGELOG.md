@@ -4,6 +4,9 @@
 
 ### Added
 
+- Scapolite: show up to three ordered provider logos with separate session and weekly remaining percentages; add a persistent, default-on service-alert switch and single-alert test.
+- Scapolite: move spend reporting to the dashboard and simplify settings to five destinations without changing provider configuration.
+- Scapolite: add a pinned GitHub privacy check and remove obsolete proof artifacts and the unused confetti dependency.
 - Scapolite: add a unified menu bar dashboard for AI usage, recent Claude Code and Codex sessions, local Mac health, six independent provider-status monitors with notch alerts, and a user-owned Telegram bot.
 - Scapolite: add English, Turkish, Russian, German, Italian, French, and Spanish dashboard translations plus localized project READMEs.
 - Scapolite: add a System tab to the merged menu with live CPU, memory, disk, battery, network, temperature, and top-process metrics.
@@ -12,6 +15,7 @@
 - Antigravity: opt in to additional Gemini profile homes in provider settings or config.json to combine local token/cost history without double-counting copied conversations (#4177). Thanks @keeuu!
 ### Fixed
 
+- Scapolite: keep Claude's exhausted overall weekly limit separate from model-specific allowances and show unavailable quota cadences as a dash.
 - Scapolite: localize previously untranslated Turkish settings controls and clarify Turkish menu terminology.
 - Browser cookies: adopt SweetCookieKit 0.5.5 for Aside, Opera, and Opera Neon support, including Cursor account switching, and let Muse (muse.ai) automatically import from the full supported browser catalog (#4215, #2429). Thanks @mvicari!
 

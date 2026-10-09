@@ -93,103 +93,27 @@ struct GeneralPane: View {
                 SettingsMenuPicker(
                     selection: self.$settings.appLanguage,
                     options: GeneralSettingsMenuOptions.languages,
-                    label: {
-                        SettingsRowLabel(L("language_title"), subtitle: L("language_subtitle"))
-                    },
-                    optionLabel: { rawValue in
-                        Text(verbatim: AppLanguage(rawValue: rawValue)?.label ?? rawValue)
-                    })
-
-                SettingsMenuPicker(
-                    selection: self.$settings.preferredCurrencyCode,
-                    options: PreferredCurrencyOption.codes,
-                    label: {
-                        SettingsRowLabel(L("currency_title"), subtitle: L("currency_subtitle"))
-                    },
-                    optionLabel: { rawValue in
-                        Text(verbatim: PreferredCurrencyOption.label(for: rawValue))
-                    })
-                    .onChange(of: self.settings.preferredCurrencyCode) { _, newValue in
-                        guard CurrencyExchange.requiresLiveRates(preferredCurrencyCode: newValue) else { return }
-                        Task {
-                            await CurrencyExchange.shared.fetchLatestRatesIfNeeded(
-                                preferredCurrencyCode: newValue)
-                        }
-                    }
-
+                    label: { Text(L("language_title")) },
+                    optionLabel: { Text(verbatim: AppLanguage(rawValue: $0)?.label ?? $0) })
+                Toggle(L("start_at_login_title"), isOn: self.$settings.launchAtLogin)
                 SettingsMenuPicker(
                     selection: self.$settings.terminalApp,
                     options: GeneralSettingsMenuOptions.terminalApps(selected: self.settings.terminalApp),
-                    label: {
-                        SettingsRowLabel(L("terminal_app_title"), subtitle: L("terminal_app_subtitle"))
-                    },
-                    optionLabel: { option in
-                        HStack(spacing: 6) {
-                            if let icon = option.pickerIcon {
-                                Image(nsImage: icon)
-                            }
-                            Text(option.label)
-                        }
-                    })
-
-                Toggle(L("start_at_login_title"), isOn: self.$settings.launchAtLogin)
-            } header: {
-                Text(L("section_system"))
-            }
-
-            Section {
-                SettingsMenuPicker(
-                    selection: self.$settings.refreshFrequency,
-                    options: GeneralSettingsMenuOptions.refreshFrequencies,
-                    label: { Text(L("refresh_interval_title")) },
-                    optionLabel: { option in Text(option.label) })
-
-                Toggle(L("refresh_on_open_title"), isOn: self.$settings.refreshAllProvidersOnMenuOpen)
-
-                SettingsMenuPicker(
-                    selection: self.$settings.backgroundWorkLowPowerModePreference,
-                    options: GeneralSettingsMenuOptions.lowPowerModePreferences,
-                    label: {
-                        SettingsRowLabel(
-                            L("Low Power Mode"),
-                            subtitle: L(
-                                "When on, runs automatic provider, local usage, and storage refreshes no more " +
-                                    "often than every 30 minutes. Manual refresh remains available. Automatic " +
-                                    "follows the system Low Power Mode setting."))
-                    },
-                    optionLabel: { option in Text(option.label) })
-
-                Toggle(isOn: self.$settings.statusChecksEnabled) {
-                    SettingsRowLabel(
-                        L("check_provider_status_title"),
-                        subtitle: L("check_provider_status_subtitle"))
-                }
-            } header: {
-                Text(L("section_refreshing"))
-            } footer: {
-                if self.settings.refreshFrequency == .manual {
-                    SettingsSectionFooter(L("manual_refresh_hint"))
-                }
-            }
-
-            PreferencesTransferSection(settings: self.settings)
-
-            Section {
+                    label: { Text(L("terminal_app_title")) },
+                    optionLabel: { Text($0.label) })
                 LabeledContent(L("open_menu_shortcut_title")) {
                     OpenMenuShortcutRecorder()
                 }
             } header: {
-                Text(L("section_keyboard_shortcut"))
+                Text(L("section_system"))
+            }
+            Section {
+                Toggle(L("agent_sessions_title"), isOn: self.$settings.agentSessionsEnabled)
+                Toggle(L("hide_personal_info_title"), isOn: self.$settings.hidePersonalInfo)
+            } header: {
+                Text(L("section_privacy"))
             } footer: {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(String(format: L("version_format"), AppVersion.displayString))
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    Button(L("quit_app")) { NSApp.terminate(nil) }
-                        .buttonStyle(.borderedProminent)
-                }
-                .padding(.top, 8)
+                SettingsSectionFooter(L("agent_sessions_footer"))
             }
         }
         .formStyle(.grouped)

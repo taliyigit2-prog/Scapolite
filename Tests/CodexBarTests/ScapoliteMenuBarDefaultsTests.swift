@@ -6,10 +6,8 @@ import Testing
 @MainActor
 struct ScapoliteMenuBarDefaultsTests {
     @Test("Scapolite defaults show Codex and Claude remaining percentages")
-    func quotaFirstDefaults() throws {
-        let suite = "ScapoliteMenuBarDefaultsTests-\(UUID().uuidString)"
-        let defaults = try #require(UserDefaults(suiteName: suite))
-        defer { defaults.removePersistentDomain(forName: suite) }
+    func quotaFirstDefaults() {
+        let defaults = InMemoryUserDefaults()
 
         SettingsStore.applyScapoliteMenuBarDefaultsMigration(userDefaults: defaults)
 
@@ -18,14 +16,16 @@ struct ScapoliteMenuBarDefaultsTests {
         #expect(defaults.bool(forKey: "mergeIconsStacked"))
         #expect(defaults.string(forKey: "mergeIconStackedTopProvider") == UsageProvider.codex.rawValue)
         #expect(defaults.string(forKey: "mergeIconStackedBottomProvider") == UsageProvider.claude.rawValue)
-        #expect(defaults.integer(forKey: "scapoliteMenuBarDefaultsMigrationVersion") == 1)
+        #expect(defaults.integer(forKey: "scapoliteMenuBarDefaultsMigrationVersion") == 2)
+        #expect(defaults.stringArray(forKey: "scapoliteMenuBarProviders") == ["codex", "claude", "antigravity"])
+        #expect(defaults.string(forKey: "refreshFrequency") == RefreshFrequency.twoMinutes.rawValue)
+        #expect(defaults.string(forKey: "backgroundWorkLowPowerModePreference")
+            == LowPowerModePreference.automatic.rawValue)
     }
 
     @Test("Scapolite defaults migration preserves later user choices")
-    func migrationIsIdempotent() throws {
-        let suite = "ScapoliteMenuBarDefaultsTests-\(UUID().uuidString)"
-        let defaults = try #require(UserDefaults(suiteName: suite))
-        defer { defaults.removePersistentDomain(forName: suite) }
+    func migrationIsIdempotent() {
+        let defaults = InMemoryUserDefaults()
 
         SettingsStore.applyScapoliteMenuBarDefaultsMigration(userDefaults: defaults)
         defaults.set(false, forKey: "menuBarShowsBrandIconWithPercent")

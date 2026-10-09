@@ -11,6 +11,8 @@ extension SettingsStore {
         _ = self.debugDisableKeychainAccess
         _ = self.debugKeepCLISessionsAlive
         _ = self.statusChecksEnabled
+        _ = self.scapoliteServiceNotificationsEnabled
+        _ = self.scapoliteMenuBarProviders
         _ = self.sessionQuotaNotificationsEnabled
         _ = self.quotaWarningNotificationsEnabled
         _ = self.predictivePaceWarningNotificationsEnabled

@@ -35,7 +35,7 @@ struct QuotaWarningAlertPresentationState {
 
 /// Presents a transient, centered text alert when a quota warning threshold is crossed.
 ///
-/// Modeled after ``ScreenConfettiOverlayController``: it shows a borderless, click-through
+/// Shows a borderless, click-through
 /// panel above all spaces and auto-dismisses after a short lifetime, so it never steals focus
 /// or blocks the user's work.
 @MainActor

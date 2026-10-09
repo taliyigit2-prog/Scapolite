@@ -42,6 +42,11 @@ __pycache__/
 docs/*-analysis.md
 docs/.viewport-audit/
 docs/.astro/
+.github/pr-proof/
+docs/screenshots/
+.qa/
+*.audit.json
+*.audit.log
 
 # Swift Package Manager metadata (leave sources tracked)
 # Packages/

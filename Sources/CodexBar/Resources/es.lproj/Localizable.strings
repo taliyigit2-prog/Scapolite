@@ -1711,3 +1711,17 @@
 "Select position %@" = "Select position %@";
 "Stay Awake" = "Stay Awake";
 "Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep." = "Prevent idle system sleep while a local agent process is running, even when idle. Uses battery power; does not prevent lid-close or display sleep.";
+
+"Top: remaining session quota. Bottom: remaining weekly quota." = "Arriba: cuota de sesión restante. Abajo: cuota semanal restante.";
+"Enable a provider to show its quota in the menu bar." = "Activa un proveedor para mostrar su cuota en la barra de menús.";
+"Choose up to three providers" = "Elige hasta tres proveedores";
+"Preview" = "Vista previa";
+"Move up" = "Subir";
+"Move down" = "Bajar";
+"Order" = "Orden";
+"Service disruption notifications" = "Notificaciones de interrupción del servicio";
+"Show test notification" = "Mostrar notificación de prueba";
+"Tools" = "Herramientas";
+"Spend" = "Gastos";
+"Credential expiry" = "Caducidad de credenciales";
+"Notify once when a provider account needs you to sign in again." = "Notificar una vez cuando sea necesario volver a iniciar sesión en la cuenta del proveedor.";

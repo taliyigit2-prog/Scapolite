@@ -3,270 +3,97 @@ import SwiftUI
 
 @MainActor
 struct MenuBarPane: View {
-    private static let maxOverviewProviders = SettingsStore.mergedOverviewProviderLimit
-
-    @State private var isOverviewProviderPopoverPresented = false
     @Bindable var settings: SettingsStore
     @Bindable var store: UsageStore
 
-    static func overviewProviderLimitText(limit: Int = Self.maxOverviewProviders) -> String {
-        L("overview_choose_providers", String(limit))
-    }
-
-    static func inactiveDisplayContrastAvailable(for style: MenuBarIconStyle) -> Bool {
-        style == .iconAndPercent
-    }
-
     var body: some View {
-        let paceColorSubtitle = L(
-            "Green pace indicator when behind pace, red when ahead of pace (risk of running out early)")
-            + "\n" + L("menu_bar_layout_title") + ": " + [
-                L("menu_bar_layout_token_session_pace"),
-                L("menu_bar_layout_token_weekly_pace"),
-                L("menu_bar_layout_token_auto_pace"),
-            ].joined(separator: ", ")
-
         Form {
             Section {
-                SettingsMenuPicker(
-                    selection: self.$settings.menuBarIconStyle,
-                    options: MenuBarSettingsMenuOptions.iconStyles,
-                    label: {
-                        SettingsRowLabel(
-                            L("menu_bar_style_title"),
-                            subtitle: L("menu_bar_style_subtitle"))
-                    },
-                    optionLabel: { style in
-                        Text(style.label)
-                    })
-
-                Toggle(isOn: self.$settings.menuBarHighContrastOnInactiveDisplays) {
-                    SettingsRowLabel(
-                        L("menu_bar_inactive_display_contrast_title"),
-                        subtitle: "\(MenuBarIconStyle.iconAndPercent.label): "
-                            + L("menu_bar_inactive_display_contrast_subtitle"))
+                HStack(spacing: 16) {
+                    ForEach(self.selectedProviders, id: \.self) { provider in
+                        HStack(spacing: 5) {
+                            if let icon = ProviderBrandIcon.image(for: provider) {
+                                Image(nsImage: icon).resizable().scaledToFit().frame(width: 18, height: 18)
+                            }
+                            VStack(spacing: 0) {
+                                Text("87%")
+                                Text("42%")
+                            }
+                            .font(.system(size: 10, weight: .medium, design: .monospaced))
+                        }
+                        .accessibilityLabel(self.store.metadata(for: provider).displayName)
+                    }
                 }
-                .disabled(!Self.inactiveDisplayContrastAvailable(for: self.settings.menuBarIconStyle))
-
-                Toggle(isOn: self.$settings.menuBarColorPace) {
-                    SettingsRowLabel(
-                        L("Color Pace Indicator"),
-                        subtitle: paceColorSubtitle)
-                }
-                .disabled(self.settings.menuBarIconStyle != .iconAndPercent)
+                Text(L("Top: remaining session quota. Bottom: remaining weekly quota."))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             } header: {
-                Text(L("section_icon"))
+                Text(L("Preview"))
             }
 
             Section {
-                MenuBarLayoutEditor(settings: self.settings, store: self.store)
-                    .disabled(self.settings.menuBarIconStyle != .iconAndPercent)
+                ForEach(self.activeProviders, id: \.self) { provider in
+                    Toggle(self.store.metadata(for: provider).displayName, isOn: Binding(
+                        get: { self.selectedProviders.contains(provider) },
+                        set: { selected in
+                            var providers = self.selectedProviders
+                            if selected { providers.append(provider) } else { providers.removeAll { $0 == provider } }
+                            self.settings.scapoliteMenuBarProviders = providers
+                        }))
+                        .toggleStyle(.checkbox)
+                        .disabled(self.selectedProviders.contains(provider)
+                            ? self.selectedProviders.count == 1
+                            : self.selectedProviders.count >= ScapoliteQuotaBar.providerLimit)
+                }
+                if self.activeProviders.isEmpty {
+                    Text(L("Enable a provider to show its quota in the menu bar."))
+                        .foregroundStyle(.secondary)
+                }
             } header: {
-                Text(L("menu_bar_layout_title"))
-            } footer: {
-                SettingsSectionFooter(L("menu_bar_layout_footer"))
+                Text(L("Choose up to three providers"))
             }
 
-            Section {
-                Toggle(isOn: self.$settings.mergeIcons) {
-                    SettingsRowLabel(L("merge_icons_title"), subtitle: L("merge_icons_subtitle"))
+            if self.selectedProviders.count > 1 {
+                Section {
+                    ForEach(Array(self.selectedProviders.enumerated()), id: \.element) { index, provider in
+                        HStack {
+                            Text(self.store.metadata(for: provider).displayName)
+                            Spacer()
+                            Button { self.move(index, by: -1) } label: {
+                                Image(systemName: "chevron.up")
+                            }
+                            .accessibilityLabel(L("Move up"))
+                            .disabled(index == 0)
+                            Button { self.move(index, by: 1) } label: {
+                                Image(systemName: "chevron.down")
+                            }
+                            .accessibilityLabel(L("Move down"))
+                            .disabled(index == self.selectedProviders.count - 1)
+                        }
+                    }
+                } header: {
+                    Text(L("Order"))
                 }
-
-                SettingsMenuPicker(
-                    selection: Binding(
-                        get: { self.mergedIconPresentation.effectiveStyle },
-                        set: { self.settings.mergedIconDisplayStyle = $0 }),
-                    options: MenuBarSettingsMenuOptions.mergedIconStyles,
-                    label: {
-                        SettingsRowLabel(L("merged_icon_style_title"), subtitle: L("merged_icon_style_subtitle"))
-                    },
-                    optionLabel: { style in
-                        Text(style.label)
-                    })
-                    .disabled(!self.mergedIconPresentation.canStack)
-
-                if let pair = self.mergedIconPresentation.stackedProviders {
-                    self.stackedRowProviderPicker(
-                        title: L("merge_icon_stacked_top_provider_title"),
-                        selection: Binding(
-                            get: { self.mergedIconPresentation.topSelection },
-                            set: { self.settings.mergeIconStackedTopProvider = $0 }),
-                        excluding: self.mergedIconPresentation.bottomSelection,
-                        automaticProvider: pair.top)
-                    self.stackedRowProviderPicker(
-                        title: L("merge_icon_stacked_bottom_provider_title"),
-                        selection: Binding(
-                            get: { self.mergedIconPresentation.bottomSelection },
-                            set: { self.settings.mergeIconStackedBottomProvider = $0 }),
-                        excluding: self.mergedIconPresentation.topSelection,
-                        automaticProvider: pair.bottom)
-                }
-
-                SettingsMenuPicker(
-                    selection: self.$settings.switcherRowsOption,
-                    options: MenuBarSettingsMenuOptions.switcherRows,
-                    label: { SettingsRowLabel(L("switcher_rows_title")) },
-                    optionLabel: { option in
-                        Text(option.label)
-                    })
-                    .disabled(!self.settings.mergeIcons)
-
-                Toggle(isOn: self.$settings.menuBarShowsHighestUsage) {
-                    SettingsRowLabel(
-                        L("show_most_used_provider_title"),
-                        subtitle: L("show_most_used_provider_subtitle"))
-                }
-                .disabled(!self.settings.mergeIcons || self.mergedIconPresentation.effectiveStyle == .stacked)
-
-                self.overviewProviderRow
-                    .disabled(!self.settings.mergeIcons)
-            } header: {
-                Text(L("section_combined_icon"))
-            }
-
-            Section {
-                Toggle(isOn: self.$settings.randomBlinkEnabled) {
-                    SettingsRowLabel(L("surprise_me_title"), subtitle: L("surprise_me_subtitle"))
-                }
-                .disabled(self.mergedIconPresentation.effectiveStyle == .stacked)
-            } header: {
-                Text(L("section_animation"))
             }
         }
         .formStyle(.grouped)
-        .toggleStyle(.switch)
         .scrollContentBackground(.hidden)
-        .onAppear {
-            self.reconcileOverviewSelection()
-        }
-        .onChange(of: self.settings.mergeIcons) { _, isEnabled in
-            guard isEnabled else {
-                self.isOverviewProviderPopoverPresented = false
-                return
-            }
-            self.reconcileOverviewSelection()
-        }
-        .onChange(of: self.activeProvidersInOrder) { _, _ in
-            if self.activeProvidersInOrder.isEmpty {
-                self.isOverviewProviderPopoverPresented = false
-            }
-            self.reconcileOverviewSelection()
-        }
     }
 
-    private var overviewProviderRow: some View {
-        LabeledContent {
-            if self.showsOverviewConfigureButton {
-                Button(L("configure")) {
-                    self.isOverviewProviderPopoverPresented = true
-                }
-                .popover(isPresented: self.$isOverviewProviderPopoverPresented, arrowEdge: .bottom) {
-                    self.overviewProviderPopover
-                }
-            }
-        } label: {
-            SettingsRowLabel(L("overview_tab_providers_title"), subtitle: self.overviewProviderSubtitle)
-        }
+    private var activeProviders: [UsageProvider] {
+        self.store.enabledFirstPartyProvidersForDisplay()
     }
 
-    private var overviewProviderSubtitle: String {
-        if !self.settings.mergeIcons {
-            L("overview_enable_merge_icons_hint")
-        } else if self.activeProvidersInOrder.isEmpty {
-            L("overview_no_providers_hint")
-        } else {
-            self.overviewProviderSelectionSummary
-        }
+    private var selectedProviders: [UsageProvider] {
+        let selected = self.settings.scapoliteMenuBarProviders.filter(self.activeProviders.contains)
+        return selected.isEmpty ? Array(self.activeProviders.prefix(ScapoliteQuotaBar.providerLimit)) : selected
     }
 
-    private var overviewProviderPopover: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(Self.overviewProviderLimitText())
-                .font(.headline)
-            Text(L("overview_rows_follow_order"))
-                .font(.footnote)
-                .foregroundStyle(.tertiary)
-
-            ScrollView(.vertical, showsIndicators: true) {
-                VStack(alignment: .leading, spacing: 6) {
-                    ForEach(self.activeProvidersInOrder, id: \.self) { provider in
-                        Toggle(
-                            isOn: Binding(
-                                get: { self.overviewSelectedProviders.contains(provider) },
-                                set: { shouldSelect in
-                                    self.setOverviewProviderSelection(provider: provider, isSelected: shouldSelect)
-                                })) {
-                            Text(self.providerDisplayName(provider))
-                                .font(.body)
-                        }
-                        .toggleStyle(.checkbox)
-                        .disabled(
-                            !self.overviewSelectedProviders.contains(provider) &&
-                                self.overviewSelectedProviders.count >= Self.maxOverviewProviders)
-                    }
-                }
-            }
-            .frame(maxHeight: 220)
-        }
-        .padding(12)
-        .frame(width: 280)
-    }
-
-    private var activeProvidersInOrder: [UsageProvider] {
-        self.store.enabledFirstPartyProviders()
-    }
-
-    private var mergedIconPresentation: MergedIconPresentation {
-        self.settings.mergedIconPresentation(activeProviders: self.store.enabledFirstPartyProvidersForDisplay())
-    }
-
-    private func stackedRowProviderPicker(
-        title: String,
-        selection: Binding<UsageProvider?>,
-        excluding: UsageProvider?,
-        automaticProvider: UsageProvider) -> some View
-    {
-        SettingsMenuPicker(
-            selection: selection,
-            options: [nil] + self.mergedIconPresentation.eligibleProviders.filter { $0 != excluding },
-            label: { Text(title) },
-            optionLabel: { provider in
-                Text(provider.map(self.providerDisplayName)
-                    ?? "\(L("Automatic")) (\(self.providerDisplayName(automaticProvider)))")
-            })
-    }
-
-    private var overviewSelectedProviders: [UsageProvider] {
-        self.settings.resolvedMergedOverviewProviders(
-            activeProviders: self.activeProvidersInOrder,
-            maxVisibleProviders: Self.maxOverviewProviders)
-    }
-
-    private var showsOverviewConfigureButton: Bool {
-        self.settings.mergeIcons && !self.activeProvidersInOrder.isEmpty
-    }
-
-    private var overviewProviderSelectionSummary: String {
-        let selectedNames = self.overviewSelectedProviders.map(self.providerDisplayName)
-        guard !selectedNames.isEmpty else { return L("overview_no_providers_selected") }
-        return selectedNames.joined(separator: ", ")
-    }
-
-    private func providerDisplayName(_ provider: UsageProvider) -> String {
-        ProviderDescriptorRegistry.descriptor(for: provider).metadata.displayName
-    }
-
-    private func setOverviewProviderSelection(provider: UsageProvider, isSelected: Bool) {
-        _ = self.settings.setMergedOverviewProviderSelection(
-            provider: provider,
-            isSelected: isSelected,
-            activeProviders: self.activeProvidersInOrder,
-            maxVisibleProviders: Self.maxOverviewProviders)
-    }
-
-    private func reconcileOverviewSelection() {
-        _ = self.settings.reconcileMergedOverviewSelectedProviders(
-            activeProviders: self.activeProvidersInOrder,
-            maxVisibleProviders: Self.maxOverviewProviders)
+    private func move(_ index: Int, by offset: Int) {
+        var providers = self.selectedProviders
+        let destination = index + offset
+        guard providers.indices.contains(index), providers.indices.contains(destination) else { return }
+        providers.swapAt(index, destination)
+        self.settings.scapoliteMenuBarProviders = providers
     }
 }

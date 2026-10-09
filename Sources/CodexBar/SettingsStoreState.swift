@@ -13,6 +13,8 @@ struct SettingsDefaultsState {
     var debugLoadingPatternRaw: String?
     var debugKeepCLISessionsAlive: Bool
     var statusChecksEnabled: Bool
+    var scapoliteServiceNotificationsEnabled: Bool
+    var scapoliteMenuBarProvidersRaw: [String]
     var stayAwakeEnabled: Bool
     var credentialExpiryNotificationsEnabled: Bool
     var sessionQuotaNotificationsEnabled: Bool

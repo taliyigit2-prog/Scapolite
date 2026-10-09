@@ -2,6 +2,11 @@ import CodexBarCore
 import Foundation
 import Observation
 
+extension Notification.Name {
+    static let scapoliteTestServiceAlert = Notification.Name("com.taliyigit2.scapolite.test-service-alert")
+    static let scapoliteServiceAlertsDisabled = Notification.Name("com.taliyigit2.scapolite.service-alerts-disabled")
+}
+
 struct ScapoliteMonitoredService: Identifiable, Sendable {
     enum Source: Sendable {
         case statuspage(URL)

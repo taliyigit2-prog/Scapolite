@@ -153,6 +153,7 @@ extension StatusItemController {
     }
 
     private func menuBarRefreshProviders() -> [UsageProvider] {
+        if !self.scapoliteQuotaBarProviders.isEmpty { return self.scapoliteQuotaBarProviders }
         if let stackedProviders = self.stackedMergeIconProvidersIfActive() {
             return [stackedProviders.top, stackedProviders.bottom]
         }

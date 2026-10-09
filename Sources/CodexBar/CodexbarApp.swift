@@ -388,10 +388,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     let updaterController: UpdaterProviding = makeUpdaterController()
     let cloudSyncState = CloudSyncState()
-    private let confettiOverlayController = ScreenConfettiOverlayController()
     private let serviceMonitor = ScapoliteServiceMonitor()
     private let notchAlertController = ScapoliteNotchAlertController()
-    private let confettiLogger = CodexBarLog.logger(LogCategories.confetti)
     private let dockIconController = DockIconController.shared
     private lazy var memoryPressureMonitor = MemoryPressureMonitor(trimAppCaches: { [weak self] in
         self?.trimRebuildableCachesForMemoryPressure() ?? MemoryPressureCacheTrimSummary()
@@ -412,7 +410,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         isKnownSettingsWindow: { [weak self] window in
             self?.settingsWindowController?.window === window
         })
-    private var hasInstalledLimitResetObservers = false
     #if DEBUG
     private var debugMemoryPressureObserver: NSObjectProtocol?
     #endif
@@ -459,9 +456,15 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.dockIconController.start()
         self.memoryPressureMonitor.start()
         self.serviceMonitor.onTransition = { [weak self] transition in
-            self?.notchAlertController.show(transition)
+            if self?.settings?.scapoliteServiceNotificationsEnabled == true {
+                self?.notchAlertController.show(transition)
+            }
             self?.telegramController?.sendServiceTransition(transition)
         }
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(self.showTestServiceAlert), name: .scapoliteTestServiceAlert, object: nil)
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(self.dismissServiceAlert), name: .scapoliteServiceAlertsDisabled, object: nil)
         self.serviceMonitor.start()
         #if DEBUG
         self.installDebugMemoryPressureObserverIfNeeded()
@@ -471,6 +474,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.runScapoliteAlertSimulationIfRequested()
         #endif
         self.closeSwiftUISettingsPlaceholderWindow()
+        #if DEBUG
+        if CommandLine.arguments.contains("--scapolite-show-settings") {
+            self.openSettings(pane: .menuBar)
+        }
+        #endif
         self.observeSettingsApplicationMenuLanguage()
         self.scheduleSettingsApplicationMenuValidation(
             missingItemRetriesRemaining: Self.settingsMenuReadinessRetryCount,
@@ -495,34 +503,36 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self?.statusController?.openMenuFromShortcut()
             }
         }
-        if !self.hasInstalledLimitResetObservers {
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(self.handleSessionLimitResetNotification(_:)),
-                name: .codexbarSessionLimitReset,
-                object: nil)
-            NotificationCenter.default.addObserver(
-                self,
-                selector: #selector(self.handleWeeklyLimitResetNotification(_:)),
-                name: .codexbarWeeklyLimitReset,
-                object: nil)
-            self.hasInstalledLimitResetObservers = true
-        }
     }
 
     #if DEBUG
     private func runScapoliteAlertSimulationIfRequested() {
-        guard CommandLine.arguments.contains("--simulate-scapolite-outages") else { return }
+        let single = CommandLine.arguments.contains("--simulate-scapolite-outage-once")
+        guard single || CommandLine.arguments.contains("--simulate-scapolite-outages") else { return }
         Task { @MainActor [weak self] in
             try? await Task.sleep(for: .seconds(1))
-            for transition in ScapoliteServiceAlertSimulation.transitions() {
+            let transitions = ScapoliteServiceAlertSimulation.transitions()
+            for transition in single ? Array(transitions.prefix(1)) : transitions {
                 guard let self else { return }
-                self.notchAlertController.show(transition)
+                if self.settings?.scapoliteServiceNotificationsEnabled == true {
+                    self.notchAlertController.show(transition)
+                }
                 try? await Task.sleep(for: .seconds(3))
             }
         }
     }
     #endif
+
+    @objc private func showTestServiceAlert() {
+        guard self.settings?.scapoliteServiceNotificationsEnabled == true,
+              let transition = ScapoliteServiceAlertSimulation.transitions().first
+        else { return }
+        self.notchAlertController.show(transition)
+    }
+
+    @objc private func dismissServiceAlert() {
+        self.notchAlertController.dismiss()
+    }
 
     /// The SwiftUI `Settings` scene exists only to own the app-menu Settings command; the real
     /// settings window is AppKit-managed (`SettingsWindowController`). macOS can still present or
@@ -550,7 +560,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.removeDebugMemoryPressureObserver()
         #endif
         self.statusController?.prepareForAppShutdown()
-        self.confettiOverlayController.dismiss()
         self.dismissAppKitWindowsForShutdown()
         self.terminateActiveProcessesForAppShutdown()
     }
@@ -566,6 +575,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func openSettings(pane: SettingsPane?) {
+        if pane == .usageSpend {
+            self.openDashboard(spend: true)
+            return
+        }
         // Escape NSMenu's synchronous tracking callback before activating and presenting a window.
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
@@ -578,11 +591,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    func openDashboard() {
+    func openDashboard(spend: Bool = false) {
         DispatchQueue.main.async { [weak self] in
             guard let self, let dashboardWindowController = self.dashboardWindowController else { return }
             let presentationAttempt = self.dockIconController.promote(presentationTimeout: .seconds(2))
-            dashboardWindowController.open()
+            dashboardWindowController.open(spend: spend)
             Task { @MainActor [weak self] in
                 await Task.yield()
                 self?.dockIconController.finishPresentationAttempt(presentationAttempt)
@@ -592,42 +605,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func showSettingsFromApplicationMenu(_: Any?) {
         self.openSettings(pane: nil)
-    }
-
-    @objc private func handleSessionLimitResetNotification(_ notification: Notification) {
-        guard let event = notification.object as? SessionLimitResetEvent else { return }
-        guard self.settings?.confettiOnSessionLimitResetsEnabled == true else { return }
-        self.playLimitResetConfetti(
-            provider: event.provider,
-            accountIdentifier: event.accountIdentifier,
-            resetKind: "session")
-    }
-
-    @objc private func handleWeeklyLimitResetNotification(_ notification: Notification) {
-        guard let event = notification.object as? WeeklyLimitResetEvent else { return }
-        guard self.settings?.confettiOnWeeklyLimitResetsEnabled == true else { return }
-        self.playLimitResetConfetti(
-            provider: event.provider,
-            accountIdentifier: event.accountIdentifier,
-            resetKind: "weekly")
-    }
-
-    private func playLimitResetConfetti(
-        provider: UsageProvider,
-        accountIdentifier: String,
-        resetKind: String)
-    {
-        let origin = self.statusController?.celebrationOriginPoint(for: provider)
-        let palette = ProviderDescriptorRegistry.descriptor(for: provider).branding.confettiPalette
-        self.confettiLogger.info(
-            "Triggering confetti",
-            metadata: [
-                "provider": provider.rawValue,
-                "accountIdentifier": accountIdentifier,
-                "resetKind": resetKind,
-                "originKnown": origin == nil ? "0" : "1",
-            ])
-        self.confettiOverlayController.play(originInScreen: origin, colors: palette)
     }
 
     /// Use the classic (non-Liquid Glass) app icon on macOS versions before 26.

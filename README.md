@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/taliyigit2-prog/Scapolite/actions"><img alt="Build" src="https://img.shields.io/github/actions/workflow/status/taliyigit2-prog/Scapolite/ci.yml?branch=main&amp;style=for-the-badge"></a>
+  <a href="https://github.com/taliyigit2-prog/Scapolite/actions"><img alt="Build" src="https://img.shields.io/github/actions/workflow/status/taliyigit2-prog/Scapolite/ci.yml?branch=codex%2Fscapolite-dashboard&amp;style=for-the-badge"></a>
   <img alt="macOS 14+" src="https://img.shields.io/badge/macOS-14%2B-111827?style=for-the-badge&amp;logo=apple">
   <img alt="Swift 6" src="https://img.shields.io/badge/Swift-6-F05138?style=for-the-badge&amp;logo=swift&amp;logoColor=white">
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-2dd4bf?style=for-the-badge"></a>
@@ -18,11 +18,12 @@ Scapolite is an open-source macOS menu bar cockpit built on the excellent founda
 > [!IMPORTANT]
 > Scapolite currently ships as a source/ad-hoc build. The project does not yet have an Apple Developer ID, so downloads are not notarized and automatic Sparkle updates are deliberately disabled.
 
-## One menu bar, five views
+## One menu bar, six views
 
 | View | What it gives you |
 | --- | --- |
 | **Usage** | Quota windows, resets, credits, spend, and pay-as-you-go balances from the provider catalog inherited from CodexBar. |
+| **Spend** | Local cost history and reporting, separate from subscription quota. |
 | **Sessions** | Recent **Claude Code** and **Codex CLI/Codex app** sessions, with one-click focus. Pi/OpenCode sessions remain available through the underlying session engine. |
 | **System** | CPU, memory, disk, network, battery, temperature, health score, and top processes using `MoleWidgetCore`. |
 | **Service Status** | A provider-independent operational view for OpenAI, Claude, Google AI Studio/Gemini API, Cursor, GitHub Copilot, and DeepSeek. |
@@ -34,14 +35,17 @@ Open the dashboard from the menu bar with **Open Scapolite Dashboard** or press 
 
 - Native Swift 6 / SwiftUI macOS app with a compact menu-bar-first workflow.
 - Over 80 inherited usage providers and plugins, including credit and balance sources such as DeepSeek, OpenRouter, Mistral, DeepInfra, Moonshot, Venice, xAI, Vercel AI Gateway, and more.
-- Multiple quota windows per provider instead of a single percentage.
+- Up to three provider logos side by side, each with two small remaining percentages: session (top), weekly (bottom). Choose and reorder them in **Settings → Menu Bar**. GPT uses Codex quota, not ChatGPT web message limits.
+- Claude's weekly row uses the overall plan limit, never a model-specific allowance. Antigravity uses the most constrained known model family per cadence; unavailable or different-length windows show a dash, not a fabricated percentage.
 - Local Claude Code and Codex session discovery; it is opt-in because session metadata can include project names and paths.
 - System telemetry sampled locally; no telemetry server is required.
 - Independent outage polling every two minutes, even when the corresponding usage provider is disabled.
 - Notch-aware overlay: red for a new disruption and green when a service recovers.
+- Service alerts are enabled by default; disable them or trigger a single test in **Settings → Notifications** without disabling monitoring or Telegram.
 - First status fetch establishes a baseline and never produces a false startup alert.
 - Secure Telegram token storage in macOS Keychain, chat allow-listing, and long polling without a relay server.
 - English, Turkish, Russian, German, Italian, French, and Spanish dashboard localization, alongside the wider inherited locale catalog.
+- Five focused settings destinations: General, Notifications, Menu Bar, Advanced, and About. Provider settings remain intact; optional hooks and plugins live under Advanced.
 
 ### Provider documentation additions
 

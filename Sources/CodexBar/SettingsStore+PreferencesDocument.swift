@@ -6,6 +6,8 @@ extension SettingsStore {
         var document = PreferencesDocument()
         try document.include(self.syncedPreferences)
         try document.set("limitResetNotificationsEnabled", self.limitResetNotificationsEnabled)
+        try document.set("scapoliteServiceNotificationsEnabled", self.scapoliteServiceNotificationsEnabled)
+        try document.set("scapoliteMenuBarProviders", self.scapoliteMenuBarProviders.map(\.rawValue))
         try document.set("mergeIcons", self.mergeIcons)
         try document.set("mergeIconsStacked", self.mergeIconsStacked)
         try document.set("switcherShowsIcons", self.switcherShowsIcons)
@@ -32,6 +34,12 @@ extension SettingsStore {
         if let value: Bool = try document.value("limitResetNotificationsEnabled") {
             self.limitResetNotificationsEnabled = value
         }
+        if let value: Bool = try document.value("scapoliteServiceNotificationsEnabled") {
+            self.scapoliteServiceNotificationsEnabled = value
+        }
+        if let value: [String] = try document.value("scapoliteMenuBarProviders") {
+            self.scapoliteMenuBarProviders = value.compactMap(UsageProvider.init(rawValue:))
+        }
         if let value: Bool = try document.value("mergeIcons") { self.mergeIcons = value }
         if let value: Bool = try document.value("mergeIconsStacked") { self.mergeIconsStacked = value }
         if let value: Bool = try document.value("switcherShowsIcons") { self.switcherShowsIcons = value }
@@ -50,6 +58,11 @@ extension SettingsStore {
         }
         if let value: [String: String] = try document.value("switcherShortcuts") {
             try self.setProviderSwitcherShortcuts(value)
+        }
+        if self.scapoliteCompactQuotaBarEnabled {
+            self.mergeIcons = true
+            self.menuBarShowsBrandIconWithPercent = true
+            self.usageBarsShowUsed = false
         }
     }
 

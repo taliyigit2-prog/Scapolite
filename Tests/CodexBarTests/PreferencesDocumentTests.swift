@@ -12,7 +12,7 @@ struct PreferencesDocumentTests {
     }
 
     @Test
-    func `portable preferences round trip uses existing defaults without touching config`() throws {
+    func `portable preferences round trip normalizes display without touching config`() throws {
         let source = self.store("source")
         source.refreshFrequency = .fiveMinutes
         source.hidePersonalInfo = true
@@ -26,10 +26,13 @@ struct PreferencesDocumentTests {
         try target.importPreferences(document)
         #expect(target.refreshFrequency == .fiveMinutes)
         #expect(target.hidePersonalInfo)
-        #expect(!target.mergeIcons)
+        #expect(target.mergeIcons)
+        #expect(target.menuBarShowsBrandIconWithPercent)
+        #expect(!target.usageBarsShowUsed)
         #expect(target.weeklyProgressWorkDays == nil)
         #expect(target.providerSwitcherShortcuts["select2"] == "alt+cmd+2")
         #expect(try target.configSnapshot.encodedData() == configBefore)
+        try source.importPreferences(document)
         #expect(try target.exportPreferences().encoded() == source.exportPreferences().encoded())
     }
 

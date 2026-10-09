@@ -11,11 +11,12 @@ Scapolite ist ein quelloffenes macOS-Menüleisten-Cockpit auf Basis von [CodexBa
 > [!IMPORTANT]
 > Das Projekt besitzt noch keine Apple Developer ID. Die App wird deshalb aus dem Quellcode ad-hoc signiert, ist nicht notarisiert und automatische Updates sind bewusst deaktiviert.
 
-## Fünf Ansichten
+## Sechs Ansichten
 
 | Ansicht | Inhalt |
 | --- | --- |
 | **Usage** | Kontingentfenster, Zurücksetzungen, Credits, Kosten und Pay-as-you-go-Guthaben. |
+| **Ausgaben** | Lokale Kostenhistorie und Berichte getrennt vom Abonnementkontingent. |
 | **Sessions** | Letzte **Claude Code**- und **Codex CLI/Codex-App**-Sitzungen mit Fokus per Klick. |
 | **System** | CPU, Arbeitsspeicher, Datenträger, Netzwerk, Batterie, Temperatur, Zustandswert und Prozesse über `MoleWidgetCore`. |
 | **Service Status** | Unabhängige Überwachung von OpenAI, Claude, Google AI Studio/Gemini API, Cursor, GitHub Copilot und DeepSeek. |
@@ -77,3 +78,9 @@ Weitere Informationen: [Schlüsselbund](../keychain-prompts.md), [Anbieter](../p
 Die App basiert auf [CodexBar](https://github.com/steipete/CodexBar); Systemmetriken stammen aus dem fest angehefteten Paket [mole-widget](https://github.com/TadelUnso/mole-widget). [Lunavect](https://github.com/lovach/Lunavect) diente als Recherchebeispiel für den schnellen Gesprächswechsel; dessen Figurenzeichnungen sind nicht enthalten.
 
 Scapolite steht unter der [MIT-Lizenz](../../LICENSE). Die vollständigste aktuelle Beschreibung enthält das [englische README](../../README.md).
+
+## Menüleiste und Einstellungen
+
+Bis zu drei Logos nebeneinander: oben verbleibendes Sitzungskontingent, unten Wochenkontingent. Auswahl und Reihenfolge in den Menüleisteneinstellungen. GPT bezeichnet das Codex-Kontingent, nicht ChatGPT-Nachrichtenlimits. Claudes allgemeines Wochenlimit wird nicht durch ein modellspezifisches Limit ersetzt; unbekannte Zeiträume erscheinen als Strich.
+
+Störungsmeldungen sind standardmäßig aktiviert und lassen sich in den Benachrichtigungseinstellungen deaktivieren oder einmal testen. Überwachung und Telegram bleiben aktiv. Ausgabenberichte liegen im Dashboard. Fünf Hauptbereiche ersetzen die komplexen Einstellungen; Anbieteroptionen bleiben erhalten.
